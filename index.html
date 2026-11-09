@@ -1170,6 +1170,7 @@
         document.getElementById('inputMaxPyung').value = "";
         document.getElementById('selectZoning').value = "전체";
         document.getElementById('selectJimok').value = "전체";
+        // 검색어는 초기화 시 삭제
         document.getElementById('inputKeyword').value = "";
         document.getElementById('selectSorting').value = "date_desc";
         document.getElementById('lblPyungDisplay').textContent = "전체 평수";
@@ -1407,6 +1408,10 @@
       // 웹 접속 시 첫 화면을 "전체 데이터"가 뜰 수 있도록 기본값 해제
       document.getElementById('selectZoning').value = "전체";
       document.getElementById('inputMinPyung').value = "0";
+      
+      // === [수정된 부분] 접속 시 검색창 키워드를 기본으로 '구로동'으로 설정 ===
+      document.getElementById('inputKeyword').value = "구로동";
+      
       setPeriodPreset('all');
 
       // 오직 GitHub Actions 수집 데이터(data.json)만 로드
