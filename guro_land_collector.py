@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 구로구 구로동 토지 매매 실거래가 수집 및 주소 교차검증 엑셀 리포트 생성기
-- 국토교통부 실거래가 Open API 연동 및 오프라인 고정밀 샘플 데이터베이스 탑재
+- 국토교통부 실거래가 Open API 100% 공식 데이터 수집 (하드코딩 더미 데이터 배제)
 - 지적도 및 건축물/토지대장 면적 매칭을 통한 상세 주소(지번) 교차 검증
-- 웹 대시보드(index.html) 연동을 위한 JSON 포맷 규격화 및 한글/영문 듀얼 키 지원
+- 웹 대시보드(index.html) 연동을 위한 data.json 포맷 규격화 출력
 """
 
 import os
@@ -23,22 +23,13 @@ try:
     from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
     from openpyxl.utils import get_column_letter
     from openpyxl.chart import BarChart, Reference
-    from openpyxl.formatting.rule import ColorScaleRule
 except ImportError:
     print("[경고] openpyxl 패키지가 설치되어 있지 않습니다. 'pip install openpyxl'을 실행해주세요.")
     sys.exit(1)
 
-# GUI (Tkinter) 라이브러리 (헤드리스 환경 대비 예외 처리)
-try:
-    import tkinter as tk
-    from tkinter import ttk, messagebox, filedialog
-    TKINTER_AVAILABLE = True
-except ImportError:
-    TKINTER_AVAILABLE = False
-
 
 # ==============================================================================
-# 1. 구로동 토지 및 지적 데이터베이스 (지번 교차 검증용 참조 사전)
+# 1. 구로동 지적 데이터베이스 (마스킹 지번 1:1 교차검증용 대장 사전)
 # ==============================================================================
 GURO_CADASTRAL_REGISTRY = {
     "689": [
@@ -134,8 +125,10 @@ class GuroLandAnalyzer:
             self.api_key = self.api_key.strip()
             masked_k = self.api_key[:4] + "***" if len(self.api_key) > 4 else "***"
             print(f"[보안 인증] 등록된 API Key(GURO_API_KEY)를 로드했습니다. ({masked_k})")
+        else:
+            print("[주의] 등록된 API Key가 없습니다. 실거래가 API 수집이 제한될 수 있습니다.")
         
-        self.lawd_cd = "11530"
+        self.lawd_cd = "11530"  # 서울시 구로구 법정동 코드
         self.dong_name = "구로동"
 
     @staticmethod
@@ -149,8 +142,9 @@ class GuroLandAnalyzer:
         return None
 
     def fetch_molit_api_transactions(self, deal_ym_list: list) -> list:
+        """국토교통부 실거래가 Open API에서 구로동 토지 매매 내역 전수 수집"""
         if not self.api_key:
-            return None
+            return []
 
         url = "http://apis.data.go.kr/1613000/RTMSDataSvcLand/getRTMSDataSvcLand"
         collected_data = []
@@ -167,7 +161,7 @@ class GuroLandAnalyzer:
 
             try:
                 req = urllib.request.Request(full_url, headers={"User-Agent": "Mozilla/5.0"})
-                with urllib.request.urlopen(req, timeout=10) as response:
+                with urllib.request.urlopen(req, timeout=12) as response:
                     xml_str = response.read().decode("utf-8")
                     root = ET.fromstring(xml_str)
                     items = root.findall(".//item")
@@ -201,42 +195,12 @@ class GuroLandAnalyzer:
                             "road_cond": road_cond,
                             "area_m2": deal_area,
                             "price_만원": price_val,
-                            "note": "국토교통부 Open API 실시간 수집건"
+                            "note": "국토교통부 공식 실거래 수집건"
                         })
             except Exception as e:
-                print(f"[API 조회 안내] {deal_ym} 수집 처리: {e}")
-                return None
+                print(f"[API 조회 안내] {deal_ym} 수집 처리 중 오류/응답 없음: {e}")
 
-        return collected_data if collected_data else None
-
-    def get_benchmark_raw_data(self) -> list:
-        return [
-            {"deal_date": "2026-09-15", "raw_jibun": "689", "jimok": "대", "use_area": "준공업지역", "road_cond": "8m이상", "area_m2": 205.0, "price_만원": 161000, "note": "준공업지 상가주택 부지"},
-            {"deal_date": "2026-08-28", "raw_jibun": "496", "jimok": "대", "use_area": "제2종일반주거지역", "road_cond": "4m미만", "area_m2": 147.0, "price_만원": 54000, "note": "주거지 노후단독 필지"},
-            {"deal_date": "2026-08-11", "raw_jibun": "705", "jimok": "대", "use_area": "일반상업지역", "road_cond": "12m이상", "area_m2": 165.3, "price_만원": 235000, "note": "역세권 상업용 빌딩 부지"},
-            {"deal_date": "2026-07-22", "raw_jibun": "1257", "jimok": "대", "use_area": "제3종일반주거지역", "road_cond": "8m이상", "area_m2": 99.2, "price_만원": 85000, "note": "근생 및 다세대 적합지"},
-            {"deal_date": "2026-07-04", "raw_jibun": "801", "jimok": "대", "use_area": "제2종일반주거지역", "road_cond": "4m~6m", "area_m2": 132.2, "price_만원": 88000, "note": "다가구 신축 가능 부지"},
-            {"deal_date": "2026-06-19", "raw_jibun": "542", "jimok": "대", "use_area": "준공업지역", "road_cond": "8m이상", "area_m2": 403.3, "price_만원": 318000, "note": "공장 및 지산 인근 부지"},
-            {"deal_date": "2026-06-03", "raw_jibun": "314", "jimok": "잡종지", "use_area": "준공업지역", "road_cond": "12m이상", "area_m2": 330.6, "price_만원": 285000, "note": "창고 및 야적장 부지"},
-            {"deal_date": "2026-05-21", "raw_jibun": "98", "jimok": "대", "use_area": "제2종일반주거지역", "road_cond": "4m미만", "area_m2": 82.6, "price_만원": 42000, "note": "골목길 소형 단독주택"},
-            {"deal_date": "2026-05-14", "raw_jibun": "741", "jimok": "대", "use_area": "제2종일반주거지역", "road_cond": "4m~6m", "area_m2": 185.1, "price_만원": 118000, "note": "모아타운 인근 주거지"},
-            {"deal_date": "2026-04-29", "raw_jibun": "602", "jimok": "대", "use_area": "준공업지역", "road_cond": "8m이상", "area_m2": 264.5, "price_만원": 215000, "note": "제조·정비시설 부지"},
-            {"deal_date": "2026-04-10", "raw_jibun": "112", "jimok": "도로", "use_area": "제2종일반주거지역", "road_cond": "4m미만", "area_m2": 49.6, "price_만원": 1800, "note": "주택가 사도 지분매매"},
-            {"deal_date": "2026-03-25", "raw_jibun": "443", "jimok": "대", "use_area": "제2종일반주거지역", "road_cond": "4m~6m", "area_m2": 115.7, "price_만원": 72000, "note": "다세대 신축 부지"},
-            {"deal_date": "2026-03-08", "raw_jibun": "636", "jimok": "대", "use_area": "준공업지역", "road_cond": "8m이상", "area_m2": 198.3, "price_만원": 155000, "note": "유통상가 인근 부지"},
-            {"deal_date": "2026-02-20", "raw_jibun": "790", "jimok": "대", "use_area": "제3종일반주거지역", "road_cond": "8m이상", "area_m2": 142.1, "price_만원": 118000, "note": "상가주택 부지"},
-            {"deal_date": "2026-02-12", "raw_jibun": "235", "jimok": "대", "use_area": "준공업지역", "road_cond": "12m이상", "area_m2": 512.4, "price_만원": 465000, "note": "중형 지식산업 개발부지"},
-            {"deal_date": "2026-01-27", "raw_jibun": "148", "jimok": "대", "use_area": "제2종일반주거지역", "road_cond": "4m미만", "area_m2": 76.0, "price_만원": 39000, "note": "노후 다가구 주택지"},
-            {"deal_date": "2026-01-15", "raw_jibun": "570", "jimok": "대", "use_area": "준공업지역", "road_cond": "8m이상", "area_m2": 175.2, "price_만원": 142000, "note": "준공업 창고겸용 부지"},
-            {"deal_date": "2025-12-29", "raw_jibun": "811", "jimok": "대", "use_area": "제2종일반주거지역", "road_cond": "4m~6m", "area_m2": 158.7, "price_만원": 102000, "note": "단독주택 매매 (부속토지)"},
-            {"deal_date": "2025-12-14", "raw_jibun": "642", "jimok": "대", "use_area": "준공업지역", "road_cond": "8m이상", "area_m2": 228.1, "price_만원": 182000, "note": "공구상가 배후 토지"},
-            {"deal_date": "2025-11-28", "raw_jibun": "415", "jimok": "잡종지", "use_area": "제2종일반주거지역", "road_cond": "4m~6m", "area_m2": 109.1, "price_만원": 58000, "note": "주차장 부지"},
-            {"deal_date": "2025-11-16", "raw_jibun": "712", "jimok": "대", "use_area": "일반상업지역", "road_cond": "12m이상", "area_m2": 125.6, "price_만원": 185000, "note": "대로변 상업시설 부지"},
-            {"deal_date": "2025-11-05", "raw_jibun": "390", "jimok": "대", "use_area": "제2종일반주거지역", "road_cond": "4m미만", "area_m2": 92.5, "price_만원": 48000, "note": "골목길 주택 부지"},
-            {"deal_date": "2025-10-24", "raw_jibun": "610", "jimok": "대", "use_area": "준공업지역", "road_cond": "8m이상", "area_m2": 310.7, "price_만원": 252000, "note": "준공업 시설 부지"},
-            {"deal_date": "2025-10-18", "raw_jibun": "197", "jimok": "대", "use_area": "제3종일반주거지역", "road_cond": "8m이상", "area_m2": 168.6, "price_만원": 140000, "note": "주상복합/상가 적합지"},
-            {"deal_date": "2025-10-02", "raw_jibun": "52", "jimok": "대", "use_area": "제2종일반주거지역", "road_cond": "4m~6m", "area_m2": 122.3, "price_만원": 76000, "note": "소형 주택 신축부지"}
-        ]
+        return collected_data
 
     def cross_verify_address(self, raw_jibun: str, area_m2: float, jimok: str) -> dict:
         main_no = raw_jibun.split("-")[0].replace("번지", "").strip()
@@ -280,9 +244,20 @@ class GuroLandAnalyzer:
             }
 
     def process_data(self, min_pyung: float = 0.0, max_pyung: float = 99999.0, zoning_filter: str = "전체") -> list:
-        raw_list = self.fetch_molit_api_transactions(["202511", "202512", "202601", "202602", "202603"])
+        # 최근 6개월 분기 목록 생성
+        today = datetime.date.today()
+        deal_ym_list = []
+        for i in range(6):
+            dt = today - datetime.timedelta(days=i * 30)
+            deal_ym_list.append(dt.strftime("%Y%m"))
+        deal_ym_list = sorted(list(set(deal_ym_list)))
+
+        # 100% 실제 공공데이터 API로부터 수집
+        raw_list = self.fetch_molit_api_transactions(deal_ym_list)
+        
         if not raw_list:
-            raw_list = self.get_benchmark_raw_data()
+            print("[안내] 국토부 Open API 수집 결과가 0건입니다. (더미 데이터를 주입하지 않고 빈 목록을 반환합니다.)")
+            return []
 
         processed_rows = []
         for item in raw_list:
@@ -316,7 +291,7 @@ class GuroLandAnalyzer:
                 "price_만원": item["price_만원"],
                 "unit_price_pyung": unit_price_pyung,
                 "unit_price_m2": unit_price_m2,
-                "note": item.get("note", "")
+                "note": item.get("note", "공식 실거래 수집건")
             })
 
         processed_rows.sort(key=lambda x: x["deal_date"], reverse=True)
@@ -333,17 +308,12 @@ class ExcelReportBuilder:
 
         self.font_title = Font(name="맑은 고딕", size=16, bold=True, color="1F2937")
         self.font_subtitle = Font(name="맑은 고딕", size=9, italic=True, color="64748B")
-        self.font_section = Font(name="맑은 고딕", size=12, bold=True, color="1E3A8A")
         self.font_header = Font(name="맑은 고딕", size=10, bold=True, color="FFFFFF")
-        self.font_regular = Font(name="맑은 고딕", size=10, color="1F2937")
         self.font_bold = Font(name="맑은 고딕", size=10, bold=True, color="1F2937")
         self.font_link = Font(name="맑은 고딕", size=10, color="2563EB", underline="single")
 
         self.fill_navy = PatternFill(start_color="1E3A8A", end_color="1E3A8A", fill_type="solid")
-        self.fill_slate = PatternFill(start_color="334155", end_color="334155", fill_type="solid")
         self.fill_zebra = PatternFill(start_color="F8FAFC", end_color="F8FAFC", fill_type="solid")
-        self.fill_kpi = PatternFill(start_color="F1F5F9", end_color="F1F5F9", fill_type="solid")
-        self.fill_highlight = PatternFill(start_color="EFF6FF", end_color="EFF6FF", fill_type="solid")
 
         thin_side = Side(border_style="thin", color="CBD5E1")
         self.border_box = Border(left=thin_side, right=thin_side, top=thin_side, bottom=thin_side)
@@ -434,12 +404,12 @@ class ExcelReportBuilder:
         title_cell.font = self.font_title
         title_cell.alignment = Alignment(vertical="center")
 
-        ws["A2"].value = f"분석 대상: {filter_summary}  |  기준일: {datetime.date.today().strftime('%Y-%m-%d')}"
+        ws["A2"].value = f"분석 대상: {filter_summary}  |  기준일: {datetime.date.today().strftime('%Y-%m-%d')} (공식 API 데이터)"
         ws["A2"].font = self.font_subtitle
 
 
 # ==============================================================================
-# 4. CLI(명령행) 실행 진입점 (듀얼 키 JSON 출력 강화)
+# 4. CLI(명령행) 실행 진입점
 # ==============================================================================
 def main_cli():
     parser = argparse.ArgumentParser(description="구로구 구로동 토지 매매 실거래 수집기")
@@ -454,15 +424,14 @@ def main_cli():
     args = parser.parse_args()
 
     print("=" * 70)
-    print(" [구로구 구로동 토지 매매 수집 및 주소 교차검증 자동화 엔진] ")
+    print(" [구로구 구로동 토지 매매 실거래 수집기 - 공식 API 전용 모드] ")
     print("=" * 70)
 
     analyzer = GuroLandAnalyzer(api_key=args.api_key)
     records = analyzer.process_data(min_pyung=args.min_pyung, max_pyung=args.max_pyung, zoning_filter=args.zone)
-    print(f"• 분석 및 교차검증 완료 건수: {len(records)}건")
+    print(f"• 공식 API 수집 및 교차검증 완료 건수: {len(records)}건")
 
     if args.export_json:
-        # 웹 대시보드 완벽 호환을 위해 camelCase 필드 자동 보강
         formatted_deals = []
         for idx, r in enumerate(records, 1):
             deal_dict = dict(r)
@@ -491,7 +460,7 @@ def main_cli():
         }
         with open(args.export_json, "w", encoding="utf-8") as jf:
             json.dump(export_payload, jf, ensure_ascii=False, indent=2)
-        print(f"• 웹 대시보드 호환 JSON 생성 완료: {os.path.abspath(args.export_json)}")
+        print(f"• 웹 대시보드용 순수 실거래 data.json 생성 완료: {os.path.abspath(args.export_json)}")
 
     out_file = args.output or f"구로동_토지매매_실거래분석_{int(args.min_pyung)}평이상.xlsx"
     builder = ExcelReportBuilder(output_filename=out_file)
