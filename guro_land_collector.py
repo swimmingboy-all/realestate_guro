@@ -3,7 +3,7 @@
 """
 구로구 전체 토지 & 단독·다가구 매매 실거래가 수집
 - [고도화] VWorld(국가공간정보포털) Data API 기반 면적 매칭 실시간 지번 복원 알고리즘 탑재
-- [안정화] VWorld 서버 과부하 방지용 트래픽 조절(Sleep) 및 502 에러 스마트 재시도(Retry) 적용
+- [최적화] 전체 수집 후 '구로동' 데이터만 선택적으로 VWorld API를 호출하여 처리 속도 극대화
 """
 
 import os
@@ -245,9 +245,11 @@ class GuroRealEstateCollector:
                 "confidence": "원본 지번 (마스킹 없음)",
             }
 
-        vworld_result = self._fetch_vworld_jibun(dong_name, raw_jibun, area_m2)
-        if vworld_result:
-            return vworld_result
+        # 구로구 전체 데이터 중 '구로동'인 경우에만 VWorld 지번 복원 수행
+        if dong_name == "구로동":
+            vworld_result = self._fetch_vworld_jibun(dong_name, raw_jibun, area_m2)
+            if vworld_result:
+                return vworld_result
         
         return {
             "verified_jibun": f"{dong_name} {raw_jibun}".strip(),
