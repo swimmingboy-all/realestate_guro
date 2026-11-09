@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 구로구 구로동 토지 & 단독·다가구 매매 실거래가 수집
-- [에러 추적 강화] 국토부 서버가 뱉는 원본 에러 메시지를 로그에 강제 출력
+- [통신 안정화] https 적용 및 pageNo 필수 파라미터 추가
+- [키 자동 정규화] 사용자가 Encoding/Decoding 어떤 키를 넣어도 자동 변환
 """
 
 import os
@@ -16,11 +17,10 @@ import xml.etree.ElementTree as ET
 
 class GuroRealEstateCollector:
     def __init__(self, api_key: str = None):
-        raw_key = (api_key or os.environ.get("GURO_API_KEY"))
-        if raw_key:
-            self.clean_api_key = raw_key.strip()
-        else:
-            self.clean_api_key = None
+        raw_key = (api_key or os.environ.get("GURO_API_KEY") or "")
+        # 사용자가 어떤 키를 넣었든 일단 디코딩 후 다시 인코딩하여 완벽한 상태(Encoding)로 고정
+        decoded_key = urllib.parse.unquote(raw_key.strip())
+        self.clean_api_key = urllib.parse.quote(decoded_key)
         
         self.lawd_cd = "11530"   # 구로구 지역 코드
         self.dong_name = "구로동"
@@ -29,27 +29,30 @@ class GuroRealEstateCollector:
         if not self.clean_api_key:
             return []
 
+        # pageNo 파라미터가 없으면 000 OK를 뱉으면서 데이터를 안 주는 경우가 있습니다.
         params = {
             "LAWD_CD": self.lawd_cd,
             "DEAL_YMD": deal_ym,
-            "numOfRows": "500" 
+            "pageNo": "1",
+            "numOfRows": "1000" 
         }
         query_str = urllib.parse.urlencode(params)
         full_url = f"{endpoint_url}?serviceKey={self.clean_api_key}&{query_str}"
 
         req = urllib.request.Request(full_url, headers={"User-Agent": "Mozilla/5.0"})
         try:
-            with urllib.request.urlopen(req, timeout=15) as response:
+            with urllib.request.urlopen(req, timeout=20) as response:
                 xml_content = response.read().decode("utf-8", errors="replace")
             
             root = ET.fromstring(xml_content)
             items = root.findall(".//item")
             
-            # 아이템이 하나도 없을 경우 원본 에러 메시지 분석 후 출력
             if not items:
                 err_msg = root.findtext(".//resultMsg", "")
                 result_code = root.findtext(".//resultCode", "")
-                if err_msg:
+                if result_code == "00":
+                    pass # 진짜로 해당 월에 거래가 0건인 경우
+                elif err_msg:
                     print(f"    ⚠️ [API 서버 응답] 코드:{result_code} 메시지:{err_msg}")
                 elif "OpenAPI" in xml_content or "ERROR" in xml_content.upper():
                     print(f"    ⚠️ [공공데이터포털 통신 오류] 원본: {xml_content[:150]}")
@@ -77,9 +80,9 @@ class GuroRealEstateCollector:
         
         deal_ym_list = sorted(list(set(deal_ym_list)), reverse=True)
         
-        # 국토교통부 실거래가 공식 엔드포인트
-        land_url = "http://apis.data.go.kr/1613000/RTMSDataSvcLandTrade/getRTMSDataSvcLandTrade"
-        house_url = "http://apis.data.go.kr/1613000/RTMSDataSvcSHTrade/getRTMSDataSvcSHTrade"
+        # http 대신 https 로 강제 통신 (서버 차단 방지)
+        land_url = "https://apis.data.go.kr/1613000/RTMSDataSvcLandTrade/getRTMSDataSvcLandTrade"
+        house_url = "https://apis.data.go.kr/1613000/RTMSDataSvcSHTrade/getRTMSDataSvcSHTrade"
 
         collected = []
         
