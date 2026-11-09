@@ -3,7 +3,7 @@
 """
 구로구 전체 토지 & 단독·다가구 매매 실거래가 수집
 - [고도화] VWorld(국가공간정보포털) Data API 기반 면적 매칭 실시간 지번 복원 알고리즘 탑재
-- [완결판] 대소문자 완벽 무시 및 스마트 면적 탐색 탑재
+- [완결판] 대소문자 무시, 스마트 면적 탐색 + VWorld 응답 정밀 디버깅(로그 출력)
 """
 
 import os
@@ -15,22 +15,24 @@ import urllib.parse
 import xml.etree.ElementTree as ET
 
 class GuroRealEstateCollector:
-    def __init__(self, api_key: str = None, vworld_key: str = None):
+    def __init__(self, api_key: str = None, vworld_key: str = None, vworld_domain: str = None):
         # 1. 국토부 API 키
         raw_key = (api_key or os.environ.get("GURO_API_KEY") or "")
         self.clean_api_key = urllib.parse.quote(urllib.parse.unquote(raw_key.strip()))
         
-        # 2. VWorld API 키 (공간정보 기반 지번 디마스킹용)
+        # 2. VWorld API 키 및 도메인
         self.vworld_api_key = (vworld_key or os.environ.get("VWORLD_API_KEY") or "").strip()
+        self.vworld_domain = (vworld_domain or os.environ.get("VWORLD_DOMAIN") or "http://localhost").strip()
         
         self.lawd_cd = "11530"   # 구로구
-
-        # 3. 로컬 샘플 DB (VWorld 키가 없을 때 대비용)
-        self.CADASTRAL_DB = [
-            {"dong": "오류동", "jibun": "123-45", "road": "오류로 12길", "area_m2": 329.0},
-            {"dong": "가리봉동", "jibun": "15-6", "road": "우마길 30", "area_m2": 250.9},
-            {"dong": "고척동", "jibun": "234-56", "road": "고척로 12", "area_m2": 112.0},
-        ]
+        
+        # VWorld 정밀 검색을 위한 구로구 법정동 코드 매핑
+        self.bjd_codes = {
+            "신도림동": "1153010100", "구로동": "1153010200", "가리봉동": "1153010300",
+            "고척동": "1153010600", "개봉동": "1153010700", "오류동": "1153010800",
+            "궁동": "1153010900", "온수동": "1153011000", "천왕동": "1153011100",
+            "항동": "1153011200"
+        }
 
     def _get_val(self, item, *tags):
         tags_lower = [t.lower() for t in tags]
@@ -61,7 +63,7 @@ class GuroRealEstateCollector:
             root = ET.fromstring(xml_content)
             return root.findall(".//item")
         except Exception as e:
-            print(f"    ❌ [HTTP 통신 에러] {e}")
+            print(f"    ❌ [국토부 API 에러] {e}")
             return []
 
     def fetch_all_real_transactions(self, months_back: int = 12) -> list:
@@ -88,21 +90,22 @@ class GuroRealEstateCollector:
                 jibun = self._get_val(it, "지번", "jibun")
                 area_m2 = float((self._get_val(it, "거래면적", "dealArea", "plttgAr", "area") or "0").replace(",", "").strip() or 0)
                 price_val = int((self._get_val(it, "거래금액", "dealAmount") or "0").replace(",", "").strip() or 0)
-
-                collected.append({
-                    "category": "land",
-                    "category_name": "토지",
-                    "dong": dong,
-                    "deal_date": f"{self._get_val(it, '년', 'dealYear')}-{self._get_val(it, '월', 'dealMonth').zfill(2)}-{self._get_val(it, '일', 'dealDay').zfill(2)}",
-                    "raw_jibun": jibun,
-                    "masked_address": f"{dong} {jibun}".strip(),
-                    "jimok": self._get_val(it, "지목", "lndcNm") or "대",
-                    "use_area": self._get_val(it, "용도지역", "prposArea1Nm") or "-",
-                    "road_cond": self._get_val(it, "도로조건") or "-",
-                    "area_m2": area_m2,
-                    "price_만원": price_val,
-                    "note": "토지 실거래"
-                })
+                
+                if price_val > 0:
+                    collected.append({
+                        "category": "land",
+                        "category_name": "토지",
+                        "dong": dong,
+                        "deal_date": f"{self._get_val(it, '년', 'dealYear')}-{self._get_val(it, '월', 'dealMonth').zfill(2)}-{self._get_val(it, '일', 'dealDay').zfill(2)}",
+                        "raw_jibun": jibun,
+                        "masked_address": f"{dong} {jibun}".strip(),
+                        "jimok": self._get_val(it, "지목", "lndcNm") or "대",
+                        "use_area": self._get_val(it, "용도지역", "prposArea1Nm") or "-",
+                        "road_cond": self._get_val(it, "도로조건") or "-",
+                        "area_m2": area_m2,
+                        "price_만원": price_val,
+                        "note": "토지 실거래"
+                    })
 
         print("\n[2/2] 단독·다가구 매매 실거래 데이터 수집 중...")
         for ym in deal_ym_list:
@@ -129,42 +132,47 @@ class GuroRealEstateCollector:
                 bldg_area = float((bldg_area_str or "0").replace(",", "").strip() or 0)
                 price_val = int((self._get_val(it, "거래금액", "dealAmount") or "0").replace(",", "").strip() or 0)
 
-                collected.append({
-                    "category": "house",
-                    "category_name": f"{house_type}주택",
-                    "dong": dong,
-                    "deal_date": f"{self._get_val(it, '년', 'dealYear')}-{self._get_val(it, '월', 'dealMonth').zfill(2)}-{self._get_val(it, '일', 'dealDay').zfill(2)}",
-                    "raw_jibun": jibun,
-                    "masked_address": f"{dong} {jibun}".strip(),
-                    "jimok": "대",
-                    "use_area": self._get_val(it, "용도지역", "prposArea1Nm") or "-",
-                    "road_cond": self._get_val(it, "도로조건") or "-",
-                    "area_m2": lot_area,
-                    "bldg_area_m2": bldg_area,
-                    "floors": "단독/다가구",
-                    "build_year": self._get_val(it, "건축년도", "buildYear") or "-",
-                    "price_만원": price_val,
-                    "note": f"{house_type}주택 실거래"
-                })
+                if price_val > 0:
+                    collected.append({
+                        "category": "house",
+                        "category_name": f"{house_type}주택",
+                        "dong": dong,
+                        "deal_date": f"{self._get_val(it, '년', 'dealYear')}-{self._get_val(it, '월', 'dealMonth').zfill(2)}-{self._get_val(it, '일', 'dealDay').zfill(2)}",
+                        "raw_jibun": jibun,
+                        "masked_address": f"{dong} {jibun}".strip(),
+                        "jimok": "대",
+                        "use_area": self._get_val(it, "용도지역", "prposArea1Nm") or "-",
+                        "road_cond": self._get_val(it, "도로조건") or "-",
+                        "area_m2": lot_area,
+                        "bldg_area_m2": bldg_area,
+                        "floors": "단독/다가구",
+                        "build_year": self._get_val(it, "건축년도", "buildYear") or "-",
+                        "price_만원": price_val,
+                        "note": f"{house_type}주택 실거래"
+                    })
 
         return collected
 
     def _fetch_vworld_jibun(self, dong_name: str, masked_jibun: str, area_m2: float) -> dict:
-        """VWorld Data API를 호출하여 면적이 일치하는 실제 지번을 찾습니다."""
+        """VWorld Data API를 호출하여 법정동 내에서 면적이 일치하는 실제 지번을 찾습니다."""
         if not self.vworld_api_key or "*" not in masked_jibun:
             return None
             
+        bjd_code = self.bjd_codes.get(dong_name)
+        if not bjd_code:
+            return None
+            
         prefix = masked_jibun.split('*')[0]
-        
-        # 지적도(LP_PA_CBND_BUBUN) API 엔드포인트
         url = "http://api.vworld.kr/req/data"
+        
+        # 특정 법정동(pnu 시작) 내에서 해당 지번(jibun)으로 시작하는 필지 검색
         params = {
             "service": "data",
             "request": "GetFeature",
             "data": "LP_PA_CBND_BUBUN",
             "key": self.vworld_api_key,
-            "domain": "https://github.com", # 사용자의 웹사이트 도메인
-            "attrFilter": f"jibun:like:{prefix}", # 지번 앞자리로 검색
+            "domain": self.vworld_domain,
+            "attrFilter": f"jibun:like:{prefix}",
             "size": "1000",
             "format": "json"
         }
@@ -177,23 +185,34 @@ class GuroRealEstateCollector:
             with urllib.request.urlopen(req, timeout=10) as response:
                 res_json = json.loads(response.read().decode("utf-8"))
                 
+            # 디버깅: VWorld 서버의 거절 사유를 콘솔에 선명하게 출력
+            if "response" in res_json and res_json["response"].get("status") != "OK":
+                error_msg = res_json["response"].get("error", {}).get("text", "알 수 없는 에러")
+                print(f"    🚨 [VWorld 통신 에러] {dong_name} {masked_jibun} 검색 실패 -> 사유: {error_msg}")
+                return None
+                
             features = res_json.get("response", {}).get("result", {}).get("featureCollection", {}).get("features", [])
             
-            # 검색된 필지 중 대지면적(parea)이 일치하는 필지 찾기
             for feat in features:
                 props = feat.get("properties", {})
+                v_pnu = props.get("pnu", "")
+                
+                # 전국을 검색하므로, 구로구의 해당 법정동 코드와 일치하는지 1차 확인
+                if not v_pnu.startswith(bjd_code):
+                    continue
+                    
                 v_jibun = props.get("jibun", "")
                 v_area = float(props.get("parea", 0))
                 
-                # 면적 오차 1.0㎡ 이내면 동일 필지로 간주
+                # 대지면적 오차 1.0㎡ 이내면 동일 필지로 완벽 매칭
                 if abs(v_area - area_m2) < 1.0:
                     return {
                         "verified_jibun": f"{dong_name} {v_jibun}".strip(),
                         "road_address": "VWorld 매칭 완료 (상세 도로명 필요)",
-                        "confidence": "VWorld 지적도 API 면적 100% 매칭",
+                        "confidence": "VWorld 지적도 면적 100% 매칭",
                     }
         except Exception as e:
-            # API 에러 발생 시 무시하고 다음 단계로
+            print(f"    🚨 [VWorld 네트워크 에러] {e}")
             pass
             
         return None
@@ -212,19 +231,8 @@ class GuroRealEstateCollector:
         vworld_result = self._fetch_vworld_jibun(dong_name, raw_jibun, area_m2)
         if vworld_result:
             return vworld_result
-
-        # 2. 로컬 샘플 DB 매칭 시도
-        prefix = raw_jibun.split('*')[0]
-        for record in self.CADASTRAL_DB:
-            if dong_name in record["dong"] and record["jibun"].startswith(prefix):
-                if abs(record["area_m2"] - area_m2) < 1.0:
-                    return {
-                        "verified_jibun": f"{dong_name} {record['jibun']}".strip(),
-                        "road_address": record["road"],
-                        "confidence": "지적도 면적 매칭 99%",
-                    }
         
-        # 3. 매칭 실패 시 마스킹 상태 그대로 반환
+        # 2. 매칭 실패 시 마스킹 상태 그대로 반환
         return {
             "verified_jibun": f"{dong_name} {raw_jibun}".strip(),
             "road_address": "지번 마스킹으로 확인 불가",
