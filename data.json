@@ -1,6 +1,6 @@
 {
-  "lastSync": "2026-11-09 21:52:05 (KST)",
-  "lastSyncIso": "2026-11-09T21:52:05.023140+09:00",
+  "lastSync": "2026-11-09 22:03:37 (KST)",
+  "lastSyncIso": "2026-11-09T22:03:37.637053+09:00",
   "totalCount": 518,
   "deals": [
     {
@@ -9,8 +9,8 @@
       "categoryName": "토지",
       "dealDate": "2026-11-02",
       "maskedAddress": "오류동 1**",
-      "verifiedJibun": "오류동 123-45",
-      "roadAddress": "오류로 12길",
+      "verifiedJibun": "오류동 1**",
+      "roadAddress": "지번 마스킹으로 확인 불가",
       "jimok": "대",
       "useArea": "-",
       "roadCond": "-",
@@ -23,7 +23,7 @@
       "priceManwon": 43000,
       "unitPricePyung": 432.1,
       "unitPriceM2": 130.7,
-      "confidence": "지적도 면적 매칭 99%",
+      "confidence": "부분 공개(국토부 마스킹)",
       "note": "토지 실거래"
     },
     {
@@ -32,8 +32,8 @@
       "categoryName": "토지",
       "dealDate": "2026-10-30",
       "maskedAddress": "가리봉동 1**",
-      "verifiedJibun": "가리봉동 15-6",
-      "roadAddress": "우마길 30",
+      "verifiedJibun": "가리봉동 1**",
+      "roadAddress": "지번 마스킹으로 확인 불가",
       "jimok": "대",
       "useArea": "-",
       "roadCond": "-",
@@ -46,7 +46,7 @@
       "priceManwon": 133053,
       "unitPricePyung": 1753.1,
       "unitPriceM2": 530.3,
-      "confidence": "지적도 면적 매칭 99%",
+      "confidence": "부분 공개(국토부 마스킹)",
       "note": "토지 실거래"
     },
     {
@@ -699,8 +699,8 @@
       "categoryName": "단독주택",
       "dealDate": "2026-09-30",
       "maskedAddress": "고척동 2**",
-      "verifiedJibun": "고척동 234-56",
-      "roadAddress": "고척로 12",
+      "verifiedJibun": "고척동 2**",
+      "roadAddress": "지번 마스킹으로 확인 불가",
       "jimok": "대",
       "useArea": "-",
       "roadCond": "-",
@@ -713,7 +713,7 @@
       "priceManwon": 49500,
       "unitPricePyung": 1461.0,
       "unitPriceM2": 442.0,
-      "confidence": "지적도 면적 매칭 99%",
+      "confidence": "부분 공개(국토부 마스킹)",
       "note": "단독주택 실거래"
     },
     {
