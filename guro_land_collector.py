@@ -5,6 +5,7 @@
 - [통신 안정화] http 적용 및 pageNo 필수 파라미터 추가
 - [키 자동 정규화] 사용자가 Encoding/Decoding 어떤 키를 넣어도 자동 변환
 - [수집 범위] 토지 및 단독/다가구 주택 전용 (연립/다세대 제외)
+- [검색 강화] 구로동, 구로제1동 ~ 구로제5동 모두 포함
 """
 
 import os
@@ -81,7 +82,6 @@ class GuroRealEstateCollector:
         
         deal_ym_list = sorted(list(set(deal_ym_list)), reverse=True)
         
-        # 공공데이터포털 서버 버그 우회를 위해 http로 접속
         land_url = "http://apis.data.go.kr/1613000/RTMSDataSvcLandTrade/getRTMSDataSvcLandTrade"
         house_url = "http://apis.data.go.kr/1613000/RTMSDataSvcSHTrade/getRTMSDataSvcSHTrade"
 
@@ -121,7 +121,8 @@ class GuroRealEstateCollector:
                     })
             
             dong_list_str = ", ".join(found_dongs) if found_dongs else "없음"
-            print(f"  👉 [{ym}] 거래발생 지역: [{dong_list_str}] -> '구로동' {month_dong_count}건 추출")
+            # 오해를 없애기 위해 로그 출력 문구를 명확하게 수정
+            print(f"  👉 [{ym}] 거래발생 지역: [{dong_list_str}] -> '구로(제1~5)동' {month_dong_count}건 추출")
 
         print("\n[2/2] 단독·다가구 매매 실거래 데이터 수집 중...")
         for ym in deal_ym_list:
@@ -134,7 +135,6 @@ class GuroRealEstateCollector:
                 if dong:
                     found_dongs.add(dong)
                 
-                # 구로동, 구로제1동~5동 중 하나라도 포함되어 있으면 수집
                 if any(t_dong in dong for t_dong in self.target_dongs):
                     month_dong_count += 1
                     jibun = it.findtext("지번", "").strip()
@@ -161,7 +161,7 @@ class GuroRealEstateCollector:
                         "note": f"{house_type}주택 실거래"
                     })
             dong_list_str = ", ".join(found_dongs) if found_dongs else "없음"
-            print(f"  👉 [{ym}] 거래발생 지역: [{dong_list_str}] -> '구로동' {month_dong_count}건 추출")
+            print(f"  👉 [{ym}] 거래발생 지역: [{dong_list_str}] -> '구로(제1~5)동' {month_dong_count}건 추출")
 
         return collected
 
@@ -178,7 +178,6 @@ class GuroRealEstateCollector:
         processed = []
         for it in raw_deals:
             pyung = it["area_m2"] / 3.305785 if it["area_m2"] > 0 else 0
-            # 정확한 동 명칭을 파라미터로 넘겨서 검증 주소에 반영
             verified = self.cross_verify_address(it["raw_jibun"], it.get("dong", "구로동"))
             processed.append({
                 "category": it["category"],
