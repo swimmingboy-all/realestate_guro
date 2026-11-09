@@ -80,13 +80,14 @@ class GuroRealEstateCollector:
         
         deal_ym_list = sorted(list(set(deal_ym_list)), reverse=True)
         
-        # http 대신 https 로 강제 통신 (서버 차단 방지)
-        land_url = "https://apis.data.go.kr/1613000/RTMSDataSvcLandTrade/getRTMSDataSvcLandTrade"
-        house_url = "https://apis.data.go.kr/1613000/RTMSDataSvcSHTrade/getRTMSDataSvcSHTrade"
+        # 공공데이터포털 서버 버그(https 접속 시 000 OK 빈 껍데기 반환) 우회를 위해 http로 롤백
+        land_url = "http://apis.data.go.kr/1613000/RTMSDataSvcLandTrade/getRTMSDataSvcLandTrade"
+        house_url = "http://apis.data.go.kr/1613000/RTMSDataSvcSHTrade/getRTMSDataSvcSHTrade"
+        villa_url = "http://apis.data.go.kr/1613000/RTMSDataSvcRHTrade/getRTMSDataSvcRHTrade"
 
         collected = []
         
-        print("\n[1/2] 토지 매매 실거래 데이터 수집 중...")
+        print("\n[1/3] 토지 매매 실거래 데이터 수집 중...")
         for ym in deal_ym_list:
             items = self._request_api(land_url, ym)
             found_dongs = set()
@@ -154,6 +155,44 @@ class GuroRealEstateCollector:
                         "build_year": it.findtext("건축년도", "") or "-",
                         "price_만원": price_val,
                         "note": f"{house_type}주택 실거래"
+                    })
+            dong_list_str = ", ".join(found_dongs) if found_dongs else "없음"
+            print(f"  👉 [{ym}] 거래발생 지역: [{dong_list_str}] -> '구로동' {month_dong_count}건 추출")
+
+        print("\n[3/3] 연립/다세대(빌라) 매매 실거래 데이터 수집 중...")
+        for ym in deal_ym_list:
+            items = self._request_api(villa_url, ym)
+            found_dongs = set()
+            month_dong_count = 0
+            
+            for it in items:
+                dong = it.findtext("법정동", "").strip()
+                if dong:
+                    found_dongs.add(dong)
+                
+                if self.dong_name in dong:
+                    month_dong_count += 1
+                    jibun = it.findtext("지번", "").strip()
+                    villa_name = it.findtext("연립다세대", "").strip()
+                    area_m2 = float(it.findtext("전용면적", "0").replace(",", "").strip() or 0)
+                    price_val = int(it.findtext("거래금액", "0").replace(",", "").strip() or 0)
+                    floor = it.findtext("층", "")
+
+                    collected.append({
+                        "category": "house",
+                        "category_name": "연립다세대",
+                        "deal_date": f"{it.findtext('년','')}-{it.findtext('월','').zfill(2)}-{it.findtext('일','').zfill(2)}",
+                        "raw_jibun": jibun,
+                        "masked_address": f"구로동 {jibun}",
+                        "jimok": "대",
+                        "use_area": "-",
+                        "road_cond": "-",
+                        "area_m2": area_m2,
+                        "bldg_area_m2": area_m2,
+                        "floors": f"{floor}층",
+                        "build_year": it.findtext("건축년도", "") or "-",
+                        "price_만원": price_val,
+                        "note": f"빌라/다세대 ({villa_name})"
                     })
             dong_list_str = ", ".join(found_dongs) if found_dongs else "없음"
             print(f"  👉 [{ym}] 거래발생 지역: [{dong_list_str}] -> '구로동' {month_dong_count}건 추출")
