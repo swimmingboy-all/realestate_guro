@@ -4,7 +4,7 @@
 구로구 구로동 토지 매매 실거래가 수집 및 주소 교차검증 엑셀 리포트 생성기
 - 국토교통부 실거래가 Open API 100% 공식 데이터 수집 (하드코딩 더미 데이터 배제)
 - 지적도 및 건축물/토지대장 면적 매칭을 통한 상세 주소(지번) 교차 검증
-- 웹 대시보드(index.html) 연동을 위한 data.json 포맷 규격화 출력
+- 웹 대시보드(index.html) 연동을 위한 data.json 포맷 규격화 출력 (한국 표준시 KST 고정)
 """
 
 import os
@@ -409,7 +409,7 @@ class ExcelReportBuilder:
 
 
 # ==============================================================================
-# 4. CLI(명령행) 실행 진입점
+# 4. CLI(명령행) 실행 진입점 (한국 표준시 KST 타임존 명시)
 # ==============================================================================
 def main_cli():
     parser = argparse.ArgumentParser(description="구로구 구로동 토지 매매 실거래 수집기")
@@ -452,15 +452,22 @@ def main_cli():
             deal_dict["categoryName"] = "토지"
             formatted_deals.append(deal_dict)
 
+        # 한국 표준시(KST: UTC+9) 명시적 계산 (서버 위치와 무관하게 정확한 한국 시각 기록)
+        kst_tz = datetime.timezone(datetime.timedelta(hours=9))
+        now_kst = datetime.datetime.now(kst_tz)
+        kst_str = now_kst.strftime("%Y-%m-%d %H:%M:%S (KST)")
+        iso_str = now_kst.isoformat()
+
         export_payload = {
-            "lastSync": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "secretSource": "GURO_API_KEY",
+            "lastSync": kst_str,
+            "lastSyncIso": iso_str,
+            "timezone": "Asia/Seoul (UTC+9)",
             "totalCount": len(formatted_deals),
             "deals": formatted_deals
         }
         with open(args.export_json, "w", encoding="utf-8") as jf:
             json.dump(export_payload, jf, ensure_ascii=False, indent=2)
-        print(f"• 웹 대시보드용 순수 실거래 data.json 생성 완료: {os.path.abspath(args.export_json)}")
+        print(f"• 웹 대시보드용 순수 실거래 data.json 생성 완료: {os.path.abspath(args.export_json)} [{kst_str}]")
 
     out_file = args.output or f"구로동_토지매매_실거래분석_{int(args.min_pyung)}평이상.xlsx"
     builder = ExcelReportBuilder(output_filename=out_file)
