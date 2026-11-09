@@ -124,9 +124,8 @@ class GuroRealEstateCollector:
                    self._load_local_key_file())
         
         if raw_key:
-            # Encoding 키/Decoding 키 자동 정규화:
-            # 먼저 unquote하여 순수 원본 키로 복원한 뒤 일관되게 관리합니다.
-            self.clean_api_key = urllib.parse.unquote(raw_key.strip())
+            # 수정: 파이썬 내부 인코딩 변환(unquote)을 완전히 제거하고, 입력된 원본 키를 100% 그대로 사용합니다.
+            self.clean_api_key = raw_key.strip()
             masked_k = self.clean_api_key[:4] + "***" if len(self.clean_api_key) > 4 else "***"
             print(f"[보안 인증] 등록된 API Key(GURO_API_KEY)를 정상 인식했습니다. ({masked_k})")
         else:
@@ -151,15 +150,14 @@ class GuroRealEstateCollector:
         if not self.clean_api_key:
             return []
 
-        # 공공데이터포털 URL 파라미터 조립
+        # 수정: serviceKey는 파이썬 urlencode를 거치지 않고 강제로 원본을 결합하여 이중 인코딩을 원천 차단합니다.
         params = {
-            "serviceKey": self.clean_api_key,
             "LAWD_CD": self.lawd_cd,
             "DEAL_YMD": deal_ym,
             "numOfRows": "200"
         }
         query_str = urllib.parse.urlencode(params)
-        full_url = f"{endpoint_url}?{query_str}"
+        full_url = f"{endpoint_url}?serviceKey={self.clean_api_key}&{query_str}"
 
         req = urllib.request.Request(
             full_url,
@@ -182,6 +180,7 @@ class GuroRealEstateCollector:
                 reason_code = root.findtext(".//returnReasonCode", "")
                 print(f"  ❌ [인증 실패] {deal_ym}: {auth_msg} ({err_msg}, 코드: {reason_code})")
                 print("     -> 원인: 공공데이터포털 발급 직후 동기화 지연(15~30분)이거나 키가 일치하지 않습니다.")
+                print(f"     -> [디버깅용 원본 응답]: {xml_content[:300]}")
                 return []
 
             # 2. 국토교통부 서비스 헤더 에러 검출
@@ -189,9 +188,15 @@ class GuroRealEstateCollector:
             res_msg = root.findtext(".//resultMsg", "")
             if res_code and res_code not in ["00", "000"]:
                 print(f"  ⚠️ [서비스 응답 에러] {deal_ym}: {res_msg} (코드: {res_code})")
+                print(f"     -> [디버깅용 원본 응답]: {xml_content[:300]}")
                 return []
 
             items = root.findall(".//item")
+            
+            # 3. 정상 응답이지만 0건일 때 디버깅 로그 출력
+            if not items:
+                print(f"  ℹ️ [{deal_ym}] 국토부 서버 통신 성공, 그러나 해당 월에 조건에 맞는 거래 건수 없음(0건).")
+                
             return items
 
         except urllib.error.HTTPError as he:
@@ -217,10 +222,10 @@ class GuroRealEstateCollector:
         deal_ym_list = sorted(list(set(deal_ym_list)), reverse=True)
         print(f"• 실거래 수집 대상 기간: {deal_ym_list[-1]} ~ {deal_ym_list[0]} (최근 {len(deal_ym_list)}개월)")
 
-        # 1. 토지 매매 실거래가 공식 엔드포인트 (RTMSDataSvcLandTrade)
-        land_url = "https://apis.data.go.kr/1613000/RTMSDataSvcLandTrade/getRTMSDataSvcLandTrade"
+        # 수정: 통신 안정성을 위해 공공데이터포털 표준인 http:// 로 롤백 (https 사용 시 일부 K-Gov 서버 오류 발생 방지)
+        land_url = "http://apis.data.go.kr/1613000/RTMSDataSvcLandTrade/getRTMSDataSvcLandTrade"
         # 2. 단독/다가구 매매 실거래가 공식 엔드포인트 (RTMSDataSvcSHTrade)
-        house_url = "https://apis.data.go.kr/1613000/RTMSDataSvcSHTrade/getRTMSDataSvcSHTrade"
+        house_url = "http://apis.data.go.kr/1613000/RTMSDataSvcSHTrade/getRTMSDataSvcSHTrade"
 
         collected = []
         land_count = 0
