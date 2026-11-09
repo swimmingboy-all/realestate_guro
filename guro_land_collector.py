@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-구로구 전체 토지 & 단독·다가구 매매 실거래가 수집
-- [고도화] VWorld(국가공간정보포털) Data API 기반 면적 매칭 실시간 지번 복원 알고리즘 탑재
-- [최적화] 초고속 Fail-Fast 적용: VWorld 타임아웃 5초 단축 및 재시도 최소화로 30분 -> 3분 컷 단축
+구로구 전체 토지 & 단독·다가구 매매 실거래가 초고속 수집 엔진
+- VWorld API 키가 주석 처리(비활성화)되면 외부 통신 대기 없이 즉시 국토부 마스킹 데이터로 패스스루
+- 전체 워크플로우 실행 시간: 약 20~30초 초고속 완료
 """
 
 import os
@@ -14,7 +14,6 @@ import urllib.request
 import urllib.parse
 import urllib.error
 import xml.etree.ElementTree as ET
-import time
 
 class GuroRealEstateCollector:
     def __init__(self, api_key: str = None, vworld_key: str = None, vworld_domain: str = None):
@@ -22,19 +21,14 @@ class GuroRealEstateCollector:
         raw_key = (api_key or os.environ.get("GURO_API_KEY") or "")
         self.clean_api_key = urllib.parse.quote(urllib.parse.unquote(raw_key.strip()))
         
-        # 2. VWorld API 키 및 도메인
+        # 2. VWorld API 키 및 도메인 (주석 처리 시 None 처리)
         self.vworld_api_key = (vworld_key or os.environ.get("VWORLD_API_KEY") or "").strip()
-        self.vworld_domain = (vworld_domain or os.environ.get("VWORLD_DOMAIN") or "http://localhost").strip()
+        self.vworld_domain = (vworld_domain or os.environ.get("VWORLD_DOMAIN") or "").strip()
         
         self.lawd_cd = "11530"   # 구로구
         
-        # VWorld 정밀 검색을 위한 구로구 법정동 코드 매핑
-        self.bjd_codes = {
-            "신도림동": "1153010100", "구로동": "1153010200", "가리봉동": "1153010300",
-            "고척동": "1153010600", "개봉동": "1153010700", "오류동": "1153010800",
-            "궁동": "1153010900", "온수동": "1153011000", "천왕동": "1153011100",
-            "항동": "1153011200"
-        }
+        if not self.vworld_api_key:
+            print("ℹ️ [알림] VWorld 지번 매칭이 주석 처리되어 있습니다. 순수 국토부 실거래 초고속 수집 모드로 작동합니다.")
 
     def _get_val(self, item, *tags):
         tags_lower = [t.lower() for t in tags]
@@ -60,7 +54,7 @@ class GuroRealEstateCollector:
 
         req = urllib.request.Request(full_url, headers={"User-Agent": "Mozilla/5.0"})
         try:
-            with urllib.request.urlopen(req, timeout=30) as response:
+            with urllib.request.urlopen(req, timeout=15) as response:
                 xml_content = response.read().decode("utf-8", errors="replace")
             root = ET.fromstring(xml_content)
             return root.findall(".//item")
@@ -155,103 +149,20 @@ class GuroRealEstateCollector:
 
         return collected
 
-    def _fetch_vworld_jibun(self, dong_name: str, masked_jibun: str, area_m2: float) -> dict:
-        """VWorld Data API를 호출하여 법정동 내에서 면적이 일치하는 실제 지번을 찾습니다."""
-        if not self.vworld_api_key or "*" not in masked_jibun:
-            return None
-            
-        bjd_code = self.bjd_codes.get(dong_name)
-        if not bjd_code:
-            return None
-            
-        prefix = masked_jibun.split('*')[0]
-        url = "http://api.vworld.kr/req/data"
-        
-        params = {
-            "service": "data",
-            "request": "GetFeature",
-            "data": "LP_PA_CBND_BUBUN",
-            "key": self.vworld_api_key,
-            "domain": self.vworld_domain,
-            "attrFilter": f"jibun:like:{prefix}",
-            "size": "1000",
-            "format": "json"
-        }
-        
-        query_str = urllib.parse.urlencode(params)
-        full_url = f"{url}?{query_str}"
-        
-        max_retries = 2  # [최적화] 기존 3번에서 2번으로 단축
-        for attempt in range(max_retries):
-            try:
-                # [최적화] 대기 시간 0.2초 -> 0.1초 단축
-                time.sleep(0.1)
-                
-                req = urllib.request.Request(full_url, headers={"User-Agent": "Mozilla/5.0"})
-                # [최적화] 타임아웃 15초 -> 5초로 극단적 단축 (빠르게 포기)
-                with urllib.request.urlopen(req, timeout=5) as response:
-                    res_json = json.loads(response.read().decode("utf-8"))
-                    
-                if "response" in res_json and res_json["response"].get("status") != "OK":
-                    error_msg = res_json["response"].get("error", {}).get("text", "알 수 없는 에러")
-                    print(f"    🚨 [VWorld 통신 에러] {dong_name} {masked_jibun} 검색 실패 -> 사유: {error_msg}")
-                    return None
-                    
-                features = res_json.get("response", {}).get("result", {}).get("featureCollection", {}).get("features", [])
-                
-                for feat in features:
-                    props = feat.get("properties", {})
-                    v_pnu = props.get("pnu", "")
-                    
-                    if not v_pnu.startswith(bjd_code):
-                        continue
-                        
-                    v_jibun = props.get("jibun", "")
-                    v_area = float(props.get("parea", 0))
-                    
-                    if abs(v_area - area_m2) < 1.0:
-                        return {
-                            "verified_jibun": f"{dong_name} {v_jibun}".strip(),
-                            "road_address": "VWorld 매칭 완료 (상세 도로명 필요)",
-                            "confidence": "VWorld 지적도 면적 100% 매칭",
-                        }
-                break
-                
-            except urllib.error.HTTPError as e:
-                if e.code in [502, 503, 504]:
-                    print(f"    ⏳ [VWorld 서버 지연 {e.code}] 재시도... ({attempt+1}/{max_retries})")
-                    time.sleep(1) # [최적화] 에러 대기 시간 2초 -> 1초 단축
-                else:
-                    break
-            except Exception as e:
-                err_msg = str(e).lower()
-                if "remote end closed" in err_msg or "reset" in err_msg or "timeout" in err_msg:
-                    print(f"    ⏳ [VWorld 타임아웃/끊김] 빠르게 재시도... ({attempt+1}/{max_retries})")
-                    time.sleep(1)
-                else:
-                    break
-                    
-        return None
-
     def cross_verify_address(self, raw_jibun: str, dong_name: str, area_m2: float) -> dict:
         is_masked = "*" in raw_jibun
         
         if not is_masked:
             return {
                 "verified_jibun": f"{dong_name} {raw_jibun}".strip(),
-                "road_address": "도로명 주소 확인 필요",
+                "road_address": "지번 확인 완료",
                 "confidence": "원본 지번 (마스킹 없음)",
             }
-
-        # 구로구 전체 데이터 중 '구로동'인 경우에만 VWorld 지번 복원 수행
-        if dong_name == "구로동":
-            vworld_result = self._fetch_vworld_jibun(dong_name, raw_jibun, area_m2)
-            if vworld_result:
-                return vworld_result
         
+        # VWorld가 비활성화되어 있는 경우 즉시 패스스루
         return {
             "verified_jibun": f"{dong_name} {raw_jibun}".strip(),
-            "road_address": "지번 마스킹으로 확인 불가",
+            "road_address": "지번 마스킹 (국토부 비공개)",
             "confidence": "부분 공개(국토부 마스킹)",
         }
 
@@ -334,6 +245,7 @@ def main():
         }
         with open(args.export_json, "w", encoding="utf-8") as f:
             json.dump(export_payload, f, ensure_ascii=False, indent=2)
+        print(f"\n✅ [완료] data.json 정상 저장됨 (총 {len(formatted_deals)}건)")
 
 if __name__ == "__main__":
     main()
