@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 구로구 구로동 토지 & 단독·다가구 매매 실거래가 수집
-- [최종 진단] 구로구 내 실제 거래가 발생한 '법정동' 이름 전체 출력 기능 추가
+- [에러 추적 강화] 국토부 서버가 뱉는 원본 에러 메시지를 로그에 강제 출력
 """
 
 import os
@@ -11,6 +11,7 @@ import argparse
 import datetime
 import urllib.request
 import urllib.parse
+import urllib.error
 import xml.etree.ElementTree as ET
 
 class GuroRealEstateCollector:
@@ -31,7 +32,7 @@ class GuroRealEstateCollector:
         params = {
             "LAWD_CD": self.lawd_cd,
             "DEAL_YMD": deal_ym,
-            "numOfRows": "500" # 넉넉하게 500건으로 상향
+            "numOfRows": "500" 
         }
         query_str = urllib.parse.urlencode(params)
         full_url = f"{endpoint_url}?serviceKey={self.clean_api_key}&{query_str}"
@@ -40,10 +41,27 @@ class GuroRealEstateCollector:
         try:
             with urllib.request.urlopen(req, timeout=15) as response:
                 xml_content = response.read().decode("utf-8", errors="replace")
+            
             root = ET.fromstring(xml_content)
             items = root.findall(".//item")
+            
+            # 아이템이 하나도 없을 경우 원본 에러 메시지 분석 후 출력
+            if not items:
+                err_msg = root.findtext(".//resultMsg", "")
+                result_code = root.findtext(".//resultCode", "")
+                if err_msg:
+                    print(f"    ⚠️ [API 서버 응답] 코드:{result_code} 메시지:{err_msg}")
+                elif "OpenAPI" in xml_content or "ERROR" in xml_content.upper():
+                    print(f"    ⚠️ [공공데이터포털 통신 오류] 원본: {xml_content[:150]}")
+            
             return items
-        except Exception:
+            
+        except urllib.error.HTTPError as e:
+            err_content = e.read().decode("utf-8", errors="replace")
+            print(f"    ❌ [HTTP 통신 에러 {e.code}] {err_content[:150]}")
+            return []
+        except Exception as e:
+            print(f"    ❌ [파이썬 실행 에러] {e}")
             return []
 
     def fetch_all_real_transactions(self, months_back: int = 12) -> list:
@@ -59,6 +77,7 @@ class GuroRealEstateCollector:
         
         deal_ym_list = sorted(list(set(deal_ym_list)), reverse=True)
         
+        # 국토교통부 실거래가 공식 엔드포인트
         land_url = "http://apis.data.go.kr/1613000/RTMSDataSvcLandTrade/getRTMSDataSvcLandTrade"
         house_url = "http://apis.data.go.kr/1613000/RTMSDataSvcSHTrade/getRTMSDataSvcSHTrade"
 
