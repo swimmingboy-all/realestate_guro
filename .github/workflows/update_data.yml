@@ -29,8 +29,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install openpyxl requests
 
-      - name: 4. 국토부 실거래가 수집 및 data.json 생성
+      - name: 4. 국토부 실거래가 수집 및 data.json 생성 (한국 표준시 TZ 설정)
         env:
+          TZ: 'Asia/Seoul'
           # 사용자가 등록한 GitHub Secret을 환경변수로 안전하게 주입
           GURO_API_KEY: ${{ secrets.GURO_API_KEY }}
         run: |
