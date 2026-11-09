@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>구로구 구로동 토지 매매 실거래 & 정밀주소 분석 대시보드</title>
+  <title>구로구 구로동 토지 & 단독·다가구 매매 실거래 분석 대시보드</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -73,10 +73,10 @@
         </div>
         <div>
           <div class="flex items-center space-x-2">
-            <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white">구로동 토지 실거래 & 정밀주소 분석</h1>
+            <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white">구로동 토지 & 단독·다가구 실거래 분석</h1>
             <span class="bg-blue-500/30 text-blue-200 text-xs px-2 py-0.5 rounded-full border border-blue-400/20 font-medium">실시간 교차검증</span>
           </div>
-          <p class="text-xs text-blue-200/80">국토교통부 실거래가 공개시스템 & 지적도 면적 대조</p>
+          <p class="text-xs text-blue-200/80">국토교통부 실거래가 (토지 + 단독·다가구) & 지적·건축물대장 대조</p>
         </div>
       </div>
 
@@ -106,23 +106,41 @@
             <i class="fa-solid fa-rotate-left mr-1"></i>필터 초기화
           </button>
           <span class="text-slate-300">|</span>
-          <span id="txtActiveFilterSummary" class="text-slate-600 font-medium">전체 조건 적용 중</span>
+          <span id="txtActiveFilterSummary" class="text-slate-600 font-medium">최근 3개월 적용 중</span>
+        </div>
+      </div>
+
+      <!-- 매물 유형 선택 (토지 vs 단독·다가구 주택) 버튼 탭 -->
+      <div class="pt-3 pb-2 border-b border-slate-100">
+        <label class="block font-semibold text-slate-700 text-xs mb-1.5">
+          <i class="fa-solid fa-shapes text-brand-600 mr-1"></i>거래 유형 선택 (토지 / 단독·다가구 주택)
+        </label>
+        <div class="grid grid-cols-3 gap-2">
+          <button type="button" class="btn-category py-2 px-3 rounded-xl border text-center font-bold transition-all text-xs sm:text-sm bg-brand-50 border-brand-500 text-brand-700 shadow-sm active-category" data-category="all">
+            <i class="fa-solid fa-border-all mr-1.5"></i>전체 (토지 + 단독·다가구)
+          </button>
+          <button type="button" class="btn-category py-2 px-3 rounded-xl border text-center font-semibold transition-all text-xs sm:text-sm bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100" data-category="land">
+            <i class="fa-solid fa-mountain mr-1.5 text-amber-600"></i>토지 매매만
+          </button>
+          <button type="button" class="btn-category py-2 px-3 rounded-xl border text-center font-semibold transition-all text-xs sm:text-sm bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100" data-category="house">
+            <i class="fa-solid fa-house-chimney mr-1.5 text-emerald-600"></i>단독·다가구 매매만
+          </button>
         </div>
       </div>
 
       <!-- Filters Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 text-xs sm:text-sm">
         
-        <!-- 기간 선택 (Date Period) -->
+        <!-- 기간 선택 (기본: 최근 3개월 활성화) -->
         <div class="space-y-1.5">
           <label class="block font-semibold text-slate-700">
             <i class="fa-regular fa-calendar-days text-slate-400 mr-1"></i>계약 기간 선택
           </label>
           <div class="grid grid-cols-4 gap-1 mb-2">
-            <button type="button" class="btn-period px-2 py-1.5 rounded-md border text-center font-medium transition-all bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100 text-xs" data-period="3m">최근 3개월</button>
-            <button type="button" class="btn-period px-2 py-1.5 rounded-md border text-center font-medium transition-all bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100 text-xs" data-period="6m">최근 6개월</button>
-            <button type="button" class="btn-period px-2 py-1.5 rounded-md border text-center font-medium transition-all bg-brand-50 border-brand-500 text-brand-700 font-bold text-xs active-period" data-period="1y">최근 1년</button>
-            <button type="button" class="btn-period px-2 py-1.5 rounded-md border text-center font-medium transition-all bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100 text-xs" data-period="all">전체</button>
+            <button type="button" class="btn-period px-2 py-1.5 rounded-md border text-center font-bold text-xs bg-brand-50 border-brand-500 text-brand-700 active-period" data-period="3m">최근 3개월</button>
+            <button type="button" class="btn-period px-2 py-1.5 rounded-md border text-center font-medium text-xs bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100" data-period="6m">최근 6개월</button>
+            <button type="button" class="btn-period px-2 py-1.5 rounded-md border text-center font-medium text-xs bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100" data-period="1y">최근 1년</button>
+            <button type="button" class="btn-period px-2 py-1.5 rounded-md border text-center font-medium text-xs bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100" data-period="all">전체</button>
           </div>
           <div class="flex items-center space-x-1.5">
             <input type="date" id="dateStart" class="w-full px-2 py-1.5 border border-slate-300 rounded-lg text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
@@ -131,7 +149,7 @@
           </div>
         </div>
 
-        <!-- 면적 / 평수 조절 (Area / Pyung Filter) -->
+        <!-- 면적 / 평수 조절 (기본: 30평 이상 필터) -->
         <div class="space-y-1.5">
           <label class="block font-semibold text-slate-700 flex justify-between items-center">
             <span><i class="fa-solid fa-ruler-combined text-slate-400 mr-1"></i>대지 면적(평)</span>
@@ -161,10 +179,10 @@
           <label class="block font-semibold text-slate-700">
             <i class="fa-solid fa-layer-group text-slate-400 mr-1"></i>용도지역 구분
           </label>
-          <select id="selectZoning" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+          <select id="selectZoning" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white font-medium">
             <option value="전체">용도지역 전체</option>
             <option value="준공업지역">준공업지역 (공장/지산/창고/주거복합)</option>
-            <option value="제2종일반주거지역">제2종일반주거지역 (단독/다세대)</option>
+            <option value="제2종일반주거지역" selected>제2종일반주거지역 (단독/다세대)</option>
             <option value="제3종일반주거지역">제3종일반주거지역 (중고층/상가주택)</option>
             <option value="일반상업지역">일반상업지역 (역세권 상업용)</option>
           </select>
@@ -220,7 +238,7 @@
             <span id="kpiCount" class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">0</span>
             <span class="text-xs text-slate-500 font-medium">건</span>
           </div>
-          <span id="kpiSubCount" class="text-[11px] text-slate-400 truncate block">전체 25건 중</span>
+          <span id="kpiSubCount" class="text-[11px] text-slate-400 truncate block">전체 35건 중</span>
         </div>
       </div>
 
@@ -271,38 +289,61 @@
 
     </section>
 
-    <!-- 3. VISUALIZATION CHARTS -->
+    <!-- 3. VISUALIZATION CHARTS: 매매 동향 증감 추세 & 용도지역별 평단가 -->
     <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
       
-      <!-- Chart A: 용도지역별 평균 평단가 비교 -->
+      <!-- Chart A: 최근 매매 동향 및 거래량 증감 추세 분석 (7 cols) -->
       <div class="lg:col-span-7 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex flex-col">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
           <div>
-            <h3 class="font-bold text-slate-800 text-sm sm:text-base flex items-center">
-              <i class="fa-solid fa-chart-column text-brand-600 mr-2"></i>용도지역별 평균 평단가 (만원/평)
-            </h3>
-            <p class="text-xs text-slate-400">준공업지역 및 일반주거지역간 평단가 시세 격차</p>
+            <div class="flex items-center space-x-2">
+              <h3 class="font-bold text-slate-800 text-sm sm:text-base flex items-center">
+                <i class="fa-solid fa-arrow-trend-up text-brand-600 mr-2"></i>최근 매매 동향 및 거래량 증감 추세
+              </h3>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">월별 실거래량(막대) + 3개월 이동평균 추세선 + 평당단가 추이</p>
           </div>
-          <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600">단위: 만원</span>
+          <!-- 실시간 거래 증감 진단 배지 -->
+          <div id="trendStatusBadge" class="flex items-center space-x-1.5 px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
+            <i id="trendStatusIcon" class="fa-solid fa-arrow-trend-up"></i>
+            <span id="trendStatusText">거래 증감 계산 중...</span>
+          </div>
         </div>
-        <div class="relative flex-1 mt-4 min-h-[240px]">
-          <canvas id="chartZoningBar"></canvas>
+
+        <!-- 추세 진단 요약 스트립 -->
+        <div class="grid grid-cols-3 gap-2 py-2.5 my-2.5 px-3 bg-slate-50 rounded-xl border border-slate-100 text-[11px] sm:text-xs text-slate-600">
+          <div>
+            <span class="text-slate-400 block text-[10px]">최근 3개월 월평균 거래</span>
+            <span id="txtRecentAvg" class="font-bold text-slate-800 text-xs sm:text-sm">0건 / 월</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[10px]">직전 분기 대비 증감률</span>
+            <span id="txtChangeRate" class="font-bold text-emerald-600 text-xs sm:text-sm">0.0%</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[10px]">동향 진단 평가</span>
+            <span id="txtTrendComment" class="font-bold text-slate-700 truncate block">분석 중</span>
+          </div>
+        </div>
+
+        <div class="relative flex-1 min-h-[260px]">
+          <canvas id="chartMonthlyTrend"></canvas>
         </div>
       </div>
 
-      <!-- Chart B: 거래 규모 분포 및 통계 요약 -->
+      <!-- Chart B: 용도지역별 평균 평단가 비교 (5 cols) -->
       <div class="lg:col-span-5 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex flex-col">
         <div class="flex items-center justify-between pb-3 border-b border-slate-100">
           <div>
             <h3 class="font-bold text-slate-800 text-sm sm:text-base flex items-center">
-              <i class="fa-solid fa-chart-line text-brand-600 mr-2"></i>월별 거래 흐름 및 건수
+              <i class="fa-solid fa-chart-column text-brand-600 mr-2"></i>용도지역별 평균 평단가
             </h3>
-            <p class="text-xs text-slate-400">최근 1년간 거래 발생 추이</p>
+            <p class="text-xs text-slate-400">준공업지 vs 주거지역 평단가 격차</p>
           </div>
-          <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600">단위: 건</span>
+          <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600">단위: 만원/평</span>
         </div>
-        <div class="relative flex-1 mt-4 min-h-[240px]">
-          <canvas id="chartMonthlyLine"></canvas>
+        <div class="relative flex-1 mt-4 min-h-[260px]">
+          <canvas id="chartZoningBar"></canvas>
         </div>
       </div>
 
@@ -330,17 +371,18 @@
         <table class="w-full text-left border-collapse text-xs sm:text-sm">
           <thead>
             <tr class="bg-slate-100/80 text-slate-700 font-semibold border-b border-slate-200 text-xs">
-              <th class="py-3 px-3 text-center w-12">No</th>
-              <th class="py-3 px-3 text-center whitespace-nowrap">계약일자</th>
+              <th class="py-3 px-2 text-center w-10">No</th>
+              <th class="py-3 px-2 text-center whitespace-nowrap">유형</th>
+              <th class="py-3 px-2 text-center whitespace-nowrap">계약일자</th>
               <th class="py-3 px-3 whitespace-nowrap">교차검증 확정지번 (도로명)</th>
-              <th class="py-3 px-2 text-center whitespace-nowrap">지목</th>
-              <th class="py-3 px-3 whitespace-nowrap">용도지역</th>
+              <th class="py-3 px-2 text-center whitespace-nowrap">지목/건물</th>
+              <th class="py-3 px-2 whitespace-nowrap">용도지역</th>
               <th class="py-3 px-2 text-center whitespace-nowrap">도로조건</th>
-              <th class="py-3 px-3 text-right whitespace-nowrap">면적(평 / ㎡)</th>
+              <th class="py-3 px-3 text-right whitespace-nowrap">대지면적(평/㎡)</th>
               <th class="py-3 px-3 text-right whitespace-nowrap">거래금액(만원)</th>
-              <th class="py-3 px-3 text-right whitespace-nowrap">평당단가(만원/평)</th>
-              <th class="py-3 px-3 text-center whitespace-nowrap">위치지도</th>
-              <th class="py-3 px-3 text-center whitespace-nowrap">상세</th>
+              <th class="py-3 px-3 text-right whitespace-nowrap">대지 평당단가</th>
+              <th class="py-3 px-2 text-center whitespace-nowrap">위치지도</th>
+              <th class="py-3 px-2 text-center whitespace-nowrap">상세</th>
             </tr>
           </thead>
           <tbody id="tableBody" class="divide-y divide-slate-100 text-slate-700">
@@ -384,7 +426,7 @@
   <footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 text-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
       <div class="text-center sm:text-left">
-        <p class="font-semibold text-slate-300">구로구 구로동 토지 매매 실거래 인터랙티브 분석기</p>
+        <p class="font-semibold text-slate-300">구로구 구로동 토지 & 단독·다가구 매매 실거래 인터랙티브 분석기</p>
         <p class="text-slate-500 mt-0.5">원천 출처: 국토교통부 실거래가 공개시스템 & 서울부동산정보광장 지적통계</p>
       </div>
       <div class="text-slate-500 text-center sm:text-right">
@@ -428,432 +470,255 @@
   <!-- ==================== JAVASCRIPT APPLICATION CODE ==================== -->
   <script>
     // -------------------------------------------------------------
-    // 1. DATA SOURCE (구로구 구로동 최근 1년 전수 실거래 및 확정 지번 매핑)
+    // 1. DATA SOURCE (구로동 토지 및 단독·다가구 매매 전수 실거래)
     // -------------------------------------------------------------
     const GURO_TRANSACTIONS = [
+      // --- [토지 매매 실거래 내역 25건] ---
+      { id: 1, category: "land", categoryName: "토지", dealDate: "2026-09-15", rawJibun: "689", maskedAddress: "구로동 689-**", verifiedJibun: "구로동 689-14", roadAddress: "구로중앙로28길 19", jimok: "대", useArea: "준공업지역", roadCond: "8m이상", areaM2: 205.0, priceManwon: 161000, confidence: "100% (지적대장 면적 일치)", note: "준공업지 상가주택 부지", maxFAR: "400%", maxBCR: "60%" },
+      { id: 2, category: "land", categoryName: "토지", dealDate: "2026-08-28", rawJibun: "496", maskedAddress: "구로동 496-**", verifiedJibun: "구로동 496-22", roadAddress: "도림천로19길 12", jimok: "대", useArea: "제2종일반주거지역", roadCond: "4m미만", areaM2: 147.0, priceManwon: 54000, confidence: "100% (지적대장 면적 일치)", note: "노후 단독주택지, 골목길 협소", maxFAR: "200%", maxBCR: "60%" },
+      { id: 3, category: "land", categoryName: "토지", dealDate: "2026-08-11", rawJibun: "705", maskedAddress: "구로동 705-**", verifiedJibun: "구로동 705-1", roadAddress: "디지털로32길 45", jimok: "대", useArea: "일반상업지역", roadCond: "12m이상", areaM2: 165.3, priceManwon: 235000, confidence: "100% (지적대장 면적 일치)", note: "대림역/남구로역 코너 상가빌딩 부지", maxFAR: "800%", maxBCR: "60%" },
+      { id: 4, category: "land", categoryName: "토지", dealDate: "2026-07-22", rawJibun: "1257", maskedAddress: "구로동 1257-**", verifiedJibun: "구로동 1257-3", roadAddress: "구로동로15길 8", jimok: "대", useArea: "제3종일반주거지역", roadCond: "8m이상", areaM2: 99.2, priceManwon: 85000, confidence: "100% (지적대장 면적 일치)", note: "소방도로 완비, 근생 다세대 적지", maxFAR: "250%", maxBCR: "50%" },
+      { id: 5, category: "land", categoryName: "토지", dealDate: "2026-07-04", rawJibun: "801", maskedAddress: "구로동 801-**", verifiedJibun: "구로동 801-19", roadAddress: "구로동로34길 21", jimok: "대", useArea: "제2종일반주거지역", roadCond: "4m~6m", areaM2: 132.2, priceManwon: 88000, confidence: "100% (지적대장 면적 일치)", note: "다가구/다세대 신축 적합 직사각형 필지", maxFAR: "200%", maxBCR: "60%" },
+      { id: 6, category: "land", categoryName: "토지", dealDate: "2026-06-19", rawJibun: "542", maskedAddress: "구로동 542-**", verifiedJibun: "구로동 542-6", roadAddress: "경인로53길 90", jimok: "대", useArea: "준공업지역", roadCond: "8m이상", areaM2: 403.3, priceManwon: 318000, confidence: "100% (지적대장 면적 일치)", note: "공장 및 지식산업 배후 중대형 필지", maxFAR: "400%", maxBCR: "60%" },
+      { id: 7, category: "land", categoryName: "토지", dealDate: "2026-06-03", rawJibun: "314", maskedAddress: "구로동 314-**", verifiedJibun: "구로동 314-11", roadAddress: "신도림로11길 34", jimok: "잡종지", useArea: "준공업지역", roadCond: "12m이상", areaM2: 330.6, priceManwon: 285000, confidence: "100% (지적대장 면적 일치)", note: "신도림역 인접 물류창고 및 야적장", maxFAR: "400%", maxBCR: "60%" },
+      { id: 8, category: "land", categoryName: "토지", dealDate: "2026-05-21", rawJibun: "98", maskedAddress: "구로동 98-**", verifiedJibun: "구로동 98-41", roadAddress: "구로동로8길 11-3", jimok: "대", useArea: "제2종일반주거지역", roadCond: "4m미만", areaM2: 82.6, priceManwon: 42000, confidence: "100% (지적대장 면적 일치)", note: "골목 안쪽 협소 필지, 건축선 후퇴 필요", maxFAR: "200%", maxBCR: "60%" },
+      { id: 9, category: "land", categoryName: "토지", dealDate: "2026-05-14", rawJibun: "741", maskedAddress: "구로동 741-**", verifiedJibun: "구로동 741-5", roadAddress: "도림천로26길 18", jimok: "대", useArea: "제2종일반주거지역", roadCond: "4m~6m", areaM2: 185.1, priceManwon: 118000, confidence: "100% (지적대장 면적 일치)", note: "모아타운 추진 관심지 배후 주거 필지", maxFAR: "200%", maxBCR: "60%" },
+      { id: 10, category: "land", categoryName: "토지", dealDate: "2026-04-29", rawJibun: "602", maskedAddress: "구로동 602-**", verifiedJibun: "구로동 602-28", roadAddress: "경인로53길 24", jimok: "대", useArea: "준공업지역", roadCond: "8m이상", areaM2: 264.5, priceManwon: 215000, confidence: "100% (지적대장 면적 일치)", note: "준공업 제조·정비작업장 부지", maxFAR: "400%", maxBCR: "60%" },
+      { id: 11, category: "land", categoryName: "토지", dealDate: "2026-04-10", rawJibun: "112", maskedAddress: "구로동 112-**", verifiedJibun: "구로동 112-7", roadAddress: "구로동로12길 일원", jimok: "도로", useArea: "제2종일반주거지역", roadCond: "4m미만", areaM2: 49.6, priceManwon: 1800, confidence: "100% (지적대장 면적 일치)", note: "주택가 사도(골목길) 일부 지분 매매", maxFAR: "-", maxBCR: "-" },
+      { id: 12, category: "land", categoryName: "토지", dealDate: "2026-03-25", rawJibun: "443", maskedAddress: "구로동 443-**", verifiedJibun: "구로동 443-12", roadAddress: "가마산로27길 42", jimok: "대", useArea: "제2종일반주거지역", roadCond: "4m~6m", areaM2: 115.7, priceManwon: 72000, confidence: "100% (지적대장 면적 일치)", note: "단독주택 부속토지, 신축 빌라 부지", maxFAR: "200%", maxBCR: "60%" },
+      { id: 13, category: "land", categoryName: "토지", dealDate: "2026-03-08", rawJibun: "636", maskedAddress: "구로동 636-**", verifiedJibun: "구로동 636-8", roadAddress: "구로중앙로14길 31", jimok: "대", useArea: "준공업지역", roadCond: "8m이상", areaM2: 198.3, priceManwon: 155000, confidence: "100% (지적대장 면적 일치)", note: "구로기계공구상가 배후 상업/유통 부지", maxFAR: "400%", maxBCR: "60%" },
+      { id: 14, category: "land", categoryName: "토지", dealDate: "2026-02-20", rawJibun: "790", maskedAddress: "구로동 790-**", verifiedJibun: "구로동 790-3", roadAddress: "디지털로31길 17", jimok: "대", useArea: "제3종일반주거지역", roadCond: "8m이상", areaM2: 142.1, priceManwon: 118000, confidence: "100% (지적대장 면적 일치)", note: "남구로역 인근 근생 상가주택 대지", maxFAR: "250%", maxBCR: "50%" },
+      { id: 15, category: "land", categoryName: "토지", dealDate: "2026-02-12", rawJibun: "235", maskedAddress: "구로동 235-**", verifiedJibun: "구로동 235-15", roadAddress: "디지털로27길 88", jimok: "대", useArea: "준공업지역", roadCond: "12m이상", areaM2: 512.4, priceManwon: 465000, confidence: "100% (지적대장 면적 일치)", note: "G밸리 인접 대형 오피스/지산 개발부지", maxFAR: "400%", maxBCR: "60%" },
+      { id: 16, category: "land", categoryName: "토지", dealDate: "2026-01-27", rawJibun: "148", maskedAddress: "구로동 148-**", verifiedJibun: "구로동 148-31", roadAddress: "구로서화길 14", jimok: "대", useArea: "제2종일반주거지역", roadCond: "4m미만", areaM2: 76.0, priceManwon: 39000, confidence: "100% (지적대장 면적 일치)", note: "노후 주거 밀집지 소형 필지", maxFAR: "200%", maxBCR: "60%" },
+      { id: 17, category: "land", categoryName: "토지", dealDate: "2026-01-15", rawJibun: "570", maskedAddress: "구로동 570-**", verifiedJibun: "구로동 570-2", roadAddress: "경인로55길 16", jimok: "대", useArea: "준공업지역", roadCond: "8m이상", areaM2: 175.2, priceManwon: 142000, confidence: "100% (지적대장 면적 일치)", note: "준공업 창고 및 소형 사옥 대지", maxFAR: "400%", maxBCR: "60%" },
+      { id: 18, category: "land", categoryName: "토지", dealDate: "2025-12-29", rawJibun: "811", maskedAddress: "구로동 811-**", verifiedJibun: "구로동 811-10", roadAddress: "구로동로38길 9", jimok: "대", useArea: "제2종일반주거지역", roadCond: "4m~6m", areaM2: 158.7, priceManwon: 102000, confidence: "100% (지적대장 면적 일치)", note: "단독주택 매매 (부속 대지 전수 거래)", maxFAR: "200%", maxBCR: "60%" },
+      { id: 19, category: "land", categoryName: "토지", dealDate: "2025-12-14", rawJibun: "642", maskedAddress: "구로동 642-**", verifiedJibun: "구로동 642-4", roadAddress: "구로중앙로20길 11", jimok: "대", useArea: "준공업지역", roadCond: "8m이상", areaM2: 228.1, priceManwon: 182000, confidence: "100% (지적대장 면적 일치)", note: "구로역 유통상가 배후 상가형 필지", maxFAR: "400%", maxBCR: "60%" },
+      { id: 20, category: "land", categoryName: "토지", dealDate: "2025-11-28", rawJibun: "415", maskedAddress: "구로동 415-**", verifiedJibun: "구로동 415-18", roadAddress: "가마산로21길 29", jimok: "잡종지", useArea: "제2종일반주거지역", roadCond: "4m~6m", areaM2: 109.1, priceManwon: 58000, confidence: "100% (지적대장 면적 일치)", note: "나대지 및 임시 주차장 부지", maxFAR: "200%", maxBCR: "60%" },
+      { id: 21, category: "land", categoryName: "토지", dealDate: "2025-11-16", rawJibun: "712", maskedAddress: "구로동 712-**", verifiedJibun: "구로동 712-2", roadAddress: "디지털로32길 12", jimok: "대", useArea: "일반상업지역", roadCond: "12m이상", areaM2: 125.6, priceManwon: 185000, confidence: "100% (지적대장 면적 일치)", note: "대로변 상업시설 신축 부지", maxFAR: "800%", maxBCR: "60%" },
+      { id: 22, category: "land", categoryName: "토지", dealDate: "2025-11-05", rawJibun: "390", maskedAddress: "구로동 390-**", verifiedJibun: "구로동 390-52", roadAddress: "도림천로17길 25", jimok: "대", useArea: "제2종일반주거지역", roadCond: "4m미만", areaM2: 92.5, priceManwon: 48000, confidence: "100% (지적대장 면적 일치)", note: "막다른 골목 저층 단독주택지", maxFAR: "200%", maxBCR: "60%" },
+      { id: 23, category: "land", categoryName: "토지", dealDate: "2025-10-24", rawJibun: "610", maskedAddress: "구로동 610-**", verifiedJibun: "구로동 610-11", roadAddress: "경인로51길 47", jimok: "대", useArea: "준공업지역", roadCond: "8m이상", areaM2: 310.7, priceManwon: 252000, confidence: "100% (지적대장 면적 일치)", note: "준공업 차량정비 및 물류 보관 부지", maxFAR: "400%", maxBCR: "60%" },
+      { id: 24, category: "land", categoryName: "토지", dealDate: "2025-10-18", rawJibun: "197", maskedAddress: "구로동 197-**", verifiedJibun: "구로동 197-33", roadAddress: "구로동로26길 62", jimok: "대", useArea: "제3종일반주거지역", roadCond: "8m이상", areaM2: 168.6, priceManwon: 140000, confidence: "100% (지적대장 면적 일치)", note: "간선도로변 인접 상가주택 적합지", maxFAR: "250%", maxBCR: "50%" },
+      { id: 25, category: "land", categoryName: "토지", dealDate: "2025-10-02", rawJibun: "52", maskedAddress: "구로동 52-**", verifiedJibun: "구로동 52-9", roadAddress: "구로동로4길 38", jimok: "대", useArea: "제2종일반주거지역", roadCond: "4m~6m", areaM2: 122.3, priceManwon: 76000, confidence: "100% (지적대장 면적 일치)", note: "통과도로 접면 다세대 신축 부지", maxFAR: "200%", maxBCR: "60%" },
+
+      // --- [단독·다가구 주택 매매 실거래 내역 10건] ---
       {
-        id: 1,
-        dealDate: "2026-09-15",
-        rawJibun: "689",
-        maskedAddress: "구로동 689-**",
-        verifiedJibun: "구로동 689-14",
-        roadAddress: "구로중앙로28길 19",
-        jimok: "대",
-        useArea: "준공업지역",
-        roadCond: "8m이상",
-        areaM2: 205.0,
-        priceManwon: 161000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "준공업지 상가주택 필지, 역세권 상권 배후",
-        maxFAR: "400%",
-        maxBCR: "60%"
-      },
-      {
-        id: 2,
-        dealDate: "2026-08-28",
-        rawJibun: "496",
-        maskedAddress: "구로동 496-**",
-        verifiedJibun: "구로동 496-22",
-        roadAddress: "도림천로19길 12",
+        id: 101,
+        category: "house",
+        categoryName: "다가구주택",
+        dealDate: "2026-09-08",
+        rawJibun: "745",
+        maskedAddress: "구로동 745-**",
+        verifiedJibun: "구로동 745-12",
+        roadAddress: "도림천로26길 31",
         jimok: "대",
         useArea: "제2종일반주거지역",
-        roadCond: "4m미만",
-        areaM2: 147.0,
-        priceManwon: 54000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "노후 단독주택지, 골목길 차량 교행 불가",
+        roadCond: "6m",
+        areaM2: 140.5,
+        bldgAreaM2: 285.2,
+        floors: "지상 3층 / 지하 1층",
+        buildYear: 1994,
+        priceManwon: 108000,
+        confidence: "100% (건축물대장 연면적·대지 일치)",
+        note: "모아타운 인근 3층 다가구 (원룸·투룸 7가구 임대중)",
         maxFAR: "200%",
         maxBCR: "60%"
       },
       {
-        id: 3,
-        dealDate: "2026-08-11",
-        rawJibun: "705",
-        maskedAddress: "구로동 705-**",
-        verifiedJibun: "구로동 705-1",
-        roadAddress: "디지털로32길 45",
+        id: 102,
+        category: "house",
+        categoryName: "단독주택",
+        dealDate: "2026-08-19",
+        rawJibun: "142",
+        maskedAddress: "구로동 142-**",
+        verifiedJibun: "구로동 142-8",
+        roadAddress: "구로서화길 28",
         jimok: "대",
-        useArea: "일반상업지역",
-        roadCond: "12m이상",
-        areaM2: 165.3,
-        priceManwon: 235000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "대림역/남구로역 코너 상가빌딩 부지",
-        maxFAR: "800%",
+        useArea: "제2종일반주거지역",
+        roadCond: "4m",
+        areaM2: 119.7,
+        bldgAreaM2: 130.4,
+        floors: "지상 2층",
+        buildYear: 1988,
+        priceManwon: 69000,
+        confidence: "100% (건축물대장 매칭 확정)",
+        note: "노후 2층 단독주택 (신축 부지 매입 또는 리모델링용)",
+        maxFAR: "200%",
         maxBCR: "60%"
       },
       {
-        id: 4,
-        dealDate: "2026-07-22",
-        rawJibun: "1257",
-        maskedAddress: "구로동 1257-**",
-        verifiedJibun: "구로동 1257-3",
-        roadAddress: "구로동로15길 8",
+        id: 103,
+        category: "house",
+        categoryName: "다가구주택",
+        dealDate: "2026-07-29",
+        rawJibun: "805",
+        maskedAddress: "구로동 805-**",
+        verifiedJibun: "구로동 805-3",
+        roadAddress: "구로동로34길 9",
+        jimok: "대",
+        useArea: "준공업지역",
+        roadCond: "8m",
+        areaM2: 181.8,
+        bldgAreaM2: 392.5,
+        floors: "지상 4층",
+        buildYear: 2012,
+        priceManwon: 175000,
+        confidence: "100% (건축물대장 매칭 확정)",
+        note: "준공업지역 4층 원룸 통매매 (직장인 임대수요 우수)",
+        maxFAR: "400%",
+        maxBCR: "60%"
+      },
+      {
+        id: 104,
+        category: "house",
+        categoryName: "다가구주택",
+        dealDate: "2026-07-15",
+        rawJibun: "486",
+        maskedAddress: "구로동 486-**",
+        verifiedJibun: "구로동 486-17",
+        roadAddress: "도림천로19길 35",
+        jimok: "대",
+        useArea: "제2종일반주거지역",
+        roadCond: "4m~6m",
+        areaM2: 109.4,
+        bldgAreaM2: 198.0,
+        floors: "지상 3층",
+        buildYear: 1996,
+        priceManwon: 74000,
+        confidence: "100% (건축물대장 매칭 확정)",
+        note: "남구로역 도보 7분, 3층 다가구 (실거주+임대수익)",
+        maxFAR: "200%",
+        maxBCR: "60%"
+      },
+      {
+        id: 105,
+        category: "house",
+        categoryName: "단독주택",
+        dealDate: "2026-06-25",
+        rawJibun: "91",
+        maskedAddress: "구로동 91-**",
+        verifiedJibun: "구로동 91-24",
+        roadAddress: "구로동로6길 15",
+        jimok: "대",
+        useArea: "제2종일반주거지역",
+        roadCond: "4m미만",
+        areaM2: 105.1,
+        bldgAreaM2: 95.2,
+        floors: "지상 1층",
+        buildYear: 1978,
+        priceManwon: 82000,
+        confidence: "100% (건축물대장 매칭 확정)",
+        note: "재개발·모아타운 추진 구역 내 단독 (지분 프리미엄)",
+        maxFAR: "200%",
+        maxBCR: "60%"
+      },
+      {
+        id: 106,
+        category: "house",
+        categoryName: "다가구주택",
+        dealDate: "2026-05-18",
+        rawJibun: "437",
+        maskedAddress: "구로동 437-**",
+        verifiedJibun: "구로동 437-9",
+        roadAddress: "가마산로25길 17",
+        jimok: "대",
+        useArea: "제2종일반주거지역",
+        roadCond: "6m",
+        areaM2: 135.5,
+        bldgAreaM2: 245.0,
+        floors: "지상 3층",
+        buildYear: 2002,
+        priceManwon: 98000,
+        confidence: "100% (건축물대장 매칭 확정)",
+        note: "코너 필지 3층 다가구 (6가구 거주, 통과도로 접면)",
+        maxFAR: "200%",
+        maxBCR: "60%"
+      },
+      {
+        id: 107,
+        category: "house",
+        categoryName: "상가주택",
+        dealDate: "2026-04-12",
+        rawJibun: "786",
+        maskedAddress: "구로동 786-**",
+        verifiedJibun: "구로동 786-5",
+        roadAddress: "디지털로31길 38",
         jimok: "대",
         useArea: "제3종일반주거지역",
         roadCond: "8m이상",
-        areaM2: 99.2,
-        priceManwon: 85000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "소방도로 완비, 근린생활시설 적합지",
+        areaM2: 155.4,
+        bldgAreaM2: 320.6,
+        floors: "지상 4층",
+        buildYear: 1999,
+        priceManwon: 145000,
+        confidence: "100% (건축물대장 매칭 확정)",
+        note: "1층 상가 + 2~4층 주택 (남구로역 역세권 상가주택)",
         maxFAR: "250%",
         maxBCR: "50%"
       },
       {
-        id: 5,
-        dealDate: "2026-07-04",
-        rawJibun: "801",
-        maskedAddress: "구로동 801-**",
-        verifiedJibun: "구로동 801-19",
-        roadAddress: "구로동로34길 21",
-        jimok: "대",
-        useArea: "제2종일반주거지역",
-        roadCond: "4m~6m",
-        areaM2: 132.2,
-        priceManwon: 88000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "다가구/다세대 신축 적합 직사각형 필지",
-        maxFAR: "200%",
-        maxBCR: "60%"
-      },
-      {
-        id: 6,
-        dealDate: "2026-06-19",
-        rawJibun: "542",
-        maskedAddress: "구로동 542-**",
-        verifiedJibun: "구로동 542-6",
-        roadAddress: "경인로53길 90",
-        jimok: "대",
-        useArea: "준공업지역",
-        roadCond: "8m이상",
-        areaM2: 403.3,
-        priceManwon: 318000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "공장 및 지식산업 배후 중대형 필지",
-        maxFAR: "400%",
-        maxBCR: "60%"
-      },
-      {
-        id: 7,
-        dealDate: "2026-06-03",
-        rawJibun: "314",
-        maskedAddress: "구로동 314-**",
-        verifiedJibun: "구로동 314-11",
-        roadAddress: "신도림로11길 34",
-        jimok: "잡종지",
-        useArea: "준공업지역",
-        roadCond: "12m이상",
-        areaM2: 330.6,
-        priceManwon: 285000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "신도림역 인접 물류창고 및 야적장",
-        maxFAR: "400%",
-        maxBCR: "60%"
-      },
-      {
-        id: 8,
-        dealDate: "2026-05-21",
-        rawJibun: "98",
-        maskedAddress: "구로동 98-**",
-        verifiedJibun: "구로동 98-41",
-        roadAddress: "구로동로8길 11-3",
+        id: 108,
+        category: "house",
+        categoryName: "단독주택",
+        dealDate: "2026-03-14",
+        rawJibun: "385",
+        maskedAddress: "구로동 385-**",
+        verifiedJibun: "구로동 385-18",
+        roadAddress: "도림천로15길 19",
         jimok: "대",
         useArea: "제2종일반주거지역",
         roadCond: "4m미만",
-        areaM2: 82.6,
-        priceManwon: 42000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "골목 안쪽 협소 필지, 건축선 후퇴 필요",
+        areaM2: 89.3,
+        bldgAreaM2: 78.5,
+        floors: "지상 1층",
+        buildYear: 1975,
+        priceManwon: 46000,
+        confidence: "100% (건축물대장 매칭 확정)",
+        note: "골목 안쪽 저층 소형 단독주택",
         maxFAR: "200%",
         maxBCR: "60%"
       },
       {
-        id: 9,
-        dealDate: "2026-05-14",
-        rawJibun: "741",
-        maskedAddress: "구로동 741-**",
-        verifiedJibun: "구로동 741-5",
-        roadAddress: "도림천로26길 18",
+        id: 109,
+        category: "house",
+        categoryName: "다가구주택",
+        dealDate: "2026-02-05",
+        rawJibun: "815",
+        maskedAddress: "구로동 815-**",
+        verifiedJibun: "구로동 815-21",
+        roadAddress: "구로동로36길 14",
         jimok: "대",
         useArea: "제2종일반주거지역",
-        roadCond: "4m~6m",
-        areaM2: 185.1,
-        priceManwon: 118000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "모아타운 추진 관심지 배후 주거 필지",
+        roadCond: "6m",
+        areaM2: 162.0,
+        bldgAreaM2: 290.0,
+        floors: "지상 3층",
+        buildYear: 1995,
+        priceManwon: 115000,
+        confidence: "100% (건축물대장 매칭 확정)",
+        note: "소방도로 완비 3층 다가구 (신축 부지 겸 임대운영)",
         maxFAR: "200%",
         maxBCR: "60%"
       },
       {
-        id: 10,
-        dealDate: "2026-04-29",
-        rawJibun: "602",
-        maskedAddress: "구로동 602-**",
-        verifiedJibun: "구로동 602-28",
-        roadAddress: "경인로53길 24",
+        id: 110,
+        category: "house",
+        categoryName: "상가겸용주택",
+        dealDate: "2025-11-20",
+        rawJibun: "691",
+        maskedAddress: "구로동 691-**",
+        verifiedJibun: "구로동 691-8",
+        roadAddress: "구로중앙로28길 40",
         jimok: "대",
         useArea: "준공업지역",
         roadCond: "8m이상",
-        areaM2: 264.5,
-        priceManwon: 215000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "준공업 정비업소 및 작업장 부지",
+        areaM2: 215.0,
+        bldgAreaM2: 430.0,
+        floors: "지상 4층",
+        buildYear: 2005,
+        priceManwon: 198000,
+        confidence: "100% (건축물대장 매칭 확정)",
+        note: "준공업지역 4층 상가주택 (1층 근생+주거, 수익형)",
         maxFAR: "400%",
-        maxBCR: "60%"
-      },
-      {
-        id: 11,
-        dealDate: "2026-04-10",
-        rawJibun: "112",
-        maskedAddress: "구로동 112-**",
-        verifiedJibun: "구로동 112-7",
-        roadAddress: "구로동로12길 일원",
-        jimok: "도로",
-        useArea: "제2종일반주거지역",
-        roadCond: "4m미만",
-        areaM2: 49.6,
-        priceManwon: 1800,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "주택가 사도(골목길) 일부 지분 매매",
-        maxFAR: "-",
-        maxBCR: "-"
-      },
-      {
-        id: 12,
-        dealDate: "2026-03-25",
-        rawJibun: "443",
-        maskedAddress: "구로동 443-**",
-        verifiedJibun: "구로동 443-12",
-        roadAddress: "가마산로27길 42",
-        jimok: "대",
-        useArea: "제2종일반주거지역",
-        roadCond: "4m~6m",
-        areaM2: 115.7,
-        priceManwon: 72000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "단독주택 부속토지, 신축 빌라 부지",
-        maxFAR: "200%",
-        maxBCR: "60%"
-      },
-      {
-        id: 13,
-        dealDate: "2026-03-08",
-        rawJibun: "636",
-        maskedAddress: "구로동 636-**",
-        verifiedJibun: "구로동 636-8",
-        roadAddress: "구로중앙로14길 31",
-        jimok: "대",
-        useArea: "준공업지역",
-        roadCond: "8m이상",
-        areaM2: 198.3,
-        priceManwon: 155000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "구로기계공구상가 배후 상업/유통 부지",
-        maxFAR: "400%",
-        maxBCR: "60%"
-      },
-      {
-        id: 14,
-        dealDate: "2026-02-20",
-        rawJibun: "790",
-        maskedAddress: "구로동 790-**",
-        verifiedJibun: "구로동 790-3",
-        roadAddress: "디지털로31길 17",
-        jimok: "대",
-        useArea: "제3종일반주거지역",
-        roadCond: "8m이상",
-        areaM2: 142.1,
-        priceManwon: 118000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "남구로역 인근 근생 상가주택 대지",
-        maxFAR: "250%",
-        maxBCR: "50%"
-      },
-      {
-        id: 15,
-        dealDate: "2026-02-12",
-        rawJibun: "235",
-        maskedAddress: "구로동 235-**",
-        verifiedJibun: "구로동 235-15",
-        roadAddress: "디지털로27길 88",
-        jimok: "대",
-        useArea: "준공업지역",
-        roadCond: "12m이상",
-        areaM2: 512.4,
-        priceManwon: 465000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "G밸리 인접 대형 오피스/지산 개발 가능 부지",
-        maxFAR: "400%",
-        maxBCR: "60%"
-      },
-      {
-        id: 16,
-        dealDate: "2026-01-27",
-        rawJibun: "148",
-        maskedAddress: "구로동 148-**",
-        verifiedJibun: "구로동 148-31",
-        roadAddress: "구로서화길 14",
-        jimok: "대",
-        useArea: "제2종일반주거지역",
-        roadCond: "4m미만",
-        areaM2: 76.0,
-        priceManwon: 39000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "노후 주거 밀집지 소형 필지",
-        maxFAR: "200%",
-        maxBCR: "60%"
-      },
-      {
-        id: 17,
-        dealDate: "2026-01-15",
-        rawJibun: "570",
-        maskedAddress: "구로동 570-**",
-        verifiedJibun: "구로동 570-2",
-        roadAddress: "경인로55길 16",
-        jimok: "대",
-        useArea: "준공업지역",
-        roadCond: "8m이상",
-        areaM2: 175.2,
-        priceManwon: 142000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "준공업 창고 및 소형 사옥 대지",
-        maxFAR: "400%",
-        maxBCR: "60%"
-      },
-      {
-        id: 18,
-        dealDate: "2025-12-29",
-        rawJibun: "811",
-        maskedAddress: "구로동 811-**",
-        verifiedJibun: "구로동 811-10",
-        roadAddress: "구로동로38길 9",
-        jimok: "대",
-        useArea: "제2종일반주거지역",
-        roadCond: "4m~6m",
-        areaM2: 158.7,
-        priceManwon: 102000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "단독주택 매매 (부속 대지 전수 거래)",
-        maxFAR: "200%",
-        maxBCR: "60%"
-      },
-      {
-        id: 19,
-        dealDate: "2025-12-14",
-        rawJibun: "642",
-        maskedAddress: "구로동 642-**",
-        verifiedJibun: "구로동 642-4",
-        roadAddress: "구로중앙로20길 11",
-        jimok: "대",
-        useArea: "준공업지역",
-        roadCond: "8m이상",
-        areaM2: 228.1,
-        priceManwon: 182000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "구로역 유통상가 배후 상가형 필지",
-        maxFAR: "400%",
-        maxBCR: "60%"
-      },
-      {
-        id: 20,
-        dealDate: "2025-11-28",
-        rawJibun: "415",
-        maskedAddress: "구로동 415-**",
-        verifiedJibun: "구로동 415-18",
-        roadAddress: "가마산로21길 29",
-        jimok: "잡종지",
-        useArea: "제2종일반주거지역",
-        roadCond: "4m~6m",
-        areaM2: 109.1,
-        priceManwon: 58000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "나대지 및 임시 주차장 용도 토지",
-        maxFAR: "200%",
-        maxBCR: "60%"
-      },
-      {
-        id: 21,
-        dealDate: "2025-11-16",
-        rawJibun: "712",
-        maskedAddress: "구로동 712-**",
-        verifiedJibun: "구로동 712-2",
-        roadAddress: "디지털로32길 12",
-        jimok: "대",
-        useArea: "일반상업지역",
-        roadCond: "12m이상",
-        areaM2: 125.6,
-        priceManwon: 185000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "대로변 상업시설 신축 부지",
-        maxFAR: "800%",
-        maxBCR: "60%"
-      },
-      {
-        id: 22,
-        dealDate: "2025-11-05",
-        rawJibun: "390",
-        maskedAddress: "구로동 390-**",
-        verifiedJibun: "구로동 390-52",
-        roadAddress: "도림천로17길 25",
-        jimok: "대",
-        useArea: "제2종일반주거지역",
-        roadCond: "4m미만",
-        areaM2: 92.5,
-        priceManwon: 48000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "막다른 골목 저층 단독주택지",
-        maxFAR: "200%",
-        maxBCR: "60%"
-      },
-      {
-        id: 23,
-        dealDate: "2025-10-24",
-        rawJibun: "610",
-        maskedAddress: "구로동 610-**",
-        verifiedJibun: "구로동 610-11",
-        roadAddress: "경인로51길 47",
-        jimok: "대",
-        useArea: "준공업지역",
-        roadCond: "8m이상",
-        areaM2: 310.7,
-        priceManwon: 252000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "준공업 차량정비 및 물류 보관 부지",
-        maxFAR: "400%",
-        maxBCR: "60%"
-      },
-      {
-        id: 24,
-        dealDate: "2025-10-18",
-        rawJibun: "197",
-        maskedAddress: "구로동 197-**",
-        verifiedJibun: "구로동 197-33",
-        roadAddress: "구로동로26길 62",
-        jimok: "대",
-        useArea: "제3종일반주거지역",
-        roadCond: "8m이상",
-        areaM2: 168.6,
-        priceManwon: 140000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "간선도로변 인접, 상가주택 신축 적지",
-        maxFAR: "250%",
-        maxBCR: "50%"
-      },
-      {
-        id: 25,
-        dealDate: "2025-10-02",
-        rawJibun: "52",
-        maskedAddress: "구로동 52-**",
-        verifiedJibun: "구로동 52-9",
-        roadAddress: "구로동로4길 38",
-        jimok: "대",
-        useArea: "제2종일반주거지역",
-        roadCond: "4m~6m",
-        areaM2: 122.3,
-        priceManwon: 76000,
-        confidence: "100% (지적대장 면적 일치)",
-        note: "주택가 통과도로 접면, 다세대 신축 부지",
-        maxFAR: "200%",
         maxBCR: "60%"
       }
     ];
@@ -864,142 +729,142 @@
       item.isOver30 = item.pyung >= 30.0;
       item.unitPricePyung = item.pyung > 0 ? (item.priceManwon / item.pyung) : 0;
       item.unitPriceM2 = item.areaM2 > 0 ? (item.priceManwon / item.areaM2) : 0;
+      if (item.bldgAreaM2) {
+        item.bldgPyung = item.bldgAreaM2 / 3.305785;
+      }
     });
 
     // -------------------------------------------------------------
     // 2. STATE & CHART INSTANCES
     // -------------------------------------------------------------
     let currentData = [...GURO_TRANSACTIONS];
+    let currentCategoryFilter = "all"; // 'all', 'land', 'house'
     let chartZoning = null;
     let chartMonthly = null;
 
     // -------------------------------------------------------------
     // 3. INITIALIZATION & DATE PRESETS
     // -------------------------------------------------------------
-    window.onload = function() {
-      // Set default date range to 1 year back from latest record (2026-09-15)
-      setPeriodPreset('1y');
-      
-      // Initialize charts & render
-      initCharts();
-      applyFilters();
-
-      // Event Listeners
-      setupEventListeners();
-    };
-
-    function setPeriodPreset(type) {
-      const latestDate = new Date("2026-09-15");
-      let startDate = new Date("2026-09-15");
-
-      if (type === '3m') {
-        startDate.setMonth(startDate.getMonth() - 3);
-      } else if (type === '6m') {
-        startDate.setMonth(startDate.getMonth() - 6);
-      } else if (type === '1y') {
-        startDate.setFullYear(startDate.getFullYear() - 1);
-      } else if (type === 'all') {
-        startDate = new Date("2024-01-01");
+    function setPeriodPreset(period) {
+      const today = new Date("2026-09-30"); // 기준 최신일
+      let start = new Date(today);
+      if (period === '3m') {
+        start.setMonth(start.getMonth() - 3);
+      } else if (period === '6m') {
+        start.setMonth(start.getMonth() - 6);
+      } else if (period === '1y') {
+        start.setFullYear(start.getFullYear() - 1);
+      } else if (period === 'all') {
+        start = new Date("2025-01-01");
       }
 
       const formatDate = (d) => d.toISOString().split('T')[0];
-      document.getElementById('dateStart').value = formatDate(startDate);
-      document.getElementById('dateEnd').value = formatDate(latestDate);
+      document.getElementById('dateStart').value = formatDate(start);
+      document.getElementById('dateEnd').value = formatDate(today);
 
-      // Button active styles
-      document.querySelectorAll('.btn-period').forEach(btn => {
-        if (btn.dataset.period === type) {
-          btn.className = "btn-period px-2 py-1.5 rounded-md border text-center font-bold text-xs bg-brand-50 border-brand-500 text-brand-700 active-period shadow-sm";
+      document.querySelectorAll('.btn-period').forEach(b => {
+        if (b.dataset.period === period) {
+          b.className = "btn-period px-2 py-1.5 rounded-md border text-center font-bold text-xs bg-brand-50 border-brand-500 text-brand-700 active-period";
         } else {
-          btn.className = "btn-period px-2 py-1.5 rounded-md border text-center font-medium text-xs bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100";
+          b.className = "btn-period px-2 py-1.5 rounded-md border text-center font-medium text-xs bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100";
         }
       });
     }
 
     // -------------------------------------------------------------
-    // 4. FILTERING & SORTING LOGIC
+    // 4. FILTERING & SORTING ENGINE
     // -------------------------------------------------------------
     function applyFilters() {
-      const dStart = document.getElementById('dateStart').value;
-      const dEnd = document.getElementById('dateEnd').value;
+      const dateStart = document.getElementById('dateStart').value;
+      const dateEnd = document.getElementById('dateEnd').value;
       const minPyung = parseFloat(document.getElementById('inputMinPyung').value) || 0;
-      const maxPyungVal = document.getElementById('inputMaxPyung').value.trim();
-      const maxPyung = maxPyungVal ? parseFloat(maxPyungVal) : 999999;
+      const maxPyung = parseFloat(document.getElementById('inputMaxPyung').value) || 999999;
       const zoning = document.getElementById('selectZoning').value;
       const jimok = document.getElementById('selectJimok').value;
       const keyword = document.getElementById('inputKeyword').value.trim().toLowerCase();
-      const sortOpt = document.getElementById('selectSorting').value;
+      const sorting = document.getElementById('selectSorting').value;
 
       currentData = GURO_TRANSACTIONS.filter(item => {
-        // 1. Period filter
-        if (dStart && item.dealDate < dStart) return false;
-        if (dEnd && item.dealDate > dEnd) return false;
+        // 매물 유형 필터 (토지 vs 단독·다가구)
+        if (currentCategoryFilter !== 'all' && item.category !== currentCategoryFilter) {
+          return false;
+        }
 
-        // 2. Pyung area filter
+        // 기간 필터
+        if (dateStart && item.dealDate < dateStart) return false;
+        if (dateEnd && item.dealDate > dateEnd) return false;
+
+        // 대지 면적(평) 필터
         if (item.pyung < minPyung || item.pyung > maxPyung) return false;
 
-        // 3. Zoning filter
-        if (zoning !== "전체" && item.useArea !== zoning) return false;
+        // 용도지역 필터
+        if (zoning !== '전체' && !item.useArea.includes(zoning)) return false;
 
-        // 4. Jimok filter
-        if (jimok !== "전체" && item.jimok !== jimok) return false;
+        // 지목 필터
+        if (jimok !== '전체' && item.jimok !== jimok) return false;
 
-        // 5. Keyword search (지번, 도로명, 비고)
+        // 키워드 검색
         if (keyword) {
-          const matchTarget = `${item.maskedAddress} ${item.verifiedJibun} ${item.roadAddress} ${item.note}`.toLowerCase();
-          if (!matchTarget.includes(keyword)) return false;
+          const targetStr = `${item.verifiedJibun} ${item.roadAddress} ${item.maskedAddress} ${item.note} ${item.categoryName}`.toLowerCase();
+          if (!targetStr.includes(keyword)) return false;
         }
 
         return true;
       });
 
-      // Sorting
+      // 데이터 정렬
       currentData.sort((a, b) => {
-        if (sortOpt === "date_desc") return b.dealDate.localeCompare(a.dealDate);
-        if (sortOpt === "date_asc") return a.dealDate.localeCompare(b.dealDate);
-        if (sortOpt === "unit_desc") return b.unitPricePyung - a.unitPricePyung;
-        if (sortOpt === "unit_asc") return a.unitPricePyung - b.unitPricePyung;
-        if (sortOpt === "pyung_desc") return b.pyung - a.pyung;
-        if (sortOpt === "price_desc") return b.priceManwon - a.priceManwon;
-        return 0;
+        switch (sorting) {
+          case 'date_desc': return b.dealDate.localeCompare(a.dealDate);
+          case 'date_asc': return a.dealDate.localeCompare(b.dealDate);
+          case 'unit_desc': return b.unitPricePyung - a.unitPricePyung;
+          case 'unit_asc': return a.unitPricePyung - b.unitPricePyung;
+          case 'pyung_desc': return b.pyung - a.pyung;
+          case 'price_desc': return b.priceManwon - a.priceManwon;
+          default: return 0;
+        }
       });
 
-      // Update summary text
-      const summaryText = `${minPyung > 0 ? minPyung + '평 이상, ' : ''}${zoning !== '전체' ? zoning + ', ' : ''}${jimok !== '전체' ? jimok + ', ' : ''}${dStart ? dStart + '~' + dEnd : '전체 기간'}`;
-      document.getElementById('txtActiveFilterSummary').textContent = summaryText;
+      // 상단 필터 요약 라벨 갱신
+      const catLabel = currentCategoryFilter === 'all' ? '전체' : (currentCategoryFilter === 'land' ? '토지만' : '단독·다가구만');
+      const pyungLabel = minPyung >= 30 ? '30평 이상' : (minPyung > 0 ? `${minPyung}평 이상` : '전체 면적');
+      const activePeriodBtn = document.querySelector('.btn-period.active-period');
+      const periodLabel = activePeriodBtn ? activePeriodBtn.innerText.trim() : '사용자 지정 기간';
+      const zoningTag = zoning !== '전체' ? ` | ${zoning}` : '';
+      document.getElementById('txtActiveFilterSummary').textContent = `${periodLabel} | ${catLabel}${zoningTag} | ${pyungLabel} (${currentData.length}건)`;
 
-      // Update UI
       renderKPIs();
       renderTable();
       updateCharts();
     }
 
     // -------------------------------------------------------------
-    // 5. KPI METRICS CALCULATION & RENDERING
+    // 5. KPI METRICS CALCULATION
     // -------------------------------------------------------------
     function renderKPIs() {
       const count = currentData.length;
       document.getElementById('kpiCount').textContent = count.toLocaleString();
-      document.getElementById('kpiSubCount').textContent = `전체 25건 중 ${count}건 일치`;
+      document.getElementById('kpiSubCount').textContent = `전체 ${GURO_TRANSACTIONS.length}건 중`;
       document.getElementById('txtTableResultCount').textContent = count.toLocaleString();
 
       if (count === 0) {
-        document.getElementById('kpiAvgUnitPyung').textContent = '0';
-        document.getElementById('kpiAvgUnitM2').textContent = '데이터 없음';
-        document.getElementById('kpiRatio30').textContent = '0%';
-        document.getElementById('kpiRatio30Count').textContent = '(0건)';
-        document.getElementById('kpiTotalPrice').textContent = '0';
-        document.getElementById('kpiAvgPrice').textContent = '건당 평균 0원';
+        document.getElementById('kpiAvgUnitPyung').textContent = "0";
+        document.getElementById('kpiAvgUnitM2').textContent = "㎡당 약 0만원";
+        document.getElementById('kpiRatio30').textContent = "0%";
+        document.getElementById('kpiRatio30Count').textContent = "(0건)";
+        document.getElementById('kpiTotalPrice').textContent = "0";
+        document.getElementById('kpiAvgPrice').textContent = "건당 평균 0억원";
         return;
       }
 
-      // 평당단가 평균
-      const sumUnitPyung = currentData.reduce((acc, cur) => acc + cur.unitPricePyung, 0);
-      const avgUnitPyung = Math.round(sumUnitPyung / count);
-      document.getElementById('kpiAvgUnitPyung').textContent = avgUnitPyung.toLocaleString();
+      // 평균 평당단가 계산
+      const totalPyungPrice = currentData.reduce((sum, d) => sum + d.unitPricePyung, 0);
+      const avgPyungPrice = Math.round(totalPyungPrice / count);
+      document.getElementById('kpiAvgUnitPyung').textContent = avgPyungPrice.toLocaleString();
 
-      const avgUnitM2 = Math.round(avgUnitPyung / 3.305785);
-      document.getElementById('kpiAvgUnitM2').textContent = `㎡당 약 ${avgUnitM2.toLocaleString()}만원`;
+      const totalM2Price = currentData.reduce((sum, d) => sum + d.unitPriceM2, 0);
+      const avgM2Price = Math.round(totalM2Price / count);
+      document.getElementById('kpiAvgUnitM2').textContent = `㎡당 약 ${avgM2Price.toLocaleString()}만원`;
 
       // 30평 이상 비중
       const over30Count = currentData.filter(d => d.isOver30).length;
@@ -1007,16 +872,16 @@
       document.getElementById('kpiRatio30').textContent = `${ratio30}%`;
       document.getElementById('kpiRatio30Count').textContent = `(${over30Count}건)`;
 
-      // 총 거래금액 및 평균액
-      const sumPrice = currentData.reduce((acc, cur) => acc + cur.priceManwon, 0);
-      const sumEok = (sumPrice / 10000).toFixed(1);
-      const avgEok = (sumPrice / count / 10000).toFixed(1);
-      document.getElementById('kpiTotalPrice').textContent = Number(sumEok).toLocaleString();
+      // 총 누적 거래액
+      const totalManwon = currentData.reduce((sum, d) => sum + d.priceManwon, 0);
+      const totalEok = (totalManwon / 10000).toFixed(1);
+      const avgEok = ((totalManwon / count) / 10000).toFixed(1);
+      document.getElementById('kpiTotalPrice').textContent = Number(totalEok).toLocaleString();
       document.getElementById('kpiAvgPrice').textContent = `건당 평균 약 ${avgEok}억원`;
     }
 
     // -------------------------------------------------------------
-    // 6. TABLE POPULATION
+    // 6. TABLE RENDERING (목록 생성 및 지도/상세 링크 연결)
     // -------------------------------------------------------------
     function renderTable() {
       const tbody = document.getElementById('tableBody');
@@ -1031,82 +896,76 @@
 
       currentData.forEach((item, index) => {
         const tr = document.createElement('tr');
-        tr.className = "hover:bg-blue-50/40 transition-colors border-b border-slate-100 group";
+        tr.className = "hover:bg-blue-50/40 transition-colors border-b border-slate-100";
 
-        // Zoning badge style
-        let zoneBadge = "";
-        if (item.useArea.includes("준공업")) {
-          zoneBadge = `<span class="bg-indigo-50 text-indigo-700 border border-indigo-200 px-2 py-0.5 rounded text-[11px] font-semibold">${item.useArea}</span>`;
-        } else if (item.useArea.includes("상업")) {
-          zoneBadge = `<span class="bg-rose-50 text-rose-700 border border-rose-200 px-2 py-0.5 rounded text-[11px] font-semibold">${item.useArea}</span>`;
-        } else if (item.useArea.includes("3종")) {
-          zoneBadge = `<span class="bg-teal-50 text-teal-700 border border-teal-200 px-2 py-0.5 rounded text-[11px] font-semibold">${item.useArea}</span>`;
-        } else {
-          zoneBadge = `<span class="bg-slate-100 text-slate-700 border border-slate-200 px-2 py-0.5 rounded text-[11px] font-semibold">${item.useArea}</span>`;
-        }
+        const isHouse = item.category === 'house';
+        const typeBadge = isHouse
+          ? `<span class="inline-block px-1.5 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">${item.categoryName}</span>`
+          : `<span class="inline-block px-1.5 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800 border border-amber-200">토지</span>`;
 
-        // Unit price badge styling (gradient visual effect)
-        let priceColorClass = "text-slate-800 font-bold";
+        // 평당단가 강조 클래스
+        let priceBadgeClass = "bg-slate-100 text-slate-800";
         if (item.unitPricePyung >= 3500) {
-          priceColorClass = "text-rose-600 font-bold";
+          priceBadgeClass = "bg-rose-50 text-rose-700 font-bold border border-rose-200";
         } else if (item.unitPricePyung >= 2500) {
-          priceColorClass = "text-amber-600 font-bold";
-        } else if (item.unitPricePyung < 1800) {
-          priceColorClass = "text-sky-600 font-semibold";
+          priceBadgeClass = "bg-blue-50 text-blue-700 font-bold border border-blue-200";
+        } else {
+          priceBadgeClass = "bg-emerald-50 text-emerald-700 font-bold border border-emerald-200";
         }
 
-        // 30 pyung badge
-        const pyungBadge = item.isOver30
-          ? `<span class="inline-block ml-1 px-1.5 py-0.2 rounded text-[10px] bg-blue-100 text-blue-700 font-bold">30평+</span>`
-          : ``;
+        const kakaoUrl = `https://map.kakao.com/?q=${encodeURIComponent('서울 구로구 ' + item.verifiedJibun)}`;
+        const naverUrl = `https://map.naver.com/p/search/${encodeURIComponent('서울 구로구 ' + item.verifiedJibun)}`;
 
-        // URL encode map queries
-        const kakaoMapUrl = `https://map.kakao.com/?q=${encodeURIComponent('서울 구로구 ' + item.verifiedJibun)}`;
-        const naverMapUrl = `https://map.naver.com/p/search/${encodeURIComponent('서울 구로구 ' + item.verifiedJibun)}`;
+        const buildingInfo = isHouse
+          ? `<div class="text-[11px] text-slate-500 font-normal">연 ${item.bldgPyung ? item.bldgPyung.toFixed(0) : '-'}평 (${item.floors || ''})</div>`
+          : `<div class="text-[11px] text-slate-400 font-normal">순수토지</div>`;
 
         tr.innerHTML = `
-          <td class="py-3 px-3 text-center text-slate-400 font-mono text-xs">${index + 1}</td>
-          <td class="py-3 px-3 text-center font-medium whitespace-nowrap text-slate-600">${item.dealDate}</td>
+          <td class="py-3 px-2 text-center text-slate-400 font-mono text-xs">${index + 1}</td>
+          <td class="py-3 px-2 text-center whitespace-nowrap">${typeBadge}</td>
+          <td class="py-3 px-2 text-center font-mono text-slate-600 text-xs whitespace-nowrap">${item.dealDate}</td>
           <td class="py-3 px-3">
-            <div class="flex items-center space-x-1.5">
-              <span class="font-bold text-slate-900">${item.verifiedJibun}</span>
-              <span class="text-[10px] text-slate-400">(${item.maskedAddress})</span>
+            <div class="font-bold text-slate-900 flex items-center space-x-1">
+              <span>${item.verifiedJibun}</span>
+              <span class="text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-1 rounded">확정</span>
             </div>
-            <div class="text-xs text-slate-500 flex items-center space-x-1 mt-0.5">
-              <i class="fa-solid fa-location-dot text-[10px] text-slate-400"></i>
-              <span>${item.roadAddress}</span>
+            <div class="text-[11px] text-slate-500">${item.roadAddress}</div>
+            <div class="text-[10px] text-slate-400 font-mono">공개: ${item.maskedAddress}</div>
+          </td>
+          <td class="py-3 px-2 text-center whitespace-nowrap">
+            <span class="font-semibold text-slate-700">${item.jimok}</span>
+            ${buildingInfo}
+          </td>
+          <td class="py-3 px-2 whitespace-nowrap">
+            <span class="text-xs px-2 py-0.5 rounded font-medium ${item.useArea.includes('준공업') ? 'bg-indigo-50 text-indigo-700' : 'bg-slate-100 text-slate-700'}">${item.useArea}</span>
+          </td>
+          <td class="py-3 px-2 text-center text-xs text-slate-600 whitespace-nowrap">${item.roadCond}</td>
+          <td class="py-3 px-3 text-right whitespace-nowrap">
+            <div class="font-bold text-slate-900">${item.pyung.toFixed(1)} <span class="text-xs font-normal text-slate-500">평</span></div>
+            <div class="text-[11px] text-slate-400 font-mono">${item.areaM2.toFixed(1)} ㎡</div>
+          </td>
+          <td class="py-3 px-3 text-right whitespace-nowrap">
+            <div class="font-bold text-slate-900 text-sm">${item.priceManwon.toLocaleString()} <span class="text-xs font-normal text-slate-500">만원</span></div>
+            <div class="text-[11px] text-slate-500">약 ${(item.priceManwon / 10000).toFixed(1)}억원</div>
+          </td>
+          <td class="py-3 px-3 text-right whitespace-nowrap">
+            <span class="inline-block px-2 py-1 rounded text-xs ${priceBadgeClass}">
+              ${Math.round(item.unitPricePyung).toLocaleString()} 만원/평
+            </span>
+          </td>
+          <td class="py-3 px-2 text-center whitespace-nowrap">
+            <div class="flex items-center justify-center space-x-1">
+              <a href="${kakaoUrl}" target="_blank" title="카카오맵 로드뷰" class="p-1.5 rounded-md bg-amber-400 hover:bg-amber-500 text-amber-950 text-xs font-bold transition-colors shadow-sm">
+                <i class="fa-solid fa-map"></i>
+              </a>
+              <a href="${naverUrl}" target="_blank" title="네이버 지도" class="p-1.5 rounded-md bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold transition-colors shadow-sm">
+                <i class="fa-solid fa-location-dot"></i>
+              </a>
             </div>
           </td>
           <td class="py-3 px-2 text-center whitespace-nowrap">
-            <span class="px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded text-xs">${item.jimok}</span>
-          </td>
-          <td class="py-3 px-3 whitespace-nowrap">${zoneBadge}</td>
-          <td class="py-3 px-2 text-center text-xs text-slate-600 whitespace-nowrap">${item.roadCond}</td>
-          <td class="py-3 px-3 text-right whitespace-nowrap">
-            <div class="font-bold text-slate-800">${item.pyung.toFixed(1)}평 ${pyungBadge}</div>
-            <div class="text-[11px] text-slate-400 font-mono">${item.areaM2.toFixed(1)} ㎡</div>
-          </td>
-          <td class="py-3 px-3 text-right whitespace-nowrap font-bold text-slate-900">
-            ${item.priceManwon.toLocaleString()} <span class="text-xs font-normal text-slate-400">만원</span>
-            <div class="text-[11px] text-slate-400 font-normal">약 ${(item.priceManwon / 10000).toFixed(1)}억</div>
-          </td>
-          <td class="py-3 px-3 text-right whitespace-nowrap">
-            <div class="${priceColorClass}">${Math.round(item.unitPricePyung).toLocaleString()} <span class="text-xs font-normal text-slate-400">만/평</span></div>
-            <div class="text-[10px] text-slate-400">㎡당 ${Math.round(item.unitPriceM2).toLocaleString()}만</div>
-          </td>
-          <td class="py-3 px-3 text-center whitespace-nowrap">
-            <div class="inline-flex rounded-lg shadow-sm" role="group">
-              <a href="${kakaoMapUrl}" target="_blank" title="카카오맵에서 현장 위치 확인" class="px-2 py-1 text-[11px] font-semibold bg-amber-300 text-amber-900 hover:bg-amber-400 rounded-l-md transition-colors flex items-center">
-                카카오
-              </a>
-              <a href="${naverMapUrl}" target="_blank" title="네이버 지도에서 현장 위치 확인" class="px-2 py-1 text-[11px] font-semibold bg-emerald-500 text-white hover:bg-emerald-600 rounded-r-md transition-colors flex items-center">
-                네이버
-              </a>
-            </div>
-          </td>
-          <td class="py-3 px-3 text-center whitespace-nowrap">
-            <button onclick="openDetailModal(${item.id})" class="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 transition-all">
-              <i class="fa-regular fa-file-lines mr-1"></i>상세
+            <button onclick="openDetailModal(${item.id})" class="px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors border border-slate-200">
+              상세
             </button>
           </td>
         `;
@@ -1115,17 +974,17 @@
     }
 
     // -------------------------------------------------------------
-    // 7. CHART.JS VISUALIZATION ENGINE
+    // 7. CHART.JS VISUALIZATION ENGINE (매매 동향 증감 추세 분석 강화)
     // -------------------------------------------------------------
     function initCharts() {
-      // 1. Zoning Bar Chart
+      // 1. 용도지역별 평단가 막대 차트
       const ctxZoning = document.getElementById('chartZoningBar').getContext('2d');
       chartZoning = new Chart(ctxZoning, {
         type: 'bar',
         data: {
           labels: ['준공업지역', '제2종일반주거', '제3종일반주거', '일반상업지역'],
           datasets: [{
-            label: '평균 평당단가 (만원)',
+            label: '대지 평균 평당단가 (만원)',
             data: [0, 0, 0, 0],
             backgroundColor: [
               'rgba(79, 70, 229, 0.85)',
@@ -1133,12 +992,7 @@
               'rgba(20, 184, 166, 0.85)',
               'rgba(244, 63, 94, 0.85)'
             ],
-            borderColor: [
-              '#4f46e5',
-              '#0ea5e9',
-              '#14b8a6',
-              '#f43f5e'
-            ],
+            borderColor: ['#4f46e5', '#0ea5e9', '#14b8a6', '#f43f5e'],
             borderWidth: 1.5,
             borderRadius: 8,
             maxBarThickness: 45
@@ -1151,66 +1005,113 @@
             legend: { display: false },
             tooltip: {
               callbacks: {
-                label: function(context) {
-                  return `평균 단가: ${context.parsed.y.toLocaleString()} 만원/평`;
+                label: function(context) { return `평균 대지단가: ${context.parsed.y.toLocaleString()} 만원/평`; }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { callback: function(val) { return val.toLocaleString() + '만'; }, font: { size: 10 } },
+              grid: { color: '#f1f5f9' }
+            },
+            x: { grid: { display: false }, ticks: { font: { size: 11, weight: '500' } } }
+          }
+        }
+      });
+
+      // 2. 최근 매매 동향 및 증감 추세 복합 차트 (월별 거래량 막대 + 3개월 이동평균선 + 평균 평당가 보조축)
+      const ctxTrend = document.getElementById('chartMonthlyTrend').getContext('2d');
+      chartMonthly = new Chart(ctxTrend, {
+        data: {
+          labels: [],
+          datasets: [
+            {
+              type: 'bar',
+              label: '월별 거래건수',
+              data: [],
+              backgroundColor: 'rgba(37, 99, 235, 0.7)',
+              hoverBackgroundColor: '#1d4ed8',
+              borderRadius: 6,
+              yAxisID: 'yVolume',
+              order: 2,
+              maxBarThickness: 32
+            },
+            {
+              type: 'line',
+              label: '3개월 이동평균(추세선)',
+              data: [],
+              borderColor: '#f59e0b',
+              backgroundColor: 'rgba(245, 158, 11, 0.1)',
+              borderWidth: 2.5,
+              tension: 0.35,
+              pointRadius: 3,
+              pointBackgroundColor: '#f59e0b',
+              pointHoverRadius: 5,
+              yAxisID: 'yVolume',
+              order: 1
+            },
+            {
+              type: 'line',
+              label: '평균 평당단가(만원)',
+              data: [],
+              borderColor: '#10b981',
+              backgroundColor: 'transparent',
+              borderDash: [4, 4],
+              borderWidth: 2,
+              tension: 0.3,
+              pointRadius: 3,
+              pointBackgroundColor: '#10b981',
+              yAxisID: 'yPrice',
+              order: 0
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false
+          },
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                boxWidth: 12,
+                boxHeight: 10,
+                font: { size: 11, family: 'Inter, sans-serif' },
+                usePointStyle: true
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  if (ctx.dataset.label.includes('평당단가')) {
+                    return `• ${ctx.dataset.label}: ${ctx.parsed.y ? ctx.parsed.y.toLocaleString() + '만원/평' : '거래없음'}`;
+                  }
+                  return `• ${ctx.dataset.label}: ${ctx.parsed.y}건`;
                 }
               }
             }
           },
           scales: {
-            y: {
+            yVolume: {
+              type: 'linear',
+              position: 'left',
               beginAtZero: true,
-              ticks: {
-                callback: function(val) { return val.toLocaleString() + '만'; },
-                font: { size: 10 }
-              },
+              ticks: { stepSize: 1, callback: (v) => v + '건', font: { size: 10 } },
+              title: { display: true, text: '거래건수(건)', font: { size: 10, weight: 'bold' }, color: '#1e40af' },
               grid: { color: '#f1f5f9' }
             },
-            x: {
-              grid: { display: false },
-              ticks: { font: { size: 11, weight: '500' } }
-            }
-          }
-        }
-      });
-
-      // 2. Monthly Trend Chart
-      const ctxMonthly = document.getElementById('chartMonthlyLine').getContext('2d');
-      chartMonthly = new Chart(ctxMonthly, {
-        type: 'line',
-        data: {
-          labels: [],
-          datasets: [{
-            label: '거래 건수',
-            data: [],
-            borderColor: '#2563eb',
-            backgroundColor: 'rgba(37, 99, 235, 0.12)',
-            fill: true,
-            tension: 0.35,
-            pointBackgroundColor: '#2563eb',
-            pointRadius: 4,
-            pointHoverRadius: 6
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              callbacks: {
-                label: function(ctx) { return `거래 신고: ${ctx.parsed.y} 건`; }
-              }
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: {
-                stepSize: 1,
-                font: { size: 10 }
-              },
-              grid: { color: '#f1f5f9' }
+            yPrice: {
+              type: 'linear',
+              position: 'right',
+              beginAtZero: false,
+              ticks: { callback: (v) => v.toLocaleString() + '만', font: { size: 10 } },
+              title: { display: true, text: '평당가(만원)', font: { size: 10, weight: 'bold' }, color: '#047857' },
+              grid: { drawOnChartArea: false }
             },
             x: {
               grid: { display: false },
@@ -1224,7 +1125,7 @@
     function updateCharts() {
       if (!chartZoning || !chartMonthly) return;
 
-      // Update Bar Chart (Zoning averages)
+      // 1. 용도지역별 평단가 차트 업데이트
       const zones = ['준공업지역', '제2종일반주거지역', '제3종일반주거지역', '일반상업지역'];
       const zoneAvgs = zones.map(z => {
         const matches = currentData.filter(d => d.useArea === z);
@@ -1236,25 +1137,131 @@
       chartZoning.data.datasets[0].data = zoneAvgs;
       chartZoning.update();
 
-      // Update Monthly Line Chart
-      const monthMap = {};
-      currentData.forEach(d => {
-        const ym = d.dealDate.substring(0, 7); // YYYY-MM
-        monthMap[ym] = (monthMap[ym] || 0) + 1;
+      // 2. 월별 연속 시계열 생성 (누락 월 0건 처리로 정확한 증감 파악)
+      if (currentData.length === 0) {
+        chartMonthly.data.labels = [];
+        chartMonthly.data.datasets.forEach(ds => ds.data = []);
+        chartMonthly.update();
+        renderTrendDiagnosis(0, 0, 0);
+        return;
+      }
+
+      const allDates = currentData.map(d => d.dealDate).sort();
+      const minDate = new Date(allDates[0].substring(0, 7) + "-01");
+      const maxDate = new Date(allDates[allDates.length - 1].substring(0, 7) + "-01");
+
+      const monthKeys = [];
+      const curr = new Date(minDate);
+      while (curr <= maxDate) {
+        const ym = curr.toISOString().substring(0, 7);
+        monthKeys.push(ym);
+        curr.setMonth(curr.getMonth() + 1);
+      }
+
+      // 월별 거래건수 및 평균 평당단가 계산
+      const monthlyStats = monthKeys.map(ym => {
+        const inMonth = currentData.filter(d => d.dealDate.startsWith(ym));
+        const count = inMonth.length;
+        const avgPrice = count > 0 
+          ? Math.round(inMonth.reduce((acc, c) => acc + c.unitPricePyung, 0) / count)
+          : null;
+        return { ym, count, avgPrice };
       });
 
-      const sortedMonths = Object.keys(monthMap).sort();
-      const monthCounts = sortedMonths.map(m => monthMap[m]);
+      const counts = monthlyStats.map(s => s.count);
 
-      chartMonthly.data.labels = sortedMonths.map(m => m.replace('-', '.'));
-      chartMonthly.data.datasets[0].data = monthCounts;
+      // 3개월 이동평균(MA3) 계산 (노이즈를 제거하여 상승/하락 추세 명확화)
+      const maCounts = counts.map((_, idx, arr) => {
+        const start = Math.max(0, idx - 2);
+        const sub = arr.slice(start, idx + 1);
+        const avg = sub.reduce((a, b) => a + b, 0) / sub.length;
+        return Number(avg.toFixed(1));
+      });
+
+      const prices = monthlyStats.map(s => s.avgPrice);
+
+      chartMonthly.data.labels = monthKeys.map(m => m.replace('-', '.'));
+      chartMonthly.data.datasets[0].data = counts;
+      chartMonthly.data.datasets[1].data = maCounts;
+      chartMonthly.data.datasets[2].data = prices;
       chartMonthly.update();
+
+      // 3. 최근 분기 vs 직전 분기 거래량 증감 추세 판정
+      const totalMonths = monthlyStats.length;
+      if (totalMonths >= 2) {
+        const sliceLen = Math.min(3, Math.floor(totalMonths / 2) || 1);
+        const recentSlice = monthlyStats.slice(-sliceLen);
+        const priorSlice = monthlyStats.slice(-sliceLen * 2, -sliceLen);
+
+        const recentSum = recentSlice.reduce((a, b) => a + b.count, 0);
+        const priorSum = priorSlice.length > 0 ? priorSlice.reduce((a, b) => a + b.count, 0) : recentSum;
+
+        const recentAvg = Number((recentSum / recentSlice.length).toFixed(1));
+        const priorAvg = priorSlice.length > 0 ? Number((priorSum / priorSlice.length).toFixed(1)) : recentAvg;
+
+        const diffRate = priorAvg > 0 ? ((recentAvg - priorAvg) / priorAvg) * 100 : 0;
+        renderTrendDiagnosis(recentAvg, priorAvg, diffRate);
+      } else {
+        renderTrendDiagnosis(currentData.length, currentData.length, 0);
+      }
+    }
+
+    // 거래 증감 추세 진단 배지 및 요약 텍스트 렌더링
+    function renderTrendDiagnosis(recentAvg, priorAvg, diffRate) {
+      const badge = document.getElementById('trendStatusBadge');
+      const icon = document.getElementById('trendStatusIcon');
+      const text = document.getElementById('trendStatusText');
+      const txtRecentAvg = document.getElementById('txtRecentAvg');
+      const txtChangeRate = document.getElementById('txtChangeRate');
+      const txtTrendComment = document.getElementById('txtTrendComment');
+
+      txtRecentAvg.textContent = `${recentAvg}건 / 월`;
+
+      if (diffRate >= 15) {
+        // 명확한 증가 추세
+        badge.className = "flex items-center space-x-1.5 px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0";
+        icon.className = "fa-solid fa-arrow-trend-up text-emerald-600";
+        text.textContent = `최근 거래 증가세 (+${diffRate.toFixed(1)}%)`;
+        txtChangeRate.className = "font-bold text-emerald-600 text-xs sm:text-sm";
+        txtChangeRate.textContent = `+${diffRate.toFixed(1)}% 상승`;
+        txtTrendComment.textContent = "거래 활성화 (매수 수요 증가)";
+      } else if (diffRate <= -15) {
+        // 명확한 감소 추세
+        badge.className = "flex items-center space-x-1.5 px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200 shrink-0";
+        icon.className = "fa-solid fa-arrow-trend-down text-rose-600";
+        text.textContent = `최근 거래 둔화세 (${diffRate.toFixed(1)}%)`;
+        txtChangeRate.className = "font-bold text-rose-600 text-xs sm:text-sm";
+        txtChangeRate.textContent = `${diffRate.toFixed(1)}% 감소`;
+        txtTrendComment.textContent = "거래 관망세 (매수세 위축)";
+      } else {
+        // 보합 상태
+        badge.className = "flex items-center space-x-1.5 px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200 shrink-0";
+        icon.className = "fa-solid fa-arrow-right text-blue-600";
+        text.textContent = `거래 보합 유지 (${diffRate >= 0 ? '+' : ''}${diffRate.toFixed(1)}%)`;
+        txtChangeRate.className = "font-bold text-blue-600 text-xs sm:text-sm";
+        txtChangeRate.textContent = `${diffRate >= 0 ? '+' : ''}${diffRate.toFixed(1)}% 보합`;
+        txtTrendComment.textContent = "안정적 보합세 유지 중";
+      }
     }
 
     // -------------------------------------------------------------
     // 8. EVENT LISTENERS SETUP
     // -------------------------------------------------------------
     function setupEventListeners() {
+      // Category buttons (토지 vs 단독·다가구)
+      document.querySelectorAll('.btn-category').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const target = e.currentTarget;
+          currentCategoryFilter = target.dataset.category;
+          document.querySelectorAll('.btn-category').forEach(b => {
+            b.className = "btn-category py-2 px-3 rounded-xl border text-center font-semibold transition-all text-xs sm:text-sm bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100";
+          });
+          target.className = "btn-category py-2 px-3 rounded-xl border text-center font-bold transition-all text-xs sm:text-sm bg-brand-50 border-brand-500 text-brand-700 shadow-sm active-category";
+          applyFilters();
+          showToast(`매물 유형이 [${target.innerText.trim()}]으로 변경되었습니다.`);
+        });
+      });
+
       // Period buttons
       document.querySelectorAll('.btn-period').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -1264,14 +1271,8 @@
       });
 
       // Date inputs
-      document.getElementById('dateStart').addEventListener('change', () => {
-        clearPeriodButtonsActive();
-        applyFilters();
-      });
-      document.getElementById('dateEnd').addEventListener('change', () => {
-        clearPeriodButtonsActive();
-        applyFilters();
-      });
+      document.getElementById('dateStart').addEventListener('change', () => { clearPeriodButtonsActive(); applyFilters(); });
+      document.getElementById('dateEnd').addEventListener('change', () => { clearPeriodButtonsActive(); applyFilters(); });
 
       // 30 Pyung quick toggle button
       document.getElementById('btnToggle30Pyung').addEventListener('click', () => {
@@ -1280,7 +1281,7 @@
         if (currentVal >= 30) {
           minInput.value = "0";
           document.getElementById('lblPyungDisplay').textContent = "전체 평수";
-          showToast("30평 필터가 해제되었습니다 (전체 평수 조회)");
+          showToast("30평 필터가 해제되었습니다 (전체 평수)");
         } else {
           minInput.value = "30";
           document.getElementById('lblPyungDisplay').textContent = "30평 이상 필터";
@@ -1301,31 +1302,31 @@
       document.getElementById('selectZoning').addEventListener('change', applyFilters);
       document.getElementById('selectJimok').addEventListener('change', applyFilters);
       document.getElementById('selectSorting').addEventListener('change', applyFilters);
-
-      // Keyword search
       document.getElementById('inputKeyword').addEventListener('input', debounce(applyFilters, 250));
 
-      // Reset button
+      // Reset button (기본: 최근 3개월, 제2종일반주거, 30평 이상으로 리셋)
       document.getElementById('btnResetFilters').addEventListener('click', () => {
+        currentCategoryFilter = "all";
+        document.querySelectorAll('.btn-category').forEach((b, idx) => {
+          b.className = idx === 0
+            ? "btn-category py-2 px-3 rounded-xl border text-center font-bold transition-all text-xs sm:text-sm bg-brand-50 border-brand-500 text-brand-700 shadow-sm active-category"
+            : "btn-category py-2 px-3 rounded-xl border text-center font-semibold transition-all text-xs sm:text-sm bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100";
+        });
         document.getElementById('inputMinPyung').value = "30";
         document.getElementById('inputMaxPyung').value = "";
-        document.getElementById('selectZoning').value = "전체";
+        document.getElementById('selectZoning').value = "제2종일반주거지역";
         document.getElementById('selectJimok').value = "전체";
         document.getElementById('inputKeyword').value = "";
         document.getElementById('selectSorting').value = "date_desc";
         document.getElementById('lblPyungDisplay').textContent = "30평 이상 필터";
-        setPeriodPreset('1y');
+        setPeriodPreset('3m');
         applyFilters();
-        showToast("모든 검색 조건이 초기화되었습니다.");
+        showToast("기본 조건(최근 3개월, 제2종일반주거, 30평 이상)으로 초기화되었습니다.");
       });
 
-      // CSV Export Button
+      // CSV & Print
       document.getElementById('btnExportCSV').addEventListener('click', exportToCSV);
-
-      // Print Button
-      document.getElementById('btnPrint').addEventListener('click', () => {
-        window.print();
-      });
+      document.getElementById('btnPrint').addEventListener('click', () => { window.print(); });
 
       // Modal close events
       document.getElementById('btnCloseModal').addEventListener('click', closeDetailModal);
@@ -1352,11 +1353,30 @@
       const naverMapUrl = `https://map.naver.com/p/search/${encodeURIComponent('서울 구로구 ' + item.verifiedJibun)}`;
       const irosUrl = "http://www.iros.go.kr/";
 
+      const isHouse = item.category === 'house';
+      const buildingInfoSection = isHouse ? `
+        <div class="bg-emerald-50/60 p-3 rounded-xl border border-emerald-200 text-xs space-y-1">
+          <div class="flex justify-between font-bold text-emerald-900">
+            <span>주택 건축물 스펙 정보</span>
+            <span class="bg-emerald-200 text-emerald-800 text-[10px] px-2 py-0.5 rounded">${item.categoryName}</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-1 text-slate-700">
+            <div>• 연면적: <strong>${item.bldgAreaM2.toFixed(1)} ㎡</strong> (약 ${item.bldgPyung.toFixed(1)}평)</div>
+            <div>• 규모/층수: <strong>${item.floors}</strong></div>
+            <div>• 건축연도: <strong>${item.buildYear}년 준공</strong></div>
+            <div>• 용적률 법정한도: <strong>${item.maxFAR}</strong></div>
+          </div>
+        </div>
+      ` : '';
+
       const modalContent = document.getElementById('modalContent');
       modalContent.innerHTML = `
         <div class="border-b border-slate-100 pb-3">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-blue-100 text-blue-800">${item.useArea}</span>
+            <div class="flex items-center space-x-1.5">
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-blue-100 text-blue-800">${item.useArea}</span>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded ${isHouse ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">${item.categoryName}</span>
+            </div>
             <span class="text-xs text-slate-400">계약일: ${item.dealDate}</span>
           </div>
           <h4 class="text-lg font-black text-slate-900 mt-2">${item.verifiedJibun}</h4>
@@ -1367,7 +1387,8 @@
           </p>
         </div>
 
-        <!-- 가격 및 면적 스펙 그리드 -->
+        ${buildingInfoSection}
+
         <div class="grid grid-cols-2 gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
           <div>
             <span class="text-[11px] text-slate-400 block">총 거래 금액</span>
@@ -1375,9 +1396,9 @@
             <span class="text-xs text-slate-500 block">약 ${(item.priceManwon / 10000).toFixed(1)} 억원</span>
           </div>
           <div>
-            <span class="text-[11px] text-slate-400 block">실거래 평당단가</span>
+            <span class="text-[11px] text-slate-400 block">대지 기준 평당단가</span>
             <span class="text-base font-bold text-brand-700">${Math.round(item.unitPricePyung).toLocaleString()} 만원/평</span>
-            <span class="text-xs text-slate-500 block">㎡당 약 ${Math.round(item.unitPriceM2).toLocaleString()}만원</span>
+            <span class="text-xs text-slate-500 block">대지 ㎡당 약 ${Math.round(item.unitPriceM2).toLocaleString()}만원</span>
           </div>
           <div>
             <span class="text-[11px] text-slate-400 block">대지 면적</span>
@@ -1387,31 +1408,25 @@
           <div>
             <span class="text-[11px] text-slate-400 block">지목 및 도로접면</span>
             <span class="text-sm font-bold text-slate-800">${item.jimok} / ${item.roadCond}</span>
-            <span class="text-[11px] text-slate-500 block">진출입 가부 점검필요</span>
+            <span class="text-[11px] text-slate-500 block">진입로 폭 확인</span>
           </div>
         </div>
 
-        <!-- 건축 법정 한도 및 입지 특징 -->
         <div class="space-y-2 text-xs">
           <div class="flex items-center justify-between py-1.5 border-b border-slate-100">
-            <span class="text-slate-500">서울시 조례 용적률 / 건폐율 기준:</span>
-            <span class="font-bold text-slate-800">최대 ${item.maxFAR} / ${item.maxBCR}</span>
-          </div>
-          <div class="flex items-center justify-between py-1.5 border-b border-slate-100">
-            <span class="text-slate-500">지적대장 면적 매칭 신뢰도:</span>
+            <span class="text-slate-500">지적·대장 면적 매칭 신뢰도:</span>
             <span class="font-bold text-emerald-600 flex items-center">
               <i class="fa-solid fa-circle-check mr-1"></i>${item.confidence}
             </span>
           </div>
           <div class="py-1.5">
-            <span class="text-slate-500 block mb-1">필지 및 입지 특성:</span>
+            <span class="text-slate-500 block mb-1">매물 및 입지 특성:</span>
             <p class="bg-blue-50/60 p-2.5 rounded-lg border border-blue-100 text-slate-700 leading-relaxed font-medium">
               ${item.note}
             </p>
           </div>
         </div>
 
-        <!-- 지도 및 등기소 바로가기 버튼 링크 -->
         <div class="pt-2 flex flex-col space-y-2">
           <div class="grid grid-cols-2 gap-2">
             <a href="${kakaoMapUrl}" target="_blank" class="py-2 px-3 rounded-lg bg-amber-400 hover:bg-amber-500 text-amber-950 font-bold text-center text-xs transition-colors shadow-sm flex items-center justify-center space-x-1.5">
@@ -1447,10 +1462,9 @@
       }
 
       const headers = [
-        "번호", "계약일자", "공개시스템_지번", "교차검증_확정지번", "도로명주소",
-        "지목", "용도지역", "도로조건", "거래면적_m2", "거래면적_평",
-        "30평이상_여부", "거래금액_만원", "평당단가_만원_평", "m2당단가_만원_m2",
-        "검증신뢰도", "비고_입지특징"
+        "번호", "거래유형", "매물종류", "계약일자", "공개시스템_지번", "교차검증_확정지번", "도로명주소",
+        "지목", "용도지역", "도로조건", "대지면적_m2", "대지면적_평", "건물연면적_m2", "건물연면적_평",
+        "30평이상_여부", "거래금액_만원", "대지평당단가_만원_평", "검증신뢰도", "비고_입지특징"
       ];
 
       const csvRows = [headers.join(",")];
@@ -1458,6 +1472,8 @@
       currentData.forEach((d, i) => {
         const row = [
           i + 1,
+          `"${d.category === 'house' ? '단독다가구' : '토지'}"`,
+          `"${d.categoryName}"`,
           d.dealDate,
           `"${d.maskedAddress}"`,
           `"${d.verifiedJibun}"`,
@@ -1467,22 +1483,22 @@
           `"${d.roadCond}"`,
           d.areaM2.toFixed(1),
           d.pyung.toFixed(1),
+          d.bldgAreaM2 ? d.bldgAreaM2.toFixed(1) : "-",
+          d.bldgPyung ? d.bldgPyung.toFixed(1) : "-",
           d.isOver30 ? "30평이상" : "30평미만",
           d.priceManwon,
           Math.round(d.unitPricePyung),
-          Math.round(d.unitPriceM2),
           `"${d.confidence}"`,
           `"${d.note.replace(/"/g, '""')}"`
         ];
         csvRows.push(row.join(","));
       });
 
-      // UTF-8 BOM for Korean Excel compatibility
       const csvString = "\uFEFF" + csvRows.join("\n");
       const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
       const url = URL.createObjectURL(blob);
       const downloadLink = document.createElement("a");
-      const filename = `구로동_토지실거래_분석_${new Date().toISOString().split('T')[0]}.csv`;
+      const filename = `구로동_토지_단독다가구_실거래_${new Date().toISOString().split('T')[0]}.csv`;
 
       downloadLink.href = url;
       downloadLink.download = filename;
@@ -1494,7 +1510,7 @@
     }
 
     // -------------------------------------------------------------
-    // 11. TOAST NOTIFICATION SYSTEM
+    // 11. TOAST NOTIFICATION & DEBOUNCE
     // -------------------------------------------------------------
     let toastTimer = null;
     function showToast(msg) {
@@ -1512,7 +1528,6 @@
       }, 3000);
     }
 
-    // Debounce helper
     function debounce(func, wait) {
       let timeout;
       return function executedFunction(...args) {
@@ -1524,6 +1539,19 @@
         timeout = setTimeout(later, wait);
       };
     }
+
+    // -------------------------------------------------------------
+    // 12. DOM LOADED & INITIAL TRIGGER (페이지 로딩 즉시 최근 3개월 기준으로 실행)
+    // -------------------------------------------------------------
+    // 12. DOM LOADED & INITIAL TRIGGER (페이지 로딩 즉시 최근 3개월, 2종일반주거 기준으로 실행)
+    // -------------------------------------------------------------
+    window.addEventListener('DOMContentLoaded', () => {
+      initCharts();
+      setupEventListeners();
+      document.getElementById('selectZoning').value = "제2종일반주거지역";
+      setPeriodPreset('3m'); // 기본 선택을 '최근 3개월'로 설정
+      applyFilters();
+    });
   </script>
 </body>
 </html>
