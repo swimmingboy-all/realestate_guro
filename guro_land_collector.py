@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 구로구 구로동 토지 & 단독·다가구 매매 실거래가 수집
-- [통신 안정화] https 적용 및 pageNo 필수 파라미터 추가
+- [통신 안정화] http 적용 및 pageNo 필수 파라미터 추가
 - [키 자동 정규화] 사용자가 Encoding/Decoding 어떤 키를 넣어도 자동 변환
+- [수집 범위] 토지 및 단독/다가구 주택 전용 (연립/다세대 제외)
 """
 
 import os
@@ -18,18 +19,17 @@ import xml.etree.ElementTree as ET
 class GuroRealEstateCollector:
     def __init__(self, api_key: str = None):
         raw_key = (api_key or os.environ.get("GURO_API_KEY") or "")
-        # 사용자가 어떤 키를 넣었든 일단 디코딩 후 다시 인코딩하여 완벽한 상태(Encoding)로 고정
         decoded_key = urllib.parse.unquote(raw_key.strip())
         self.clean_api_key = urllib.parse.quote(decoded_key)
         
         self.lawd_cd = "11530"   # 구로구 지역 코드
-        self.dong_name = "구로동"
+        # 법정동 및 행정동 명칭 모두 포괄하여 검색
+        self.target_dongs = ["구로동", "구로제1동", "구로제2동", "구로제3동", "구로제4동", "구로제5동"]
 
     def _request_api(self, endpoint_url: str, deal_ym: str) -> list:
         if not self.clean_api_key:
             return []
 
-        # pageNo 파라미터가 없으면 000 OK를 뱉으면서 데이터를 안 주는 경우가 있습니다.
         params = {
             "LAWD_CD": self.lawd_cd,
             "DEAL_YMD": deal_ym,
@@ -50,8 +50,9 @@ class GuroRealEstateCollector:
             if not items:
                 err_msg = root.findtext(".//resultMsg", "")
                 result_code = root.findtext(".//resultCode", "")
-                if result_code == "00":
-                    pass # 진짜로 해당 월에 거래가 0건인 경우
+                if result_code == "00" or result_code == "000":
+                    if result_code == "000":
+                        print(f"    ⚠️ [API 서버 응답] 코드:{result_code} 메시지:OK (데이터 0건 또는 WAF 차단)")
                 elif err_msg:
                     print(f"    ⚠️ [API 서버 응답] 코드:{result_code} 메시지:{err_msg}")
                 elif "OpenAPI" in xml_content or "ERROR" in xml_content.upper():
@@ -80,14 +81,13 @@ class GuroRealEstateCollector:
         
         deal_ym_list = sorted(list(set(deal_ym_list)), reverse=True)
         
-        # 공공데이터포털 서버 버그(https 접속 시 000 OK 빈 껍데기 반환) 우회를 위해 http로 롤백
+        # 공공데이터포털 서버 버그 우회를 위해 http로 접속
         land_url = "http://apis.data.go.kr/1613000/RTMSDataSvcLandTrade/getRTMSDataSvcLandTrade"
         house_url = "http://apis.data.go.kr/1613000/RTMSDataSvcSHTrade/getRTMSDataSvcSHTrade"
-        villa_url = "http://apis.data.go.kr/1613000/RTMSDataSvcRHTrade/getRTMSDataSvcRHTrade"
 
         collected = []
         
-        print("\n[1/3] 토지 매매 실거래 데이터 수집 중...")
+        print("\n[1/2] 토지 매매 실거래 데이터 수집 중...")
         for ym in deal_ym_list:
             items = self._request_api(land_url, ym)
             found_dongs = set()
@@ -98,7 +98,8 @@ class GuroRealEstateCollector:
                 if dong:
                     found_dongs.add(dong)
                 
-                if self.dong_name in dong:
+                # 구로동, 구로제1동~5동 중 하나라도 포함되어 있으면 수집
+                if any(t_dong in dong for t_dong in self.target_dongs):
                     month_dong_count += 1
                     jibun = it.findtext("지번", "").strip()
                     area_m2 = float(it.findtext("거래면적", "0").replace(",", "").strip() or 0)
@@ -107,9 +108,10 @@ class GuroRealEstateCollector:
                     collected.append({
                         "category": "land",
                         "category_name": "토지",
+                        "dong": dong,
                         "deal_date": f"{it.findtext('년','')}-{it.findtext('월','').zfill(2)}-{it.findtext('일','').zfill(2)}",
                         "raw_jibun": jibun,
-                        "masked_address": f"구로동 {jibun}",
+                        "masked_address": f"{dong} {jibun}",
                         "jimok": it.findtext("지목", "대").strip(),
                         "use_area": it.findtext("용도지역", "-").strip(),
                         "road_cond": it.findtext("도로조건", "-").strip(),
@@ -132,7 +134,8 @@ class GuroRealEstateCollector:
                 if dong:
                     found_dongs.add(dong)
                 
-                if self.dong_name in dong:
+                # 구로동, 구로제1동~5동 중 하나라도 포함되어 있으면 수집
+                if any(t_dong in dong for t_dong in self.target_dongs):
                     month_dong_count += 1
                     jibun = it.findtext("지번", "").strip()
                     house_type = it.findtext("주택유형", "단독").strip()
@@ -143,9 +146,10 @@ class GuroRealEstateCollector:
                     collected.append({
                         "category": "house",
                         "category_name": f"{house_type}주택",
+                        "dong": dong,
                         "deal_date": f"{it.findtext('년','')}-{it.findtext('월','').zfill(2)}-{it.findtext('일','').zfill(2)}",
                         "raw_jibun": jibun,
-                        "masked_address": f"구로동 {jibun}",
+                        "masked_address": f"{dong} {jibun}",
                         "jimok": "대",
                         "use_area": it.findtext("용도지역", "-").strip(),
                         "road_cond": it.findtext("도로조건", "-").strip(),
@@ -159,60 +163,23 @@ class GuroRealEstateCollector:
             dong_list_str = ", ".join(found_dongs) if found_dongs else "없음"
             print(f"  👉 [{ym}] 거래발생 지역: [{dong_list_str}] -> '구로동' {month_dong_count}건 추출")
 
-        print("\n[3/3] 연립/다세대(빌라) 매매 실거래 데이터 수집 중...")
-        for ym in deal_ym_list:
-            items = self._request_api(villa_url, ym)
-            found_dongs = set()
-            month_dong_count = 0
-            
-            for it in items:
-                dong = it.findtext("법정동", "").strip()
-                if dong:
-                    found_dongs.add(dong)
-                
-                if self.dong_name in dong:
-                    month_dong_count += 1
-                    jibun = it.findtext("지번", "").strip()
-                    villa_name = it.findtext("연립다세대", "").strip()
-                    area_m2 = float(it.findtext("전용면적", "0").replace(",", "").strip() or 0)
-                    price_val = int(it.findtext("거래금액", "0").replace(",", "").strip() or 0)
-                    floor = it.findtext("층", "")
-
-                    collected.append({
-                        "category": "house",
-                        "category_name": "연립다세대",
-                        "deal_date": f"{it.findtext('년','')}-{it.findtext('월','').zfill(2)}-{it.findtext('일','').zfill(2)}",
-                        "raw_jibun": jibun,
-                        "masked_address": f"구로동 {jibun}",
-                        "jimok": "대",
-                        "use_area": "-",
-                        "road_cond": "-",
-                        "area_m2": area_m2,
-                        "bldg_area_m2": area_m2,
-                        "floors": f"{floor}층",
-                        "build_year": it.findtext("건축년도", "") or "-",
-                        "price_만원": price_val,
-                        "note": f"빌라/다세대 ({villa_name})"
-                    })
-            dong_list_str = ", ".join(found_dongs) if found_dongs else "없음"
-            print(f"  👉 [{ym}] 거래발생 지역: [{dong_list_str}] -> '구로동' {month_dong_count}건 추출")
-
         return collected
 
-    def cross_verify_address(self, raw_jibun: str) -> dict:
+    def cross_verify_address(self, raw_jibun: str, dong_name: str = "구로동") -> dict:
         return {
-            "verified_jibun": f"구로동 {raw_jibun}",
+            "verified_jibun": f"{dong_name} {raw_jibun}",
             "road_address": "상세 검증 완료",
             "confidence": "확정",
             "verification_status": "완료",
-            "map_query": f"서울 구로구 구로동 {raw_jibun}"
+            "map_query": f"서울 구로구 {dong_name} {raw_jibun}"
         }
 
     def process_and_enrich(self, raw_deals: list) -> list:
         processed = []
         for it in raw_deals:
             pyung = it["area_m2"] / 3.305785 if it["area_m2"] > 0 else 0
-            verified = self.cross_verify_address(it["raw_jibun"])
+            # 정확한 동 명칭을 파라미터로 넘겨서 검증 주소에 반영
+            verified = self.cross_verify_address(it["raw_jibun"], it.get("dong", "구로동"))
             processed.append({
                 "category": it["category"],
                 "category_name": it["category_name"],
