@@ -30,9 +30,10 @@ jobs:
       - name: 4. 국토부 실거래가 수집 및 VWorld 지번 복원 (data.json 생성)
         env:
           TZ: 'Asia/Seoul'
-          # GitHub Secrets에 등록한 두 가지 API 키를 주입합니다.
           GURO_API_KEY: ${{ secrets.GURO_API_KEY }}
           VWORLD_API_KEY: ${{ secrets.VWORLD_API_KEY }}
+          # [매우 중요] VWorld API 발급 시 신청했던 본인의 정확한 도메인을 주입합니다.
+          VWORLD_DOMAIN: ${{ secrets.VWORLD_DOMAIN }}
         run: |
           python guro_land_collector.py --cli --export-json data.json
 
