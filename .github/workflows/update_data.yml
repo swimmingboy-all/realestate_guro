@@ -1,9 +1,9 @@
-name: 구로동 실거래 수집 및 VWorld 자동 지번 복원
+name: 구로동 실거래 수집 (VWorld 주석 처리 모드)
 
 on:
   schedule:
-    # 매주 월요일 자정(UTC 기준), 한국시간 오전 9시 실행
-    - cron: '0 0 * * 1'
+    # 매일 한국 시간(KST) 새벽 6시 실행 (UTC 기준 전날 21:00)
+    - cron: '0 21 * * *'
   workflow_dispatch: 
 
 permissions:
@@ -27,13 +27,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install openpyxl requests
 
-      - name: 4. 국토부 실거래가 수집 및 VWorld 지번 복원 (data.json 생성)
+      - name: 4. 국토부 실거래가 초고속 수집 (data.json 생성)
         env:
           TZ: 'Asia/Seoul'
           GURO_API_KEY: ${{ secrets.GURO_API_KEY }}
-          VWORLD_API_KEY: ${{ secrets.VWORLD_API_KEY }}
-          # [매우 중요] VWorld API 발급 시 신청했던 본인의 정확한 도메인을 주입합니다.
-          VWORLD_DOMAIN: ${{ secrets.VWORLD_DOMAIN }}
+          # -------------------------------------------------------------
+          # [VWorld 매칭 일시 중단] 
+          # 필요 시 언제든 앞의 '#'을 지워 다시 활성화할 수 있습니다.
+          # -------------------------------------------------------------
+          # VWORLD_API_KEY: ${{ secrets.VWORLD_API_KEY }}
+          # VWORLD_DOMAIN: ${{ secrets.VWORLD_DOMAIN }}
         run: |
           python guro_land_collector.py --cli --export-json data.json
 
@@ -42,4 +45,4 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Action Bot"
           git add data.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: 실거래 최신화 및 VWorld 지번 복원 업데이트" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: 국토부 실거래 데이터 최신화 (초고속 수집)" && git push)
