@@ -35,7 +35,8 @@ jobs:
           # 사용자가 등록한 GitHub Secret을 환경변수로 안전하게 주입
           GURO_API_KEY: ${{ secrets.GURO_API_KEY }}
         run: |
-          python guro_land_collector.py --cli --min-pyung 0 --export-json data.json
+          # 충돌을 일으키던 --min-pyung 0 인자를 제거했습니다.
+          python guro_land_collector.py --cli --export-json data.json
 
       - name: 5. 갱신된 data.json 저장소에 자동 커밋 & 배포
         run: |
