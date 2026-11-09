@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-구로구 전체 토지 & 단독·다가구 매매 실거래가 수집
-- [필터 해제] 구로동 특정 필터링을 제거하고 구로구 전체 동 수집
+구로구 전체 토지 & 단독·다가구 매매 실거래가 수집 (최종 픽스)
+- [버그 픽스] 법정동 태그 누락 시 데이터가 통째로 버려지던 하드코딩 조건(if dong:) 제거
+- [필터 해제] 구로구 전체 동 무조건 100% 수집
 - [통신 안정화] http 적용 및 pageNo 필수 파라미터 추가
-- [키 자동 정규화] 사용자가 Encoding/Decoding 어떤 키를 넣어도 자동 변환
-- [수집 범위] 토지 및 단독/다가구 주택 전용 (연립/다세대 제외)
+- [수집 범위] 토지 및 단독/다가구 주택 전용
 """
 
 import os
@@ -51,7 +51,7 @@ class GuroRealEstateCollector:
                 result_code = root.findtext(".//resultCode", "")
                 if result_code == "00" or result_code == "000":
                     if result_code == "000":
-                        print(f"    ⚠️ [API 서버 응답] 코드:{result_code} 메시지:OK (데이터 0건 또는 WAF 차단)")
+                        print(f"    ⚠️ [API 서버 응답] 코드:{result_code} 메시지:OK (해당 월 거래 없음 또는 차단)")
                 elif err_msg:
                     print(f"    ⚠️ [API 서버 응답] 코드:{result_code} 메시지:{err_msg}")
                 elif "OpenAPI" in xml_content or "ERROR" in xml_content.upper():
@@ -92,31 +92,35 @@ class GuroRealEstateCollector:
             month_count = 0
             
             for it in items:
-                dong = it.findtext("법정동", "").strip()
-                if dong:
-                    found_dongs.add(dong)
-                    month_count += 1
-                    jibun = it.findtext("지번", "").strip()
-                    area_m2 = float(it.findtext("거래면적", "0").replace(",", "").strip() or 0)
-                    price_val = int(it.findtext("거래금액", "0").replace(",", "").strip() or 0)
+                month_count += 1
+                # [버그픽스] 법정동 태그가 누락되어도 시군구 태그나 기본값으로 안전하게 매핑
+                dong = (it.findtext("법정동") or it.findtext("시군구") or "구로구").strip()
+                found_dongs.add(dong)
+                
+                jibun = (it.findtext("지번") or "").strip()
+                area_m2_str = it.findtext("거래면적") or "0"
+                area_m2 = float(area_m2_str.replace(",", "").strip() or 0)
+                
+                price_str = it.findtext("거래금액") or "0"
+                price_val = int(price_str.replace(",", "").strip() or 0)
 
-                    collected.append({
-                        "category": "land",
-                        "category_name": "토지",
-                        "dong": dong,
-                        "deal_date": f"{it.findtext('년','')}-{it.findtext('월','').zfill(2)}-{it.findtext('일','').zfill(2)}",
-                        "raw_jibun": jibun,
-                        "masked_address": f"{dong} {jibun}",
-                        "jimok": it.findtext("지목", "대").strip(),
-                        "use_area": it.findtext("용도지역", "-").strip(),
-                        "road_cond": it.findtext("도로조건", "-").strip(),
-                        "area_m2": area_m2,
-                        "price_만원": price_val,
-                        "note": "토지 실거래"
-                    })
+                collected.append({
+                    "category": "land",
+                    "category_name": "토지",
+                    "dong": dong,
+                    "deal_date": f"{it.findtext('년','')}-{it.findtext('월','').zfill(2)}-{it.findtext('일','').zfill(2)}",
+                    "raw_jibun": jibun,
+                    "masked_address": f"{dong} {jibun}".strip(),
+                    "jimok": it.findtext("지목", "대").strip(),
+                    "use_area": it.findtext("용도지역", "-").strip(),
+                    "road_cond": it.findtext("도로조건", "-").strip(),
+                    "area_m2": area_m2,
+                    "price_만원": price_val,
+                    "note": "토지 실거래"
+                })
             
             dong_list_str = ", ".join(found_dongs) if found_dongs else "없음"
-            print(f"  👉 [{ym}] 거래발생 지역: [{dong_list_str}] -> 구로구 전체 {month_count}건 추출")
+            print(f"  👉 [{ym}] 수집 지역: [{dong_list_str}] -> 무조건 추출 성공: {month_count}건")
 
         print("\n[2/2] 단독·다가구 매매 실거래 데이터 수집 중...")
         for ym in deal_ym_list:
@@ -125,42 +129,47 @@ class GuroRealEstateCollector:
             month_count = 0
             
             for it in items:
-                dong = it.findtext("법정동", "").strip()
-                if dong:
-                    found_dongs.add(dong)
-                    month_count += 1
-                    jibun = it.findtext("지번", "").strip()
-                    house_type = it.findtext("주택유형", "단독").strip()
-                    lot_area_m2 = float(it.findtext("대지면적", "0").replace(",", "").strip() or 0)
-                    bldg_area_m2 = float(it.findtext("연면적", "0").replace(",", "").strip() or 0)
-                    price_val = int(it.findtext("거래금액", "0").replace(",", "").strip() or 0)
+                month_count += 1
+                dong = (it.findtext("법정동") or it.findtext("시군구") or "구로구").strip()
+                found_dongs.add(dong)
+                
+                jibun = (it.findtext("지번") or "").strip()
+                house_type = it.findtext("주택유형", "단독").strip()
+                
+                lot_area_str = it.findtext("대지면적") or "0"
+                lot_area_m2 = float(lot_area_str.replace(",", "").strip() or 0)
+                
+                bldg_area_str = it.findtext("연면적") or "0"
+                bldg_area_m2 = float(bldg_area_str.replace(",", "").strip() or 0)
+                
+                price_str = it.findtext("거래금액") or "0"
+                price_val = int(price_str.replace(",", "").strip() or 0)
 
-                    collected.append({
-                        "category": "house",
-                        "category_name": f"{house_type}주택",
-                        "dong": dong,
-                        "deal_date": f"{it.findtext('년','')}-{it.findtext('월','').zfill(2)}-{it.findtext('일','').zfill(2)}",
-                        "raw_jibun": jibun,
-                        "masked_address": f"{dong} {jibun}",
-                        "jimok": "대",
-                        "use_area": it.findtext("용도지역", "-").strip(),
-                        "road_cond": it.findtext("도로조건", "-").strip(),
-                        "area_m2": lot_area_m2,
-                        "bldg_area_m2": bldg_area_m2,
-                        "floors": "단독/다가구",
-                        "build_year": it.findtext("건축년도", "") or "-",
-                        "price_만원": price_val,
-                        "note": f"{house_type}주택 실거래"
-                    })
+                collected.append({
+                    "category": "house",
+                    "category_name": f"{house_type}주택",
+                    "dong": dong,
+                    "deal_date": f"{it.findtext('년','')}-{it.findtext('월','').zfill(2)}-{it.findtext('일','').zfill(2)}",
+                    "raw_jibun": jibun,
+                    "masked_address": f"{dong} {jibun}".strip(),
+                    "jimok": "대",
+                    "use_area": it.findtext("용도지역", "-").strip(),
+                    "road_cond": it.findtext("도로조건", "-").strip(),
+                    "area_m2": lot_area_m2,
+                    "bldg_area_m2": bldg_area_m2,
+                    "floors": "단독/다가구",
+                    "build_year": it.findtext("건축년도", "") or "-",
+                    "price_만원": price_val,
+                    "note": f"{house_type}주택 실거래"
+                })
             dong_list_str = ", ".join(found_dongs) if found_dongs else "없음"
-            print(f"  👉 [{ym}] 거래발생 지역: [{dong_list_str}] -> 구로구 전체 {month_count}건 추출")
+            print(f"  👉 [{ym}] 수집 지역: [{dong_list_str}] -> 무조건 추출 성공: {month_count}건")
 
         return collected
 
     def cross_verify_address(self, raw_jibun: str, dong_name: str) -> dict:
-        # dong_name을 받아서 해당 지역 기준으로 주소를 결합
         return {
-            "verified_jibun": f"{dong_name} {raw_jibun}",
+            "verified_jibun": f"{dong_name} {raw_jibun}".strip(),
             "road_address": "상세 검증 완료",
             "confidence": "확정",
             "verification_status": "완료",
@@ -171,8 +180,7 @@ class GuroRealEstateCollector:
         processed = []
         for it in raw_deals:
             pyung = it["area_m2"] / 3.305785 if it["area_m2"] > 0 else 0
-            # 수집된 실제 동 이름으로 검증 주소 생성
-            verified = self.cross_verify_address(it["raw_jibun"], it.get("dong", "구로동"))
+            verified = self.cross_verify_address(it["raw_jibun"], it.get("dong", "구로구"))
             processed.append({
                 "category": it["category"],
                 "category_name": it["category_name"],
