@@ -3,7 +3,7 @@
 """
 구로구 전체 토지 & 단독·다가구 매매 실거래가 수집
 - [고도화] 공간정보 DB 기반 면적 매칭 디마스킹(지번 복원) 알고리즘 탑재
-- [수정] 단독/다가구 매매 신규 영문 태그(plttgAr, totAr) 완벽 대응
+- [수정] 단독/다가구 매매 신규 영문 태그(plArea, plttgAr, totArea, totAr) 완벽 대응
 """
 
 import os
@@ -128,8 +128,8 @@ class GuroRealEstateCollector:
                 jibun = self._get_val(it, "지번", "jibun")
                 house_type = self._get_val(it, "주택유형", "houseType") or "단독"
                 
-                # 단독/다가구 전용 축약형 영문 태그(plttgAr, totAr) 호환성 추가
-                lot_area = float((self._get_val(it, "대지면적", "plottage", "plttgAr", "거래면적", "dealArea") or "0").replace(",", "").strip() or 0)
+                # 단독/다가구 전용 축약형 영문 태그(plArea 등) 모두 포함하여 0건 방지
+                lot_area = float((self._get_val(it, "대지면적", "plArea", "plottage", "plttgAr", "거래면적", "dealArea") or "0").replace(",", "").strip() or 0)
                 bldg_area = float((self._get_val(it, "연면적", "totArea", "totAr") or "0").replace(",", "").strip() or 0)
                 
                 price_val = int((self._get_val(it, "거래금액", "dealAmount") or "0").replace(",", "").strip() or 0)
