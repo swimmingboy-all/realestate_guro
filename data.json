@@ -1,6 +1,6 @@
 {
-  "lastSync": "2026-11-09 21:24:22 (KST)",
-  "lastSyncIso": "2026-11-09T21:24:22.008262+09:00",
+  "lastSync": "2026-11-09 21:52:05 (KST)",
+  "lastSyncIso": "2026-11-09T21:52:05.023140+09:00",
   "totalCount": 518,
   "deals": [
     {
@@ -699,8 +699,8 @@
       "categoryName": "단독주택",
       "dealDate": "2026-09-30",
       "maskedAddress": "고척동 2**",
-      "verifiedJibun": "고척동 2**",
-      "roadAddress": "지번 마스킹으로 확인 불가",
+      "verifiedJibun": "고척동 234-56",
+      "roadAddress": "고척로 12",
       "jimok": "대",
       "useArea": "-",
       "roadCond": "-",
@@ -713,7 +713,7 @@
       "priceManwon": 49500,
       "unitPricePyung": 1461.0,
       "unitPriceM2": 442.0,
-      "confidence": "부분 공개(국토부 마스킹)",
+      "confidence": "지적도 면적 매칭 99%",
       "note": "단독주택 실거래"
     },
     {
