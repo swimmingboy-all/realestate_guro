@@ -1,13 +1,10 @@
-name: 구로동 토지 실거래 자동 수집 (GURO_API_KEY 연동)
+name: 구로동 실거래 수집 및 VWorld 자동 지번 복원
 
-# 1. 자동 실행 주기 및 수동 실행 트리거 설정
 on:
   schedule:
-    # 매주 월요일 오전 9시 KST 실행 (UTC 기준 일요일 00:00)
     - cron: '0 0 * * 1'
-  workflow_dispatch: # GitHub 웹 화면에서 'Run workflow' 버튼으로 언제든 즉시 수동 실행 가능
+  workflow_dispatch: 
 
-# 저장소 파일 자동 커밋 및 푸시 권한 부여
 permissions:
   contents: write
 
@@ -29,13 +26,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install openpyxl requests
 
-      - name: 4. 국토부 실거래가 수집 및 data.json 생성 (한국 표준시 TZ 설정)
+      - name: 4. 국토부 실거래가 수집 및 VWorld 지번 복원 (data.json 생성)
         env:
           TZ: 'Asia/Seoul'
-          # 사용자가 등록한 GitHub Secret을 환경변수로 안전하게 주입
+          # GitHub Secrets에 등록한 두 가지 API 키를 주입합니다.
           GURO_API_KEY: ${{ secrets.GURO_API_KEY }}
+          VWORLD_API_KEY: ${{ secrets.VWORLD_API_KEY }}
         run: |
-          # 충돌을 일으키던 --min-pyung 0 인자를 제거했습니다.
           python guro_land_collector.py --cli --export-json data.json
 
       - name: 5. 갱신된 data.json 저장소에 자동 커밋 & 배포
@@ -43,4 +40,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Action Bot"
           git add data.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: 구로동 실거래 최신 데이터 자동 동기화 (GURO_API_KEY)" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: 실거래 최신화 및 VWorld 지번 복원 업데이트" && git push)
+```
