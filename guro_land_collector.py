@@ -3,7 +3,7 @@
 """
 구로구 전체 토지 & 단독·다가구 매매 실거래가 수집
 - [고도화] VWorld(국가공간정보포털) Data API 기반 면적 매칭 실시간 지번 복원 알고리즘 탑재
-- [완결판] 대소문자 무시, 스마트 면적 탐색 + VWorld 응답 정밀 디버깅(로그 출력)
+- [안정화] VWorld 서버 과부하 방지용 트래픽 조절(Sleep) 및 502 에러 스마트 재시도(Retry) 적용
 """
 
 import os
@@ -12,7 +12,9 @@ import argparse
 import datetime
 import urllib.request
 import urllib.parse
+import urllib.error
 import xml.etree.ElementTree as ET
+import time
 
 class GuroRealEstateCollector:
     def __init__(self, api_key: str = None, vworld_key: str = None, vworld_domain: str = None):
@@ -165,7 +167,6 @@ class GuroRealEstateCollector:
         prefix = masked_jibun.split('*')[0]
         url = "http://api.vworld.kr/req/data"
         
-        # 특정 법정동(pnu 시작) 내에서 해당 지번(jibun)으로 시작하는 필지 검색
         params = {
             "service": "data",
             "request": "GetFeature",
@@ -180,41 +181,58 @@ class GuroRealEstateCollector:
         query_str = urllib.parse.urlencode(params)
         full_url = f"{url}?{query_str}"
         
-        try:
-            req = urllib.request.Request(full_url, headers={"User-Agent": "Mozilla/5.0"})
-            with urllib.request.urlopen(req, timeout=10) as response:
-                res_json = json.loads(response.read().decode("utf-8"))
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                # VWorld 서버 과부하 방지를 위한 약간의 대기 (0.2초)
+                time.sleep(0.2)
                 
-            # 디버깅: VWorld 서버의 거절 사유를 콘솔에 선명하게 출력
-            if "response" in res_json and res_json["response"].get("status") != "OK":
-                error_msg = res_json["response"].get("error", {}).get("text", "알 수 없는 에러")
-                print(f"    🚨 [VWorld 통신 에러] {dong_name} {masked_jibun} 검색 실패 -> 사유: {error_msg}")
-                return None
-                
-            features = res_json.get("response", {}).get("result", {}).get("featureCollection", {}).get("features", [])
-            
-            for feat in features:
-                props = feat.get("properties", {})
-                v_pnu = props.get("pnu", "")
-                
-                # 전국을 검색하므로, 구로구의 해당 법정동 코드와 일치하는지 1차 확인
-                if not v_pnu.startswith(bjd_code):
-                    continue
+                req = urllib.request.Request(full_url, headers={"User-Agent": "Mozilla/5.0"})
+                with urllib.request.urlopen(req, timeout=15) as response:
+                    res_json = json.loads(response.read().decode("utf-8"))
                     
-                v_jibun = props.get("jibun", "")
-                v_area = float(props.get("parea", 0))
+                if "response" in res_json and res_json["response"].get("status") != "OK":
+                    error_msg = res_json["response"].get("error", {}).get("text", "알 수 없는 에러")
+                    print(f"    🚨 [VWorld 통신 에러] {dong_name} {masked_jibun} 검색 실패 -> 사유: {error_msg}")
+                    return None
+                    
+                features = res_json.get("response", {}).get("result", {}).get("featureCollection", {}).get("features", [])
                 
-                # 대지면적 오차 1.0㎡ 이내면 동일 필지로 완벽 매칭
-                if abs(v_area - area_m2) < 1.0:
-                    return {
-                        "verified_jibun": f"{dong_name} {v_jibun}".strip(),
-                        "road_address": "VWorld 매칭 완료 (상세 도로명 필요)",
-                        "confidence": "VWorld 지적도 면적 100% 매칭",
-                    }
-        except Exception as e:
-            print(f"    🚨 [VWorld 네트워크 에러] {e}")
-            pass
-            
+                for feat in features:
+                    props = feat.get("properties", {})
+                    v_pnu = props.get("pnu", "")
+                    
+                    if not v_pnu.startswith(bjd_code):
+                        continue
+                        
+                    v_jibun = props.get("jibun", "")
+                    v_area = float(props.get("parea", 0))
+                    
+                    if abs(v_area - area_m2) < 1.0:
+                        return {
+                            "verified_jibun": f"{dong_name} {v_jibun}".strip(),
+                            "road_address": "VWorld 매칭 완료 (상세 도로명 필요)",
+                            "confidence": "VWorld 지적도 면적 100% 매칭",
+                        }
+                # 성공적으로 확인했으나 일치하는 필지가 없는 경우 중단
+                break
+                
+            except urllib.error.HTTPError as e:
+                if e.code in [502, 503, 504]:
+                    print(f"    ⏳ [VWorld 서버 지연 {e.code}] 잠시 후 재시도... ({attempt+1}/{max_retries})")
+                    time.sleep(2 * (attempt + 1))
+                else:
+                    print(f"    🚨 [VWorld HTTP 에러] {e}")
+                    break
+            except Exception as e:
+                err_msg = str(e).lower()
+                if "remote end closed" in err_msg or "reset" in err_msg or "timeout" in err_msg:
+                    print(f"    ⏳ [VWorld 연결 끊김] 잠시 후 재시도... ({attempt+1}/{max_retries})")
+                    time.sleep(2 * (attempt + 1))
+                else:
+                    print(f"    🚨 [VWorld 네트워크 에러] {e}")
+                    break
+                    
         return None
 
     def cross_verify_address(self, raw_jibun: str, dong_name: str, area_m2: float) -> dict:
@@ -227,12 +245,10 @@ class GuroRealEstateCollector:
                 "confidence": "원본 지번 (마스킹 없음)",
             }
 
-        # 1. VWorld API 실시간 매칭 시도
         vworld_result = self._fetch_vworld_jibun(dong_name, raw_jibun, area_m2)
         if vworld_result:
             return vworld_result
         
-        # 2. 매칭 실패 시 마스킹 상태 그대로 반환
         return {
             "verified_jibun": f"{dong_name} {raw_jibun}".strip(),
             "road_address": "지번 마스킹으로 확인 불가",
