@@ -25,6 +25,14 @@ class GuroRealEstateCollector:
         
         self.lawd_cd = "11530"   # 구로구 지역 코드
 
+    def _get_val(self, item, *tags):
+        """한글 및 영문 태그명을 모두 지원하여 값을 안전하게 추출하는 헬퍼 함수"""
+        for tag in tags:
+            val = item.findtext(tag)
+            if val is not None:
+                return val.strip()
+        return ""
+
     def _request_api(self, endpoint_url: str, deal_ym: str) -> list:
         if not self.clean_api_key:
             return []
@@ -93,27 +101,30 @@ class GuroRealEstateCollector:
             
             for it in items:
                 month_count += 1
-                # [버그픽스] 법정동 태그가 누락되어도 시군구 태그나 기본값으로 안전하게 매핑
-                dong = (it.findtext("법정동") or it.findtext("시군구") or "구로구").strip()
+                dong = (self._get_val(it, "법정동", "umdNm") or self._get_val(it, "시군구", "sggNm") or "구로구")
                 found_dongs.add(dong)
                 
-                jibun = (it.findtext("지번") or "").strip()
-                area_m2_str = it.findtext("거래면적") or "0"
+                jibun = self._get_val(it, "지번", "jibun")
+                area_m2_str = self._get_val(it, "거래면적", "dealArea") or "0"
                 area_m2 = float(area_m2_str.replace(",", "").strip() or 0)
                 
-                price_str = it.findtext("거래금액") or "0"
+                price_str = self._get_val(it, "거래금액", "dealAmount") or "0"
                 price_val = int(price_str.replace(",", "").strip() or 0)
 
+                year = self._get_val(it, "년", "dealYear")
+                month = self._get_val(it, "월", "dealMonth").zfill(2)
+                day = self._get_val(it, "일", "dealDay").zfill(2)
+                
                 collected.append({
                     "category": "land",
                     "category_name": "토지",
                     "dong": dong,
-                    "deal_date": f"{it.findtext('년','')}-{it.findtext('월','').zfill(2)}-{it.findtext('일','').zfill(2)}",
+                    "deal_date": f"{year}-{month}-{day}",
                     "raw_jibun": jibun,
                     "masked_address": f"{dong} {jibun}".strip(),
-                    "jimok": it.findtext("지목", "대").strip(),
-                    "use_area": it.findtext("용도지역", "-").strip(),
-                    "road_cond": it.findtext("도로조건", "-").strip(),
+                    "jimok": self._get_val(it, "지목", "lndcNm") or "대",
+                    "use_area": self._get_val(it, "용도지역", "prposArea1Nm") or "-",
+                    "road_cond": self._get_val(it, "도로조건") or "-",
                     "area_m2": area_m2,
                     "price_만원": price_val,
                     "note": "토지 실거래"
@@ -130,35 +141,39 @@ class GuroRealEstateCollector:
             
             for it in items:
                 month_count += 1
-                dong = (it.findtext("법정동") or it.findtext("시군구") or "구로구").strip()
+                dong = (self._get_val(it, "법정동", "umdNm") or self._get_val(it, "시군구", "sggNm") or "구로구")
                 found_dongs.add(dong)
                 
-                jibun = (it.findtext("지번") or "").strip()
-                house_type = it.findtext("주택유형", "단독").strip()
+                jibun = self._get_val(it, "지번", "jibun")
+                house_type = self._get_val(it, "주택유형", "houseType") or "단독"
                 
-                lot_area_str = it.findtext("대지면적") or "0"
+                lot_area_str = self._get_val(it, "대지면적", "plottage", "거래면적", "dealArea") or "0"
                 lot_area_m2 = float(lot_area_str.replace(",", "").strip() or 0)
                 
-                bldg_area_str = it.findtext("연면적") or "0"
+                bldg_area_str = self._get_val(it, "연면적", "totArea") or "0"
                 bldg_area_m2 = float(bldg_area_str.replace(",", "").strip() or 0)
                 
-                price_str = it.findtext("거래금액") or "0"
+                price_str = self._get_val(it, "거래금액", "dealAmount") or "0"
                 price_val = int(price_str.replace(",", "").strip() or 0)
+
+                year = self._get_val(it, "년", "dealYear")
+                month = self._get_val(it, "월", "dealMonth").zfill(2)
+                day = self._get_val(it, "일", "dealDay").zfill(2)
 
                 collected.append({
                     "category": "house",
                     "category_name": f"{house_type}주택",
                     "dong": dong,
-                    "deal_date": f"{it.findtext('년','')}-{it.findtext('월','').zfill(2)}-{it.findtext('일','').zfill(2)}",
+                    "deal_date": f"{year}-{month}-{day}",
                     "raw_jibun": jibun,
                     "masked_address": f"{dong} {jibun}".strip(),
                     "jimok": "대",
-                    "use_area": it.findtext("용도지역", "-").strip(),
-                    "road_cond": it.findtext("도로조건", "-").strip(),
+                    "use_area": self._get_val(it, "용도지역", "prposArea1Nm") or "-",
+                    "road_cond": self._get_val(it, "도로조건") or "-",
                     "area_m2": lot_area_m2,
                     "bldg_area_m2": bldg_area_m2,
                     "floors": "단독/다가구",
-                    "build_year": it.findtext("건축년도", "") or "-",
+                    "build_year": self._get_val(it, "건축년도", "buildYear") or "-",
                     "price_만원": price_val,
                     "note": f"{house_type}주택 실거래"
                 })
