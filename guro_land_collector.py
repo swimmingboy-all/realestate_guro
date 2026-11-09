@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-구로구 구로동 토지 & 단독·다가구 매매 실거래가 수집
+구로구 전체 토지 & 단독·다가구 매매 실거래가 수집
+- [필터 해제] 구로동 특정 필터링을 제거하고 구로구 전체 동 수집
 - [통신 안정화] http 적용 및 pageNo 필수 파라미터 추가
 - [키 자동 정규화] 사용자가 Encoding/Decoding 어떤 키를 넣어도 자동 변환
 - [수집 범위] 토지 및 단독/다가구 주택 전용 (연립/다세대 제외)
-- [검색 강화] 구로동, 구로제1동 ~ 구로제5동 모두 포함
 """
 
 import os
@@ -24,8 +24,6 @@ class GuroRealEstateCollector:
         self.clean_api_key = urllib.parse.quote(decoded_key)
         
         self.lawd_cd = "11530"   # 구로구 지역 코드
-        # 법정동 및 행정동 명칭 모두 포괄하여 검색
-        self.target_dongs = ["구로동", "구로제1동", "구로제2동", "구로제3동", "구로제4동", "구로제5동"]
 
     def _request_api(self, endpoint_url: str, deal_ym: str) -> list:
         if not self.clean_api_key:
@@ -91,16 +89,13 @@ class GuroRealEstateCollector:
         for ym in deal_ym_list:
             items = self._request_api(land_url, ym)
             found_dongs = set()
-            month_dong_count = 0
+            month_count = 0
             
             for it in items:
                 dong = it.findtext("법정동", "").strip()
                 if dong:
                     found_dongs.add(dong)
-                
-                # 구로동, 구로제1동~5동 중 하나라도 포함되어 있으면 수집
-                if any(t_dong in dong for t_dong in self.target_dongs):
-                    month_dong_count += 1
+                    month_count += 1
                     jibun = it.findtext("지번", "").strip()
                     area_m2 = float(it.findtext("거래면적", "0").replace(",", "").strip() or 0)
                     price_val = int(it.findtext("거래금액", "0").replace(",", "").strip() or 0)
@@ -121,22 +116,19 @@ class GuroRealEstateCollector:
                     })
             
             dong_list_str = ", ".join(found_dongs) if found_dongs else "없음"
-            # 오해를 없애기 위해 로그 출력 문구를 명확하게 수정
-            print(f"  👉 [{ym}] 거래발생 지역: [{dong_list_str}] -> '구로(제1~5)동' {month_dong_count}건 추출")
+            print(f"  👉 [{ym}] 거래발생 지역: [{dong_list_str}] -> 구로구 전체 {month_count}건 추출")
 
         print("\n[2/2] 단독·다가구 매매 실거래 데이터 수집 중...")
         for ym in deal_ym_list:
             items = self._request_api(house_url, ym)
             found_dongs = set()
-            month_dong_count = 0
+            month_count = 0
             
             for it in items:
                 dong = it.findtext("법정동", "").strip()
                 if dong:
                     found_dongs.add(dong)
-                
-                if any(t_dong in dong for t_dong in self.target_dongs):
-                    month_dong_count += 1
+                    month_count += 1
                     jibun = it.findtext("지번", "").strip()
                     house_type = it.findtext("주택유형", "단독").strip()
                     lot_area_m2 = float(it.findtext("대지면적", "0").replace(",", "").strip() or 0)
@@ -161,11 +153,12 @@ class GuroRealEstateCollector:
                         "note": f"{house_type}주택 실거래"
                     })
             dong_list_str = ", ".join(found_dongs) if found_dongs else "없음"
-            print(f"  👉 [{ym}] 거래발생 지역: [{dong_list_str}] -> '구로(제1~5)동' {month_dong_count}건 추출")
+            print(f"  👉 [{ym}] 거래발생 지역: [{dong_list_str}] -> 구로구 전체 {month_count}건 추출")
 
         return collected
 
-    def cross_verify_address(self, raw_jibun: str, dong_name: str = "구로동") -> dict:
+    def cross_verify_address(self, raw_jibun: str, dong_name: str) -> dict:
+        # dong_name을 받아서 해당 지역 기준으로 주소를 결합
         return {
             "verified_jibun": f"{dong_name} {raw_jibun}",
             "road_address": "상세 검증 완료",
@@ -178,6 +171,7 @@ class GuroRealEstateCollector:
         processed = []
         for it in raw_deals:
             pyung = it["area_m2"] / 3.305785 if it["area_m2"] > 0 else 0
+            # 수집된 실제 동 이름으로 검증 주소 생성
             verified = self.cross_verify_address(it["raw_jibun"], it.get("dong", "구로동"))
             processed.append({
                 "category": it["category"],
