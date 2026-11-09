@@ -74,9 +74,11 @@
         <div>
           <div class="flex items-center space-x-2">
             <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white">구로동 토지 & 단독·다가구 실거래 분석</h1>
-            <span class="bg-blue-500/30 text-blue-200 text-xs px-2 py-0.5 rounded-full border border-blue-400/20 font-medium">실시간 교차검증</span>
+            <span id="badgeDataSource" class="bg-emerald-500/25 text-emerald-300 text-xs px-2.5 py-0.5 rounded-full border border-emerald-400/40 font-semibold flex items-center gap-1.5 shadow-sm">
+              <i class="fa-solid fa-shield-halved text-[11px]"></i> GURO_API_KEY 연동
+            </span>
           </div>
-          <p class="text-xs text-blue-200/80">국토교통부 실거래가 (토지 + 단독·다가구) & 지적·건축물대장 대조</p>
+          <p id="txtSyncStatus" class="text-xs text-blue-200/80">국토교통부 실거래가 & 지적·건축물대장 교차검증 (GitHub Actions 자동 동기화)</p>
         </div>
       </div>
 
@@ -723,16 +725,66 @@
       }
     ];
 
-    // Compute pyung and unit prices automatically
-    GURO_TRANSACTIONS.forEach(item => {
-      item.pyung = item.areaM2 / 3.305785;
-      item.isOver30 = item.pyung >= 30.0;
-      item.unitPricePyung = item.pyung > 0 ? (item.priceManwon / item.pyung) : 0;
-      item.unitPriceM2 = item.areaM2 > 0 ? (item.priceManwon / item.areaM2) : 0;
-      if (item.bldgAreaM2) {
-        item.bldgPyung = item.bldgAreaM2 / 3.305785;
+    // 실거래가 데이터 전처리 함수 (평수 및 평당가 자동 계산)
+    function processTransactions(items) {
+      items.forEach(item => {
+        item.pyung = item.areaM2 / 3.305785;
+        item.isOver30 = item.pyung >= 30.0;
+        item.unitPricePyung = item.pyung > 0 ? (item.priceManwon / item.pyung) : 0;
+        item.unitPriceM2 = item.areaM2 > 0 ? (item.priceManwon / item.areaM2) : 0;
+        if (item.bldgAreaM2) {
+          item.bldgPyung = item.bldgAreaM2 / 3.305785;
+        }
+      });
+      return items;
+    }
+
+    processTransactions(GURO_TRANSACTIONS);
+
+    // GitHub Actions 및 GURO_API_KEY로 갱신된 data.json 비동기 연동 로더
+    async function loadLiveDataFromGitHub() {
+      const badge = document.getElementById('badgeDataSource');
+      const txtSync = document.getElementById('txtSyncStatus');
+
+      try {
+        const response = await fetch('./data.json', { cache: 'no-store' });
+        if (response.ok) {
+          const result = await response.json();
+          let rawList = [];
+          let lastSyncTime = null;
+
+          if (Array.isArray(result)) {
+            rawList = result;
+          } else if (result && Array.isArray(result.deals)) {
+            rawList = result.deals;
+            lastSyncTime = result.lastSync || result.updatedAt;
+          }
+
+          if (rawList.length > 0) {
+            GURO_TRANSACTIONS.length = 0;
+            rawList.forEach(item => GURO_TRANSACTIONS.push(item));
+            processTransactions(GURO_TRANSACTIONS);
+
+            badge.className = "bg-emerald-500/25 text-emerald-300 text-xs px-2.5 py-0.5 rounded-full border border-emerald-400/40 font-semibold flex items-center gap-1.5 shadow-sm";
+            badge.innerHTML = `<i class="fa-solid fa-cloud-check text-emerald-400"></i> GURO_API_KEY 실시간 연동됨 (${GURO_TRANSACTIONS.length}건)`;
+            if (lastSyncTime) {
+              txtSync.textContent = `최근 자동 수집 시각: ${lastSyncTime} (국토부 Open API & 대장 매칭)`;
+            } else {
+              txtSync.textContent = `국토교통부 실거래가 Open API 자동 수집 완료 (총 ${GURO_TRANSACTIONS.length}건 동기화)`;
+            }
+            applyFilters();
+            return;
+          }
+        }
+      } catch (e) {
+        // data.json 미생성 또는 로컬 파일 열람 시 기본 내장 DB 사용
       }
-    });
+
+      badge.className = "bg-blue-500/25 text-blue-200 text-xs px-2.5 py-0.5 rounded-full border border-blue-400/30 font-medium flex items-center gap-1.5";
+      badge.innerHTML = `<i class="fa-solid fa-database text-blue-300"></i> GURO_API_KEY 대기모드 (내장 DB ${GURO_TRANSACTIONS.length}건)`;
+      txtSync.textContent = "GitHub Actions 첫 실행 전이거나 로컬 환경입니다. 내장 전수 DB로 표시 중입니다.";
+      applyFilters();
+    }
 
     // -------------------------------------------------------------
     // 2. STATE & CHART INSTANCES
@@ -1551,6 +1603,8 @@
       document.getElementById('selectZoning').value = "제2종일반주거지역";
       setPeriodPreset('3m'); // 기본 선택을 '최근 3개월'로 설정
       applyFilters();
+      // GitHub Secrets (GURO_API_KEY)로 생성된 data.json 비동기 동기화 시도
+      loadLiveDataFromGitHub();
     });
   </script>
 </body>
