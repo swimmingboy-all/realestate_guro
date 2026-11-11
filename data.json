@@ -1,10 +1,33 @@
 {
-  "lastSync": "2026-11-10 12:20:06 (KST)",
-  "lastSyncIso": "2026-11-10T12:20:06.272289+09:00",
-  "totalCount": 519,
+  "lastSync": "2026-11-11 10:08:20 (KST)",
+  "lastSyncIso": "2026-11-11T10:08:20.447474+09:00",
+  "totalCount": 522,
   "deals": [
     {
       "id": 1,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-11-04",
+      "maskedAddress": "고척동 5*",
+      "verifiedJibun": "고척동 5*",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 90.0,
+      "pyung": 27.2,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 29003,
+      "unitPricePyung": 1065.3,
+      "unitPriceM2": 322.3,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 2,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-11-02",
@@ -27,7 +50,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 2,
+      "id": 3,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-30",
@@ -50,7 +73,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 3,
+      "id": 4,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-10-23",
@@ -73,7 +96,53 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 4,
+      "id": 5,
+      "category": "house",
+      "categoryName": "다가구주택",
+      "dealDate": "2026-10-21",
+      "maskedAddress": "구로동 3**",
+      "verifiedJibun": "구로동 3**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 106.0,
+      "pyung": 32.1,
+      "bldgAreaM2": 179.4,
+      "floors": "단독/다가구",
+      "buildYear": "1996",
+      "isOver30": true,
+      "priceManwon": 51500,
+      "unitPricePyung": 1606.1,
+      "unitPriceM2": 485.8,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "다가구주택 실거래"
+    },
+    {
+      "id": 6,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-10-20",
+      "maskedAddress": "고척동 5*",
+      "verifiedJibun": "고척동 5*",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 4.0,
+      "pyung": 1.2,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 1156,
+      "unitPricePyung": 955.4,
+      "unitPriceM2": 289.0,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 7,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-19",
@@ -96,7 +165,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 5,
+      "id": 8,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-16",
@@ -119,7 +188,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 6,
+      "id": 9,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-10-16",
@@ -142,7 +211,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 7,
+      "id": 10,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-10-15",
@@ -165,7 +234,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 8,
+      "id": 11,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-14",
@@ -188,7 +257,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 9,
+      "id": 12,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-14",
@@ -211,7 +280,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 10,
+      "id": 13,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-14",
@@ -234,7 +303,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 11,
+      "id": 14,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-14",
@@ -257,7 +326,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 12,
+      "id": 15,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-10-14",
@@ -280,7 +349,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 13,
+      "id": 16,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-13",
@@ -303,7 +372,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 14,
+      "id": 17,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-10-13",
@@ -326,7 +395,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 15,
+      "id": 18,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-12",
@@ -349,7 +418,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 16,
+      "id": 19,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-10-12",
@@ -372,7 +441,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 17,
+      "id": 20,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-10-10",
@@ -395,7 +464,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 18,
+      "id": 21,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-10-10",
@@ -418,7 +487,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 19,
+      "id": 22,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-08",
@@ -441,7 +510,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 20,
+      "id": 23,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-08",
@@ -464,79 +533,10 @@
       "note": "토지 실거래"
     },
     {
-      "id": 21,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-10-07",
-      "maskedAddress": "구로동 8**",
-      "verifiedJibun": "구로동 8**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 4.0,
-      "pyung": 1.2,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 2174,
-      "unitPricePyung": 1796.7,
-      "unitPriceM2": 543.5,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 22,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-10-06",
-      "maskedAddress": "구로동 8**",
-      "verifiedJibun": "구로동 8**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 161.0,
-      "pyung": 48.7,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": true,
-      "priceManwon": 98935,
-      "unitPricePyung": 2031.4,
-      "unitPriceM2": 614.5,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 23,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-10-06",
-      "maskedAddress": "구로동 7**",
-      "verifiedJibun": "구로동 7**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 5.0,
-      "pyung": 1.5,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 3165,
-      "unitPricePyung": 2092.6,
-      "unitPriceM2": 633.0,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
       "id": 24,
       "category": "land",
       "categoryName": "토지",
-      "dealDate": "2026-10-06",
+      "dealDate": "2026-10-07",
       "maskedAddress": "구로동 8**",
       "verifiedJibun": "구로동 8**",
       "roadAddress": "지번 마스킹 (국토부 비공개)",
@@ -560,6 +560,75 @@
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-06",
+      "maskedAddress": "구로동 8**",
+      "verifiedJibun": "구로동 8**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 161.0,
+      "pyung": 48.7,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": true,
+      "priceManwon": 98935,
+      "unitPricePyung": 2031.4,
+      "unitPriceM2": 614.5,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 26,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-10-06",
+      "maskedAddress": "구로동 7**",
+      "verifiedJibun": "구로동 7**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 5.0,
+      "pyung": 1.5,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 3165,
+      "unitPricePyung": 2092.6,
+      "unitPriceM2": 633.0,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 27,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-10-06",
+      "maskedAddress": "구로동 8**",
+      "verifiedJibun": "구로동 8**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 4.0,
+      "pyung": 1.2,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 2174,
+      "unitPricePyung": 1796.7,
+      "unitPriceM2": 543.5,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 28,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-10-06",
       "maskedAddress": "구로동 7**",
       "verifiedJibun": "구로동 7**",
       "roadAddress": "지번 마스킹 (국토부 비공개)",
@@ -579,7 +648,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 26,
+      "id": 29,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-06",
@@ -602,7 +671,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 27,
+      "id": 30,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-06",
@@ -625,7 +694,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 28,
+      "id": 31,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-06",
@@ -648,7 +717,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 29,
+      "id": 32,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-10-03",
@@ -671,7 +740,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 30,
+      "id": 33,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-10-01",
@@ -694,7 +763,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 31,
+      "id": 34,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-30",
@@ -717,7 +786,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 32,
+      "id": 35,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-09-30",
@@ -740,7 +809,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 33,
+      "id": 36,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-09-28",
@@ -763,7 +832,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 34,
+      "id": 37,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-09-23",
@@ -786,7 +855,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 35,
+      "id": 38,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-22",
@@ -809,7 +878,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 36,
+      "id": 39,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-21",
@@ -832,7 +901,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 37,
+      "id": 40,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-21",
@@ -855,7 +924,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 38,
+      "id": 41,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-09-21",
@@ -878,7 +947,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 39,
+      "id": 42,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-20",
@@ -901,7 +970,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 40,
+      "id": 43,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-09-19",
@@ -924,7 +993,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 41,
+      "id": 44,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-09-15",
@@ -947,7 +1016,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 42,
+      "id": 45,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-09-15",
@@ -970,7 +1039,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 43,
+      "id": 46,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-14",
@@ -993,7 +1062,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 44,
+      "id": 47,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-09-12",
@@ -1016,7 +1085,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 45,
+      "id": 48,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-11",
@@ -1039,7 +1108,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 46,
+      "id": 49,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-11",
@@ -1062,7 +1131,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 47,
+      "id": 50,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-11",
@@ -1085,7 +1154,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 48,
+      "id": 51,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-11",
@@ -1108,7 +1177,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 49,
+      "id": 52,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-11",
@@ -1131,7 +1200,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 50,
+      "id": 53,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-11",
@@ -1154,7 +1223,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 51,
+      "id": 54,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-10",
@@ -1177,7 +1246,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 52,
+      "id": 55,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-09",
@@ -1200,7 +1269,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 53,
+      "id": 56,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-09",
@@ -1223,7 +1292,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 54,
+      "id": 57,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-09",
@@ -1246,7 +1315,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 55,
+      "id": 58,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-09-09",
@@ -1269,7 +1338,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 56,
+      "id": 59,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-08",
@@ -1292,7 +1361,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 57,
+      "id": 60,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-08",
@@ -1315,7 +1384,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 58,
+      "id": 61,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-07",
@@ -1338,7 +1407,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 59,
+      "id": 62,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-09-06",
@@ -1361,7 +1430,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 60,
+      "id": 63,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-02",
@@ -1384,7 +1453,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 61,
+      "id": 64,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-02",
@@ -1407,7 +1476,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 62,
+      "id": 65,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-02",
@@ -1430,7 +1499,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 63,
+      "id": 66,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-02",
@@ -1453,7 +1522,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 64,
+      "id": 67,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-09-02",
@@ -1476,7 +1545,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 65,
+      "id": 68,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-01",
@@ -1499,7 +1568,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 66,
+      "id": 69,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-01",
@@ -1522,7 +1591,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 67,
+      "id": 70,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-09-01",
@@ -1545,7 +1614,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 68,
+      "id": 71,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-09-01",
@@ -1568,7 +1637,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 69,
+      "id": 72,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-08-31",
@@ -1591,7 +1660,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 70,
+      "id": 73,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-08-31",
@@ -1614,7 +1683,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 71,
+      "id": 74,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-08-31",
@@ -1637,7 +1706,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 72,
+      "id": 75,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-08-26",
@@ -1660,7 +1729,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 73,
+      "id": 76,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-08-25",
@@ -1683,7 +1752,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 74,
+      "id": 77,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-08-22",
@@ -1706,7 +1775,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 75,
+      "id": 78,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-08-22",
@@ -1729,7 +1798,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 76,
+      "id": 79,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-08-22",
@@ -1752,7 +1821,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 77,
+      "id": 80,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-08-22",
@@ -1775,7 +1844,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 78,
+      "id": 81,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-08-21",
@@ -1798,7 +1867,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 79,
+      "id": 82,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-08-18",
@@ -1821,7 +1890,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 80,
+      "id": 83,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-08-18",
@@ -1844,7 +1913,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 81,
+      "id": 84,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-08-12",
@@ -1867,7 +1936,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 82,
+      "id": 85,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-08-11",
@@ -1890,7 +1959,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 83,
+      "id": 86,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-08-10",
@@ -1913,7 +1982,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 84,
+      "id": 87,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-08-07",
@@ -1936,7 +2005,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 85,
+      "id": 88,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-08-07",
@@ -1959,7 +2028,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 86,
+      "id": 89,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-08-07",
@@ -1982,7 +2051,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 87,
+      "id": 90,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-08-07",
@@ -2005,7 +2074,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 88,
+      "id": 91,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-08-07",
@@ -2028,7 +2097,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 89,
+      "id": 92,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-08-06",
@@ -2051,7 +2120,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 90,
+      "id": 93,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-08-06",
@@ -2074,7 +2143,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 91,
+      "id": 94,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-08-06",
@@ -2097,7 +2166,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 92,
+      "id": 95,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-08-05",
@@ -2120,7 +2189,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 93,
+      "id": 96,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-08-01",
@@ -2143,7 +2212,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 94,
+      "id": 97,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-07-29",
@@ -2166,7 +2235,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 95,
+      "id": 98,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-07-29",
@@ -2189,7 +2258,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 96,
+      "id": 99,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-07-28",
@@ -2212,7 +2281,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 97,
+      "id": 100,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-07-27",
@@ -2235,7 +2304,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 98,
+      "id": 101,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-07-24",
@@ -2258,7 +2327,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 99,
+      "id": 102,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-07-24",
@@ -2281,7 +2350,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 100,
+      "id": 103,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-07-22",
@@ -2304,7 +2373,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 101,
+      "id": 104,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-07-17",
@@ -2327,7 +2396,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 102,
+      "id": 105,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-07-15",
@@ -2346,75 +2415,6 @@
       "priceManwon": 2790,
       "unitPricePyung": 922.3,
       "unitPriceM2": 279.0,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 103,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-07-15",
-      "maskedAddress": "가리봉동 1**",
-      "verifiedJibun": "가리봉동 1**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 1.9,
-      "pyung": 0.6,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 841,
-      "unitPricePyung": 1502.8,
-      "unitPriceM2": 454.6,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 104,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-07-15",
-      "maskedAddress": "가리봉동 1**",
-      "verifiedJibun": "가리봉동 1**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 1.9,
-      "pyung": 0.6,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 841,
-      "unitPricePyung": 1502.8,
-      "unitPriceM2": 454.6,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 105,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-07-15",
-      "maskedAddress": "가리봉동 1**",
-      "verifiedJibun": "가리봉동 1**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 1.9,
-      "pyung": 0.6,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 841,
-      "unitPricePyung": 1502.8,
-      "unitPriceM2": 454.6,
       "confidence": "부분 공개(국토부 마스킹)",
       "note": "토지 실거래"
     },
@@ -2445,6 +2445,75 @@
       "id": 107,
       "category": "land",
       "categoryName": "토지",
+      "dealDate": "2026-07-15",
+      "maskedAddress": "가리봉동 1**",
+      "verifiedJibun": "가리봉동 1**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 1.9,
+      "pyung": 0.6,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 841,
+      "unitPricePyung": 1502.8,
+      "unitPriceM2": 454.6,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 108,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-07-15",
+      "maskedAddress": "가리봉동 1**",
+      "verifiedJibun": "가리봉동 1**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 1.9,
+      "pyung": 0.6,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 841,
+      "unitPricePyung": 1502.8,
+      "unitPriceM2": 454.6,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 109,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-07-15",
+      "maskedAddress": "가리봉동 1**",
+      "verifiedJibun": "가리봉동 1**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 1.9,
+      "pyung": 0.6,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 841,
+      "unitPricePyung": 1502.8,
+      "unitPriceM2": 454.6,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 110,
+      "category": "land",
+      "categoryName": "토지",
       "dealDate": "2026-07-14",
       "maskedAddress": "개봉동 1**",
       "verifiedJibun": "개봉동 1**",
@@ -2465,7 +2534,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 108,
+      "id": 111,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-07-14",
@@ -2486,75 +2555,6 @@
       "unitPriceM2": 686.7,
       "confidence": "부분 공개(국토부 마스킹)",
       "note": "다가구주택 실거래"
-    },
-    {
-      "id": 109,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-07-13",
-      "maskedAddress": "가리봉동 1**",
-      "verifiedJibun": "가리봉동 1**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 36.0,
-      "pyung": 10.9,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 43600,
-      "unitPricePyung": 4000.3,
-      "unitPriceM2": 1210.1,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 110,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-07-13",
-      "maskedAddress": "가리봉동 1**",
-      "verifiedJibun": "가리봉동 1**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 36.0,
-      "pyung": 10.9,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 43600,
-      "unitPricePyung": 4000.3,
-      "unitPriceM2": 1210.1,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 111,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-07-13",
-      "maskedAddress": "가리봉동 1**",
-      "verifiedJibun": "가리봉동 1**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 36.0,
-      "pyung": 10.9,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 43600,
-      "unitPricePyung": 4000.3,
-      "unitPriceM2": 1210.1,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
     },
     {
       "id": 112,
@@ -2636,15 +2636,15 @@
       "jimok": "대",
       "useArea": "-",
       "roadCond": "-",
-      "areaM2": 20.1,
-      "pyung": 6.1,
+      "areaM2": 36.0,
+      "pyung": 10.9,
       "bldgAreaM2": null,
       "floors": "-",
       "buildYear": "-",
       "isOver30": false,
-      "priceManwon": 9135,
-      "unitPricePyung": 1499.4,
-      "unitPriceM2": 453.6,
+      "priceManwon": 43600,
+      "unitPricePyung": 4000.3,
+      "unitPriceM2": 1210.1,
       "confidence": "부분 공개(국토부 마스킹)",
       "note": "토지 실거래"
     },
@@ -2659,15 +2659,15 @@
       "jimok": "대",
       "useArea": "-",
       "roadCond": "-",
-      "areaM2": 7.4,
-      "pyung": 2.2,
+      "areaM2": 36.0,
+      "pyung": 10.9,
       "bldgAreaM2": null,
       "floors": "-",
       "buildYear": "-",
       "isOver30": false,
-      "priceManwon": 3366,
-      "unitPricePyung": 1499.6,
-      "unitPriceM2": 453.6,
+      "priceManwon": 43600,
+      "unitPricePyung": 4000.3,
+      "unitPriceM2": 1210.1,
       "confidence": "부분 공개(국토부 마스킹)",
       "note": "토지 실거래"
     },
@@ -2682,15 +2682,15 @@
       "jimok": "대",
       "useArea": "-",
       "roadCond": "-",
-      "areaM2": 7.4,
-      "pyung": 2.2,
+      "areaM2": 36.0,
+      "pyung": 10.9,
       "bldgAreaM2": null,
       "floors": "-",
       "buildYear": "-",
       "isOver30": false,
-      "priceManwon": 3366,
-      "unitPricePyung": 1499.6,
-      "unitPriceM2": 453.6,
+      "priceManwon": 43600,
+      "unitPricePyung": 4000.3,
+      "unitPriceM2": 1210.1,
       "confidence": "부분 공개(국토부 마스킹)",
       "note": "토지 실거래"
     },
@@ -2721,6 +2721,75 @@
       "id": 119,
       "category": "land",
       "categoryName": "토지",
+      "dealDate": "2026-07-13",
+      "maskedAddress": "가리봉동 1**",
+      "verifiedJibun": "가리봉동 1**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 7.4,
+      "pyung": 2.2,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 3366,
+      "unitPricePyung": 1499.6,
+      "unitPriceM2": 453.6,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 120,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-07-13",
+      "maskedAddress": "가리봉동 1**",
+      "verifiedJibun": "가리봉동 1**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 7.4,
+      "pyung": 2.2,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 3366,
+      "unitPricePyung": 1499.6,
+      "unitPriceM2": 453.6,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 121,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-07-13",
+      "maskedAddress": "가리봉동 1**",
+      "verifiedJibun": "가리봉동 1**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 20.1,
+      "pyung": 6.1,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 9135,
+      "unitPricePyung": 1499.4,
+      "unitPriceM2": 453.6,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 122,
+      "category": "land",
+      "categoryName": "토지",
       "dealDate": "2026-07-07",
       "maskedAddress": "온수동 3*",
       "verifiedJibun": "온수동 3*",
@@ -2741,7 +2810,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 120,
+      "id": 123,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-07-07",
@@ -2764,7 +2833,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 121,
+      "id": 124,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-07-06",
@@ -2787,7 +2856,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 122,
+      "id": 125,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-07-06",
@@ -2810,7 +2879,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 123,
+      "id": 126,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-07-06",
@@ -2833,7 +2902,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 124,
+      "id": 127,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-07-06",
@@ -2856,7 +2925,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 125,
+      "id": 128,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-07-02",
@@ -2879,7 +2948,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 126,
+      "id": 129,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-07-02",
@@ -2902,7 +2971,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 127,
+      "id": 130,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-06-30",
@@ -2925,99 +2994,99 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 128,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-06-17",
-      "maskedAddress": "개봉동 2**",
-      "verifiedJibun": "개봉동 2**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 42.3,
-      "pyung": 12.8,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 12655,
-      "unitPricePyung": 988.3,
-      "unitPriceM2": 299.0,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 129,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-06-17",
-      "maskedAddress": "개봉동 4**",
-      "verifiedJibun": "개봉동 4**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 4.5,
-      "pyung": 1.4,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 1345,
-      "unitPricePyung": 988.1,
-      "unitPriceM2": 298.9,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 130,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-06-17",
-      "maskedAddress": "개봉동 2**",
-      "verifiedJibun": "개봉동 2**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 42.3,
-      "pyung": 12.8,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 12655,
-      "unitPricePyung": 988.3,
-      "unitPriceM2": 299.0,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
       "id": 131,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-06-17",
-      "maskedAddress": "개봉동 4**",
-      "verifiedJibun": "개봉동 4**",
+      "maskedAddress": "개봉동 2**",
+      "verifiedJibun": "개봉동 2**",
       "roadAddress": "지번 마스킹 (국토부 비공개)",
       "jimok": "대",
       "useArea": "-",
       "roadCond": "-",
-      "areaM2": 4.5,
-      "pyung": 1.4,
+      "areaM2": 42.3,
+      "pyung": 12.8,
       "bldgAreaM2": null,
       "floors": "-",
       "buildYear": "-",
       "isOver30": false,
-      "priceManwon": 1345,
-      "unitPricePyung": 988.1,
-      "unitPriceM2": 298.9,
+      "priceManwon": 12655,
+      "unitPricePyung": 988.3,
+      "unitPriceM2": 299.0,
       "confidence": "부분 공개(국토부 마스킹)",
       "note": "토지 실거래"
     },
     {
       "id": 132,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-06-17",
+      "maskedAddress": "개봉동 4**",
+      "verifiedJibun": "개봉동 4**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 4.5,
+      "pyung": 1.4,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 1345,
+      "unitPricePyung": 988.1,
+      "unitPriceM2": 298.9,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 133,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-06-17",
+      "maskedAddress": "개봉동 2**",
+      "verifiedJibun": "개봉동 2**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 42.3,
+      "pyung": 12.8,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 12655,
+      "unitPricePyung": 988.3,
+      "unitPriceM2": 299.0,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 134,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-06-17",
+      "maskedAddress": "개봉동 4**",
+      "verifiedJibun": "개봉동 4**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 4.5,
+      "pyung": 1.4,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 1345,
+      "unitPricePyung": 988.1,
+      "unitPriceM2": 298.9,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 135,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-06-16",
@@ -3040,7 +3109,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 133,
+      "id": 136,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-06-12",
@@ -3063,7 +3132,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 134,
+      "id": 137,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-06-12",
@@ -3086,7 +3155,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 135,
+      "id": 138,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-06-11",
@@ -3109,7 +3178,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 136,
+      "id": 139,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-06-10",
@@ -3132,7 +3201,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 137,
+      "id": 140,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-06-10",
@@ -3155,7 +3224,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 138,
+      "id": 141,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-06-10",
@@ -3178,7 +3247,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 139,
+      "id": 142,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-06-10",
@@ -3201,7 +3270,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 140,
+      "id": 143,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-06-10",
@@ -3224,7 +3293,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 141,
+      "id": 144,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-06-10",
@@ -3247,7 +3316,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 142,
+      "id": 145,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-06-10",
@@ -3270,7 +3339,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 143,
+      "id": 146,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-06-10",
@@ -3293,7 +3362,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 144,
+      "id": 147,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-06-09",
@@ -3316,7 +3385,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 145,
+      "id": 148,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-06-09",
@@ -3339,7 +3408,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 146,
+      "id": 149,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-06-05",
@@ -3362,7 +3431,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 147,
+      "id": 150,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-28",
@@ -3385,7 +3454,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 148,
+      "id": 151,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-28",
@@ -3408,7 +3477,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 149,
+      "id": 152,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-28",
@@ -3431,7 +3500,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 150,
+      "id": 153,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-27",
@@ -3454,7 +3523,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 151,
+      "id": 154,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-27",
@@ -3477,7 +3546,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 152,
+      "id": 155,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-05-27",
@@ -3500,7 +3569,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 153,
+      "id": 156,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-05-27",
@@ -3523,7 +3592,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 154,
+      "id": 157,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-05-27",
@@ -3546,7 +3615,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 155,
+      "id": 158,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-26",
@@ -3569,7 +3638,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 156,
+      "id": 159,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-23",
@@ -3592,7 +3661,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 157,
+      "id": 160,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-05-23",
@@ -3615,7 +3684,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 158,
+      "id": 161,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-22",
@@ -3638,7 +3707,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 159,
+      "id": 162,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-22",
@@ -3661,7 +3730,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 160,
+      "id": 163,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-21",
@@ -3684,7 +3753,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 161,
+      "id": 164,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-05-16",
@@ -3707,7 +3776,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 162,
+      "id": 165,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-05-13",
@@ -3730,7 +3799,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 163,
+      "id": 166,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-05-13",
@@ -3753,7 +3822,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 164,
+      "id": 167,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-11",
@@ -3776,7 +3845,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 165,
+      "id": 168,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-11",
@@ -3799,7 +3868,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 166,
+      "id": 169,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-11",
@@ -3822,7 +3891,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 167,
+      "id": 170,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-09",
@@ -3845,7 +3914,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 168,
+      "id": 171,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-09",
@@ -3868,7 +3937,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 169,
+      "id": 172,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-09",
@@ -3891,7 +3960,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 170,
+      "id": 173,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-08",
@@ -3914,7 +3983,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 171,
+      "id": 174,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-07",
@@ -3937,7 +4006,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 172,
+      "id": 175,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-07",
@@ -3960,7 +4029,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 173,
+      "id": 176,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-05-07",
@@ -3983,7 +4052,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 174,
+      "id": 177,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-05-07",
@@ -4006,7 +4075,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 175,
+      "id": 178,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-05-07",
@@ -4029,7 +4098,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 176,
+      "id": 179,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-05-07",
@@ -4052,7 +4121,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 177,
+      "id": 180,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-05-07",
@@ -4075,7 +4144,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 178,
+      "id": 181,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-06",
@@ -4098,7 +4167,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 179,
+      "id": 182,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-05-05",
@@ -4121,7 +4190,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 180,
+      "id": 183,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-05-05",
@@ -4144,7 +4213,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 181,
+      "id": 184,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-05-04",
@@ -4167,7 +4236,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 182,
+      "id": 185,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-30",
@@ -4190,7 +4259,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 183,
+      "id": 186,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-29",
@@ -4213,7 +4282,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 184,
+      "id": 187,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-28",
@@ -4236,7 +4305,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 185,
+      "id": 188,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-04-28",
@@ -4259,7 +4328,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 186,
+      "id": 189,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-27",
@@ -4282,7 +4351,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 187,
+      "id": 190,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-04-27",
@@ -4305,7 +4374,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 188,
+      "id": 191,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-04-26",
@@ -4328,7 +4397,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 189,
+      "id": 192,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-25",
@@ -4351,7 +4420,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 190,
+      "id": 193,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-04-25",
@@ -4374,7 +4443,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 191,
+      "id": 194,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-04-25",
@@ -4397,7 +4466,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 192,
+      "id": 195,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-24",
@@ -4420,7 +4489,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 193,
+      "id": 196,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-24",
@@ -4443,7 +4512,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 194,
+      "id": 197,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-04-24",
@@ -4466,7 +4535,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 195,
+      "id": 198,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-04-24",
@@ -4489,7 +4558,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 196,
+      "id": 199,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-23",
@@ -4512,7 +4581,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 197,
+      "id": 200,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-22",
@@ -4535,7 +4604,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 198,
+      "id": 201,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-21",
@@ -4558,7 +4627,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 199,
+      "id": 202,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-20",
@@ -4581,7 +4650,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 200,
+      "id": 203,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-17",
@@ -4604,7 +4673,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 201,
+      "id": 204,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-04-15",
@@ -4627,7 +4696,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 202,
+      "id": 205,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-10",
@@ -4650,7 +4719,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 203,
+      "id": 206,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-09",
@@ -4673,7 +4742,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 204,
+      "id": 207,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-04-09",
@@ -4696,7 +4765,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 205,
+      "id": 208,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-08",
@@ -4719,7 +4788,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 206,
+      "id": 209,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-07",
@@ -4742,7 +4811,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 207,
+      "id": 210,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-07",
@@ -4765,7 +4834,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 208,
+      "id": 211,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -4788,7 +4857,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 209,
+      "id": 212,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -4811,7 +4880,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 210,
+      "id": 213,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -4834,7 +4903,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 211,
+      "id": 214,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -4857,7 +4926,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 212,
+      "id": 215,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -4880,7 +4949,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 213,
+      "id": 216,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -4903,7 +4972,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 214,
+      "id": 217,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -4926,7 +4995,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 215,
+      "id": 218,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -4949,7 +5018,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 216,
+      "id": 219,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -4972,7 +5041,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 217,
+      "id": 220,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -4995,7 +5064,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 218,
+      "id": 221,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5018,7 +5087,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 219,
+      "id": 222,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5041,7 +5110,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 220,
+      "id": 223,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5064,7 +5133,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 221,
+      "id": 224,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5087,7 +5156,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 222,
+      "id": 225,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5110,7 +5179,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 223,
+      "id": 226,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5133,7 +5202,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 224,
+      "id": 227,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5156,7 +5225,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 225,
+      "id": 228,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5179,7 +5248,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 226,
+      "id": 229,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5202,7 +5271,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 227,
+      "id": 230,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5225,7 +5294,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 228,
+      "id": 231,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5248,7 +5317,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 229,
+      "id": 232,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5271,7 +5340,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 230,
+      "id": 233,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5294,7 +5363,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 231,
+      "id": 234,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5317,7 +5386,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 232,
+      "id": 235,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5340,7 +5409,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 233,
+      "id": 236,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5363,7 +5432,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 234,
+      "id": 237,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5386,7 +5455,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 235,
+      "id": 238,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5409,7 +5478,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 236,
+      "id": 239,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5432,7 +5501,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 237,
+      "id": 240,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5455,7 +5524,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 238,
+      "id": 241,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5478,7 +5547,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 239,
+      "id": 242,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5501,7 +5570,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 240,
+      "id": 243,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5524,7 +5593,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 241,
+      "id": 244,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5547,7 +5616,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 242,
+      "id": 245,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5570,7 +5639,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 243,
+      "id": 246,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5593,7 +5662,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 244,
+      "id": 247,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5616,7 +5685,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 245,
+      "id": 248,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-03",
@@ -5639,7 +5708,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 246,
+      "id": 249,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-01",
@@ -5662,7 +5731,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 247,
+      "id": 250,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-01",
@@ -5685,7 +5754,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 248,
+      "id": 251,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-01",
@@ -5708,7 +5777,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 249,
+      "id": 252,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-01",
@@ -5731,7 +5800,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 250,
+      "id": 253,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-01",
@@ -5754,7 +5823,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 251,
+      "id": 254,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-01",
@@ -5777,7 +5846,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 252,
+      "id": 255,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-01",
@@ -5800,7 +5869,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 253,
+      "id": 256,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-01",
@@ -5823,7 +5892,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 254,
+      "id": 257,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-01",
@@ -5846,7 +5915,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 255,
+      "id": 258,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-01",
@@ -5869,7 +5938,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 256,
+      "id": 259,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-01",
@@ -5892,7 +5961,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 257,
+      "id": 260,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-01",
@@ -5915,7 +5984,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 258,
+      "id": 261,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-01",
@@ -5938,7 +6007,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 259,
+      "id": 262,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-04-01",
@@ -5961,7 +6030,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 260,
+      "id": 263,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -5984,7 +6053,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 261,
+      "id": 264,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6007,7 +6076,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 262,
+      "id": 265,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6030,75 +6099,6 @@
       "note": "토지 실거래"
     },
     {
-      "id": 263,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-03-31",
-      "maskedAddress": "구로동 6**",
-      "verifiedJibun": "구로동 6**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 7.6,
-      "pyung": 2.3,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 1688,
-      "unitPricePyung": 731.3,
-      "unitPriceM2": 221.2,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 264,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-03-31",
-      "maskedAddress": "구로동 6**",
-      "verifiedJibun": "구로동 6**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 1.3,
-      "pyung": 0.4,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 285,
-      "unitPricePyung": 730.3,
-      "unitPriceM2": 220.9,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 265,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-03-31",
-      "maskedAddress": "구로동 6**",
-      "verifiedJibun": "구로동 6**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 7.6,
-      "pyung": 2.3,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 1688,
-      "unitPricePyung": 731.3,
-      "unitPriceM2": 221.2,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
       "id": 266,
       "category": "land",
       "categoryName": "토지",
@@ -6109,6 +6109,29 @@
       "jimok": "대",
       "useArea": "-",
       "roadCond": "-",
+      "areaM2": 7.6,
+      "pyung": 2.3,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 1688,
+      "unitPricePyung": 731.3,
+      "unitPriceM2": 221.2,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 267,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-03-31",
+      "maskedAddress": "구로동 6**",
+      "verifiedJibun": "구로동 6**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
       "areaM2": 1.3,
       "pyung": 0.4,
       "bldgAreaM2": null,
@@ -6122,7 +6145,53 @@
       "note": "토지 실거래"
     },
     {
-      "id": 267,
+      "id": 268,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-03-31",
+      "maskedAddress": "구로동 6**",
+      "verifiedJibun": "구로동 6**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 7.6,
+      "pyung": 2.3,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 1688,
+      "unitPricePyung": 731.3,
+      "unitPriceM2": 221.2,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 269,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-03-31",
+      "maskedAddress": "구로동 6**",
+      "verifiedJibun": "구로동 6**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 1.3,
+      "pyung": 0.4,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 285,
+      "unitPricePyung": 730.3,
+      "unitPriceM2": 220.9,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 270,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6145,7 +6214,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 268,
+      "id": 271,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6168,7 +6237,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 269,
+      "id": 272,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6191,7 +6260,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 270,
+      "id": 273,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6214,7 +6283,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 271,
+      "id": 274,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6237,7 +6306,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 272,
+      "id": 275,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6260,7 +6329,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 273,
+      "id": 276,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6283,7 +6352,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 274,
+      "id": 277,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6306,7 +6375,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 275,
+      "id": 278,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6329,7 +6398,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 276,
+      "id": 279,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6352,7 +6421,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 277,
+      "id": 280,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6375,7 +6444,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 278,
+      "id": 281,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6398,7 +6467,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 279,
+      "id": 282,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6421,7 +6490,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 280,
+      "id": 283,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6444,7 +6513,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 281,
+      "id": 284,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-31",
@@ -6467,7 +6536,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 282,
+      "id": 285,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-30",
@@ -6490,7 +6559,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 283,
+      "id": 286,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-30",
@@ -6513,7 +6582,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 284,
+      "id": 287,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-30",
@@ -6536,7 +6605,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 285,
+      "id": 288,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-30",
@@ -6559,7 +6628,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 286,
+      "id": 289,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-30",
@@ -6582,7 +6651,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 287,
+      "id": 290,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-30",
@@ -6605,7 +6674,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 288,
+      "id": 291,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-30",
@@ -6628,7 +6697,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 289,
+      "id": 292,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-30",
@@ -6651,7 +6720,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 290,
+      "id": 293,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-03-30",
@@ -6674,7 +6743,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 291,
+      "id": 294,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-03-28",
@@ -6697,7 +6766,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 292,
+      "id": 295,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-27",
@@ -6720,7 +6789,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 293,
+      "id": 296,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-27",
@@ -6743,7 +6812,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 294,
+      "id": 297,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-27",
@@ -6766,7 +6835,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 295,
+      "id": 298,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-27",
@@ -6789,7 +6858,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 296,
+      "id": 299,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-03-27",
@@ -6812,7 +6881,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 297,
+      "id": 300,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -6835,7 +6904,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 298,
+      "id": 301,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -6858,7 +6927,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 299,
+      "id": 302,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -6881,7 +6950,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 300,
+      "id": 303,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -6904,7 +6973,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 301,
+      "id": 304,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -6927,7 +6996,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 302,
+      "id": 305,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -6950,7 +7019,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 303,
+      "id": 306,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -6973,7 +7042,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 304,
+      "id": 307,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -6996,7 +7065,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 305,
+      "id": 308,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7019,7 +7088,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 306,
+      "id": 309,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7042,7 +7111,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 307,
+      "id": 310,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7065,75 +7134,6 @@
       "note": "토지 실거래"
     },
     {
-      "id": 308,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-03-26",
-      "maskedAddress": "구로동 6**",
-      "verifiedJibun": "구로동 6**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 7.6,
-      "pyung": 2.3,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 3532,
-      "unitPricePyung": 1540.4,
-      "unitPriceM2": 466.0,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 309,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-03-26",
-      "maskedAddress": "구로동 6**",
-      "verifiedJibun": "구로동 6**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 1.3,
-      "pyung": 0.4,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 597,
-      "unitPricePyung": 1541.8,
-      "unitPriceM2": 466.4,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 310,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-03-26",
-      "maskedAddress": "구로동 6**",
-      "verifiedJibun": "구로동 6**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 7.6,
-      "pyung": 2.3,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 3532,
-      "unitPricePyung": 1540.4,
-      "unitPriceM2": 466.0,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
       "id": 311,
       "category": "land",
       "categoryName": "토지",
@@ -7144,6 +7144,29 @@
       "jimok": "대",
       "useArea": "-",
       "roadCond": "-",
+      "areaM2": 7.6,
+      "pyung": 2.3,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 3532,
+      "unitPricePyung": 1540.4,
+      "unitPriceM2": 466.0,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 312,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-03-26",
+      "maskedAddress": "구로동 6**",
+      "verifiedJibun": "구로동 6**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
       "areaM2": 1.3,
       "pyung": 0.4,
       "bldgAreaM2": null,
@@ -7157,7 +7180,53 @@
       "note": "토지 실거래"
     },
     {
-      "id": 312,
+      "id": 313,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-03-26",
+      "maskedAddress": "구로동 6**",
+      "verifiedJibun": "구로동 6**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 7.6,
+      "pyung": 2.3,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 3532,
+      "unitPricePyung": 1540.4,
+      "unitPriceM2": 466.0,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 314,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-03-26",
+      "maskedAddress": "구로동 6**",
+      "verifiedJibun": "구로동 6**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 1.3,
+      "pyung": 0.4,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 597,
+      "unitPricePyung": 1541.8,
+      "unitPriceM2": 466.4,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 315,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7180,7 +7249,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 313,
+      "id": 316,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7203,7 +7272,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 314,
+      "id": 317,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7226,7 +7295,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 315,
+      "id": 318,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7249,7 +7318,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 316,
+      "id": 319,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7272,7 +7341,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 317,
+      "id": 320,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7295,7 +7364,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 318,
+      "id": 321,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7318,7 +7387,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 319,
+      "id": 322,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7341,7 +7410,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 320,
+      "id": 323,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7364,7 +7433,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 321,
+      "id": 324,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7387,7 +7456,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 322,
+      "id": 325,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7410,7 +7479,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 323,
+      "id": 326,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7433,7 +7502,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 324,
+      "id": 327,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7456,7 +7525,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 325,
+      "id": 328,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7479,7 +7548,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 326,
+      "id": 329,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7502,7 +7571,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 327,
+      "id": 330,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7525,7 +7594,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 328,
+      "id": 331,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7548,7 +7617,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 329,
+      "id": 332,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7571,7 +7640,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 330,
+      "id": 333,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7594,7 +7663,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 331,
+      "id": 334,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7617,7 +7686,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 332,
+      "id": 335,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7640,7 +7709,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 333,
+      "id": 336,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7663,7 +7732,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 334,
+      "id": 337,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7686,7 +7755,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 335,
+      "id": 338,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7709,7 +7778,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 336,
+      "id": 339,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7732,7 +7801,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 337,
+      "id": 340,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7755,7 +7824,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 338,
+      "id": 341,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7778,7 +7847,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 339,
+      "id": 342,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7801,7 +7870,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 340,
+      "id": 343,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7824,7 +7893,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 341,
+      "id": 344,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7847,7 +7916,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 342,
+      "id": 345,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-26",
@@ -7870,7 +7939,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 343,
+      "id": 346,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-25",
@@ -7893,7 +7962,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 344,
+      "id": 347,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-25",
@@ -7916,7 +7985,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 345,
+      "id": 348,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-25",
@@ -7939,7 +8008,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 346,
+      "id": 349,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-25",
@@ -7962,7 +8031,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 347,
+      "id": 350,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-25",
@@ -7985,7 +8054,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 348,
+      "id": 351,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-25",
@@ -8008,7 +8077,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 349,
+      "id": 352,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-25",
@@ -8031,7 +8100,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 350,
+      "id": 353,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-25",
@@ -8054,7 +8123,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 351,
+      "id": 354,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-25",
@@ -8077,7 +8146,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 352,
+      "id": 355,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-25",
@@ -8100,7 +8169,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 353,
+      "id": 356,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-25",
@@ -8123,7 +8192,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 354,
+      "id": 357,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-25",
@@ -8146,7 +8215,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 355,
+      "id": 358,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-25",
@@ -8169,7 +8238,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 356,
+      "id": 359,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-25",
@@ -8192,7 +8261,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 357,
+      "id": 360,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-25",
@@ -8215,7 +8284,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 358,
+      "id": 361,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-24",
@@ -8238,7 +8307,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 359,
+      "id": 362,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-03-24",
@@ -8261,7 +8330,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 360,
+      "id": 363,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-19",
@@ -8284,7 +8353,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 361,
+      "id": 364,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-19",
@@ -8307,7 +8376,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 362,
+      "id": 365,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-19",
@@ -8330,79 +8399,10 @@
       "note": "토지 실거래"
     },
     {
-      "id": 363,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-03-19",
-      "maskedAddress": "개봉동 1**",
-      "verifiedJibun": "개봉동 1**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 3.0,
-      "pyung": 0.9,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 837,
-      "unitPricePyung": 922.3,
-      "unitPriceM2": 279.0,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 364,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-03-18",
-      "maskedAddress": "개봉동 1**",
-      "verifiedJibun": "개봉동 1**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 2.0,
-      "pyung": 0.6,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 558,
-      "unitPricePyung": 922.3,
-      "unitPriceM2": 279.0,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 365,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-03-18",
-      "maskedAddress": "개봉동 1**",
-      "verifiedJibun": "개봉동 1**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 3.0,
-      "pyung": 0.9,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 837,
-      "unitPricePyung": 922.3,
-      "unitPriceM2": 279.0,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
       "id": 366,
       "category": "land",
       "categoryName": "토지",
-      "dealDate": "2026-03-18",
+      "dealDate": "2026-03-19",
       "maskedAddress": "개봉동 1**",
       "verifiedJibun": "개봉동 1**",
       "roadAddress": "지번 마스킹 (국토부 비공개)",
@@ -8432,13 +8432,13 @@
       "jimok": "대",
       "useArea": "-",
       "roadCond": "-",
-      "areaM2": 3.0,
-      "pyung": 0.9,
+      "areaM2": 2.0,
+      "pyung": 0.6,
       "bldgAreaM2": null,
       "floors": "-",
       "buildYear": "-",
       "isOver30": false,
-      "priceManwon": 837,
+      "priceManwon": 558,
       "unitPricePyung": 922.3,
       "unitPriceM2": 279.0,
       "confidence": "부분 공개(국토부 마스킹)",
@@ -8448,7 +8448,7 @@
       "id": 368,
       "category": "land",
       "categoryName": "토지",
-      "dealDate": "2026-03-17",
+      "dealDate": "2026-03-18",
       "maskedAddress": "개봉동 1**",
       "verifiedJibun": "개봉동 1**",
       "roadAddress": "지번 마스킹 (국토부 비공개)",
@@ -8471,6 +8471,75 @@
       "id": 369,
       "category": "land",
       "categoryName": "토지",
+      "dealDate": "2026-03-18",
+      "maskedAddress": "개봉동 1**",
+      "verifiedJibun": "개봉동 1**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 3.0,
+      "pyung": 0.9,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 837,
+      "unitPricePyung": 922.3,
+      "unitPriceM2": 279.0,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 370,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-03-18",
+      "maskedAddress": "개봉동 1**",
+      "verifiedJibun": "개봉동 1**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 3.0,
+      "pyung": 0.9,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 837,
+      "unitPricePyung": 922.3,
+      "unitPriceM2": 279.0,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 371,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-03-17",
+      "maskedAddress": "개봉동 1**",
+      "verifiedJibun": "개봉동 1**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 3.0,
+      "pyung": 0.9,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 837,
+      "unitPricePyung": 922.3,
+      "unitPriceM2": 279.0,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 372,
+      "category": "land",
+      "categoryName": "토지",
       "dealDate": "2026-03-17",
       "maskedAddress": "개봉동 1**",
       "verifiedJibun": "개봉동 1**",
@@ -8491,7 +8560,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 370,
+      "id": 373,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-03-17",
@@ -8514,7 +8583,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 371,
+      "id": 374,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-13",
@@ -8537,7 +8606,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 372,
+      "id": 375,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-13",
@@ -8560,7 +8629,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 373,
+      "id": 376,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-13",
@@ -8583,7 +8652,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 374,
+      "id": 377,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-13",
@@ -8606,7 +8675,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 375,
+      "id": 378,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-13",
@@ -8629,7 +8698,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 376,
+      "id": 379,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-13",
@@ -8652,7 +8721,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 377,
+      "id": 380,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-03-12",
@@ -8675,7 +8744,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 378,
+      "id": 381,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-11",
@@ -8698,7 +8767,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 379,
+      "id": 382,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-10",
@@ -8721,7 +8790,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 380,
+      "id": 383,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-10",
@@ -8744,99 +8813,99 @@
       "note": "토지 실거래"
     },
     {
-      "id": 381,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-03-10",
-      "maskedAddress": "궁동 산*",
-      "verifiedJibun": "궁동 산*",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 26.4,
-      "pyung": 8.0,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 1306,
-      "unitPricePyung": 163.5,
-      "unitPriceM2": 49.5,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 382,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-03-10",
-      "maskedAddress": "궁동 산*",
-      "verifiedJibun": "궁동 산*",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 26.4,
-      "pyung": 8.0,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 1306,
-      "unitPricePyung": 163.5,
-      "unitPriceM2": 49.5,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 383,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-03-05",
-      "maskedAddress": "개봉동 1**",
-      "verifiedJibun": "개봉동 1**",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 4.0,
-      "pyung": 1.2,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 1116,
-      "unitPricePyung": 922.3,
-      "unitPriceM2": 279.0,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
       "id": 384,
       "category": "land",
       "categoryName": "토지",
-      "dealDate": "2026-03-05",
-      "maskedAddress": "개봉동 1**",
-      "verifiedJibun": "개봉동 1**",
+      "dealDate": "2026-03-10",
+      "maskedAddress": "궁동 산*",
+      "verifiedJibun": "궁동 산*",
       "roadAddress": "지번 마스킹 (국토부 비공개)",
       "jimok": "대",
       "useArea": "-",
       "roadCond": "-",
-      "areaM2": 4.0,
-      "pyung": 1.2,
+      "areaM2": 26.4,
+      "pyung": 8.0,
       "bldgAreaM2": null,
       "floors": "-",
       "buildYear": "-",
       "isOver30": false,
-      "priceManwon": 1116,
-      "unitPricePyung": 922.3,
-      "unitPriceM2": 279.0,
+      "priceManwon": 1306,
+      "unitPricePyung": 163.5,
+      "unitPriceM2": 49.5,
       "confidence": "부분 공개(국토부 마스킹)",
       "note": "토지 실거래"
     },
     {
       "id": 385,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-03-10",
+      "maskedAddress": "궁동 산*",
+      "verifiedJibun": "궁동 산*",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 26.4,
+      "pyung": 8.0,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 1306,
+      "unitPricePyung": 163.5,
+      "unitPriceM2": 49.5,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 386,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-03-05",
+      "maskedAddress": "개봉동 1**",
+      "verifiedJibun": "개봉동 1**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 4.0,
+      "pyung": 1.2,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 1116,
+      "unitPricePyung": 922.3,
+      "unitPriceM2": 279.0,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 387,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-03-05",
+      "maskedAddress": "개봉동 1**",
+      "verifiedJibun": "개봉동 1**",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 4.0,
+      "pyung": 1.2,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 1116,
+      "unitPricePyung": 922.3,
+      "unitPriceM2": 279.0,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 388,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-05",
@@ -8859,7 +8928,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 386,
+      "id": 389,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-04",
@@ -8882,7 +8951,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 387,
+      "id": 390,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-03-04",
@@ -8905,7 +8974,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 388,
+      "id": 391,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-03-04",
@@ -8928,7 +8997,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 389,
+      "id": 392,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-03-03",
@@ -8951,7 +9020,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 390,
+      "id": 393,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-02-25",
@@ -8974,7 +9043,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 391,
+      "id": 394,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-02-24",
@@ -8997,7 +9066,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 392,
+      "id": 395,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-02-24",
@@ -9020,7 +9089,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 393,
+      "id": 396,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-02-21",
@@ -9043,7 +9112,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 394,
+      "id": 397,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-02-21",
@@ -9066,7 +9135,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 395,
+      "id": 398,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-02-12",
@@ -9089,7 +9158,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 396,
+      "id": 399,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-02-11",
@@ -9112,7 +9181,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 397,
+      "id": 400,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-02-09",
@@ -9135,7 +9204,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 398,
+      "id": 401,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-02-09",
@@ -9158,7 +9227,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 399,
+      "id": 402,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-02-07",
@@ -9181,7 +9250,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 400,
+      "id": 403,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-02-07",
@@ -9204,7 +9273,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 401,
+      "id": 404,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-02-06",
@@ -9227,7 +9296,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 402,
+      "id": 405,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-02-06",
@@ -9250,7 +9319,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 403,
+      "id": 406,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-02-06",
@@ -9273,7 +9342,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 404,
+      "id": 407,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-02-06",
@@ -9296,7 +9365,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 405,
+      "id": 408,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-02-05",
@@ -9319,7 +9388,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 406,
+      "id": 409,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-02-04",
@@ -9342,7 +9411,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 407,
+      "id": 410,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-02-04",
@@ -9365,7 +9434,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 408,
+      "id": 411,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-02-03",
@@ -9388,7 +9457,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 409,
+      "id": 412,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-02-03",
@@ -9411,7 +9480,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 410,
+      "id": 413,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-02-03",
@@ -9432,75 +9501,6 @@
       "unitPriceM2": 647.6,
       "confidence": "부분 공개(국토부 마스킹)",
       "note": "다가구주택 실거래"
-    },
-    {
-      "id": 411,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-01-30",
-      "maskedAddress": "궁동 산*",
-      "verifiedJibun": "궁동 산*",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 24.0,
-      "pyung": 7.3,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 840,
-      "unitPricePyung": 115.7,
-      "unitPriceM2": 35.0,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 412,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-01-30",
-      "maskedAddress": "궁동 산*",
-      "verifiedJibun": "궁동 산*",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 202.0,
-      "pyung": 61.1,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": true,
-      "priceManwon": 7320,
-      "unitPricePyung": 119.8,
-      "unitPriceM2": 36.2,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
-      "id": 413,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-01-30",
-      "maskedAddress": "궁동 산*",
-      "verifiedJibun": "궁동 산*",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 96.0,
-      "pyung": 29.0,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 3480,
-      "unitPricePyung": 119.8,
-      "unitPriceM2": 36.2,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
     },
     {
       "id": 414,
@@ -9536,20 +9536,43 @@
       "jimok": "대",
       "useArea": "-",
       "roadCond": "-",
-      "areaM2": 123.0,
-      "pyung": 37.2,
+      "areaM2": 202.0,
+      "pyung": 61.1,
       "bldgAreaM2": null,
       "floors": "-",
       "buildYear": "-",
       "isOver30": true,
-      "priceManwon": 4440,
-      "unitPricePyung": 119.3,
-      "unitPriceM2": 36.1,
+      "priceManwon": 7320,
+      "unitPricePyung": 119.8,
+      "unitPriceM2": 36.2,
       "confidence": "부분 공개(국토부 마스킹)",
       "note": "토지 실거래"
     },
     {
       "id": 416,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-01-30",
+      "maskedAddress": "궁동 산*",
+      "verifiedJibun": "궁동 산*",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 96.0,
+      "pyung": 29.0,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 3480,
+      "unitPricePyung": 119.8,
+      "unitPriceM2": 36.2,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 417,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -9572,29 +9595,6 @@
       "note": "토지 실거래"
     },
     {
-      "id": 417,
-      "category": "land",
-      "categoryName": "토지",
-      "dealDate": "2026-01-30",
-      "maskedAddress": "궁동 산*",
-      "verifiedJibun": "궁동 산*",
-      "roadAddress": "지번 마스킹 (국토부 비공개)",
-      "jimok": "대",
-      "useArea": "-",
-      "roadCond": "-",
-      "areaM2": 109.0,
-      "pyung": 33.0,
-      "bldgAreaM2": null,
-      "floors": "-",
-      "buildYear": "-",
-      "isOver30": true,
-      "priceManwon": 3630,
-      "unitPricePyung": 110.1,
-      "unitPriceM2": 33.3,
-      "confidence": "부분 공개(국토부 마스킹)",
-      "note": "토지 실거래"
-    },
-    {
       "id": 418,
       "category": "land",
       "categoryName": "토지",
@@ -9605,15 +9605,15 @@
       "jimok": "대",
       "useArea": "-",
       "roadCond": "-",
-      "areaM2": 66.0,
-      "pyung": 20.0,
+      "areaM2": 123.0,
+      "pyung": 37.2,
       "bldgAreaM2": null,
       "floors": "-",
       "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 2400,
-      "unitPricePyung": 120.2,
-      "unitPriceM2": 36.4,
+      "isOver30": true,
+      "priceManwon": 4440,
+      "unitPricePyung": 119.3,
+      "unitPriceM2": 36.1,
       "confidence": "부분 공개(국토부 마스킹)",
       "note": "토지 실거래"
     },
@@ -9651,20 +9651,43 @@
       "jimok": "대",
       "useArea": "-",
       "roadCond": "-",
-      "areaM2": 37.0,
-      "pyung": 11.2,
+      "areaM2": 109.0,
+      "pyung": 33.0,
       "bldgAreaM2": null,
       "floors": "-",
       "buildYear": "-",
-      "isOver30": false,
-      "priceManwon": 1265,
-      "unitPricePyung": 113.0,
-      "unitPriceM2": 34.2,
+      "isOver30": true,
+      "priceManwon": 3630,
+      "unitPricePyung": 110.1,
+      "unitPriceM2": 33.3,
       "confidence": "부분 공개(국토부 마스킹)",
       "note": "토지 실거래"
     },
     {
       "id": 421,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-01-30",
+      "maskedAddress": "궁동 산*",
+      "verifiedJibun": "궁동 산*",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 66.0,
+      "pyung": 20.0,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 2400,
+      "unitPricePyung": 120.2,
+      "unitPriceM2": 36.4,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 422,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -9687,7 +9710,53 @@
       "note": "토지 실거래"
     },
     {
-      "id": 422,
+      "id": 423,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-01-30",
+      "maskedAddress": "궁동 산*",
+      "verifiedJibun": "궁동 산*",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 37.0,
+      "pyung": 11.2,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 1265,
+      "unitPricePyung": 113.0,
+      "unitPriceM2": 34.2,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 424,
+      "category": "land",
+      "categoryName": "토지",
+      "dealDate": "2026-01-30",
+      "maskedAddress": "궁동 산*",
+      "verifiedJibun": "궁동 산*",
+      "roadAddress": "지번 마스킹 (국토부 비공개)",
+      "jimok": "대",
+      "useArea": "-",
+      "roadCond": "-",
+      "areaM2": 24.0,
+      "pyung": 7.3,
+      "bldgAreaM2": null,
+      "floors": "-",
+      "buildYear": "-",
+      "isOver30": false,
+      "priceManwon": 840,
+      "unitPricePyung": 115.7,
+      "unitPriceM2": 35.0,
+      "confidence": "부분 공개(국토부 마스킹)",
+      "note": "토지 실거래"
+    },
+    {
+      "id": 425,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -9710,7 +9779,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 423,
+      "id": 426,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -9733,7 +9802,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 424,
+      "id": 427,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -9756,7 +9825,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 425,
+      "id": 428,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -9779,7 +9848,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 426,
+      "id": 429,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -9802,7 +9871,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 427,
+      "id": 430,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -9825,7 +9894,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 428,
+      "id": 431,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -9848,7 +9917,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 429,
+      "id": 432,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -9871,7 +9940,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 430,
+      "id": 433,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -9894,7 +9963,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 431,
+      "id": 434,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -9917,7 +9986,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 432,
+      "id": 435,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -9940,7 +10009,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 433,
+      "id": 436,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -9963,7 +10032,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 434,
+      "id": 437,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -9986,7 +10055,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 435,
+      "id": 438,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10009,7 +10078,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 436,
+      "id": 439,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10032,7 +10101,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 437,
+      "id": 440,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10055,7 +10124,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 438,
+      "id": 441,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10078,7 +10147,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 439,
+      "id": 442,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10101,7 +10170,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 440,
+      "id": 443,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10124,7 +10193,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 441,
+      "id": 444,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10147,7 +10216,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 442,
+      "id": 445,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10170,7 +10239,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 443,
+      "id": 446,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10193,7 +10262,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 444,
+      "id": 447,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10216,7 +10285,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 445,
+      "id": 448,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10239,7 +10308,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 446,
+      "id": 449,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10262,7 +10331,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 447,
+      "id": 450,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10285,7 +10354,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 448,
+      "id": 451,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10308,7 +10377,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 449,
+      "id": 452,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10331,7 +10400,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 450,
+      "id": 453,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10354,7 +10423,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 451,
+      "id": 454,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10377,7 +10446,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 452,
+      "id": 455,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10400,7 +10469,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 453,
+      "id": 456,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10423,7 +10492,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 454,
+      "id": 457,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10446,7 +10515,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 455,
+      "id": 458,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10469,7 +10538,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 456,
+      "id": 459,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10492,7 +10561,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 457,
+      "id": 460,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10515,7 +10584,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 458,
+      "id": 461,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10538,7 +10607,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 459,
+      "id": 462,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-30",
@@ -10561,7 +10630,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 460,
+      "id": 463,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-29",
@@ -10584,7 +10653,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 461,
+      "id": 464,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-29",
@@ -10607,7 +10676,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 462,
+      "id": 465,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-27",
@@ -10630,7 +10699,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 463,
+      "id": 466,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-26",
@@ -10653,7 +10722,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 464,
+      "id": 467,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-01-23",
@@ -10676,7 +10745,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 465,
+      "id": 468,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-01-23",
@@ -10699,7 +10768,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 466,
+      "id": 469,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-20",
@@ -10722,7 +10791,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 467,
+      "id": 470,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-15",
@@ -10745,7 +10814,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 468,
+      "id": 471,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-01-15",
@@ -10768,7 +10837,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 469,
+      "id": 472,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-13",
@@ -10791,7 +10860,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 470,
+      "id": 473,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-08",
@@ -10814,7 +10883,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 471,
+      "id": 474,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-06",
@@ -10837,7 +10906,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 472,
+      "id": 475,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2026-01-06",
@@ -10860,7 +10929,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 473,
+      "id": 476,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-01-06",
@@ -10883,7 +10952,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 474,
+      "id": 477,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2026-01-02",
@@ -10906,7 +10975,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 475,
+      "id": 478,
       "category": "house",
       "categoryName": "단독주택",
       "dealDate": "2026-01-02",
@@ -10929,7 +10998,7 @@
       "note": "단독주택 실거래"
     },
     {
-      "id": 476,
+      "id": 479,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-29",
@@ -10952,7 +11021,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 477,
+      "id": 480,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2025-12-29",
@@ -10975,7 +11044,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 478,
+      "id": 481,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2025-12-29",
@@ -10998,7 +11067,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 479,
+      "id": 482,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-23",
@@ -11021,7 +11090,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 480,
+      "id": 483,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2025-12-22",
@@ -11044,7 +11113,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 481,
+      "id": 484,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-19",
@@ -11067,7 +11136,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 482,
+      "id": 485,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-19",
@@ -11090,7 +11159,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 483,
+      "id": 486,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-19",
@@ -11113,7 +11182,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 484,
+      "id": 487,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-18",
@@ -11136,7 +11205,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 485,
+      "id": 488,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2025-12-18",
@@ -11159,7 +11228,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 486,
+      "id": 489,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-17",
@@ -11182,7 +11251,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 487,
+      "id": 490,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-16",
@@ -11205,7 +11274,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 488,
+      "id": 491,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-15",
@@ -11228,7 +11297,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 489,
+      "id": 492,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-15",
@@ -11251,7 +11320,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 490,
+      "id": 493,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-12",
@@ -11274,7 +11343,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 491,
+      "id": 494,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-10",
@@ -11297,7 +11366,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 492,
+      "id": 495,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-10",
@@ -11320,7 +11389,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 493,
+      "id": 496,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-10",
@@ -11343,7 +11412,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 494,
+      "id": 497,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-09",
@@ -11366,7 +11435,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 495,
+      "id": 498,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-09",
@@ -11389,7 +11458,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 496,
+      "id": 499,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2025-12-09",
@@ -11412,7 +11481,7 @@
       "note": "다가구주택 실거래"
     },
     {
-      "id": 497,
+      "id": 500,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-08",
@@ -11435,7 +11504,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 498,
+      "id": 501,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-05",
@@ -11458,7 +11527,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 499,
+      "id": 502,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-05",
@@ -11481,7 +11550,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 500,
+      "id": 503,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-04",
@@ -11504,7 +11573,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 501,
+      "id": 504,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-03",
@@ -11527,7 +11596,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 502,
+      "id": 505,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-03",
@@ -11550,7 +11619,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 503,
+      "id": 506,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-03",
@@ -11573,7 +11642,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 504,
+      "id": 507,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-03",
@@ -11596,7 +11665,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 505,
+      "id": 508,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-03",
@@ -11619,7 +11688,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 506,
+      "id": 509,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-03",
@@ -11642,7 +11711,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 507,
+      "id": 510,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-02",
@@ -11665,7 +11734,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 508,
+      "id": 511,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-02",
@@ -11688,7 +11757,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 509,
+      "id": 512,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-02",
@@ -11711,7 +11780,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 510,
+      "id": 513,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-02",
@@ -11734,7 +11803,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 511,
+      "id": 514,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-01",
@@ -11757,7 +11826,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 512,
+      "id": 515,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-01",
@@ -11780,7 +11849,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 513,
+      "id": 516,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-01",
@@ -11803,7 +11872,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 514,
+      "id": 517,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-01",
@@ -11826,7 +11895,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 515,
+      "id": 518,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-01",
@@ -11849,7 +11918,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 516,
+      "id": 519,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-01",
@@ -11872,7 +11941,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 517,
+      "id": 520,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-01",
@@ -11895,7 +11964,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 518,
+      "id": 521,
       "category": "land",
       "categoryName": "토지",
       "dealDate": "2025-12-01",
@@ -11918,7 +11987,7 @@
       "note": "토지 실거래"
     },
     {
-      "id": 519,
+      "id": 522,
       "category": "house",
       "categoryName": "다가구주택",
       "dealDate": "2025-12-01",
